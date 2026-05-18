@@ -91,7 +91,7 @@ export default function Partners() {
         </div>
         <h2 style={{
           fontFamily: 'var(--font-playfair, Georgia, serif)',
-          fontSize: 'clamp(28px,3.2vw,40px)', fontWeight: 800,
+          fontSize: 'clamp(20px,2.4vw,32px)', fontWeight: 700,
           letterSpacing: '-0.025em', color: '#010278', lineHeight: 1.15,
         }}>
           Trusted by 35+{' '}

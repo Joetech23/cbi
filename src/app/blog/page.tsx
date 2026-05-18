@@ -50,7 +50,7 @@ export default function BlogPage() {
               }}>Featured · {featured.category}</span>
               <div style={{
                 fontFamily: 'var(--font-space, monospace)',
-                fontSize: 64, fontWeight: 900, opacity: 0.18, lineHeight: 0.9,
+                fontSize: 48, fontWeight: 700, opacity: 0.18, lineHeight: 0.9,
               }}>{String(featured.id).padStart(2, '0')}</div>
             </div>
             <div>
@@ -61,7 +61,7 @@ export default function BlogPage() {
               }}>{featured.date} · {featured.read} read</p>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(28px,3.4vw,42px)', fontWeight: 800,
+                fontSize: 'clamp(20px,2.4vw,32px)', fontWeight: 700,
                 color: '#000000', lineHeight: 1.15, letterSpacing: '-0.025em', marginBottom: 18,
               }}>{featured.title}</h2>
               <p style={{

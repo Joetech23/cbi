@@ -100,8 +100,8 @@ export default async function TeamProfilePage({ params }: Props) {
 
             <h1 className="profile-name" style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontWeight: 900,
-              fontSize: 'clamp(46px, 6.8vw, 96px)',
+              fontWeight: 700,
+              fontSize: 'clamp(32px, 4.8vw, 68px)',
               lineHeight: 0.98, letterSpacing: '-0.035em',
               color: 'white', margin: 0,
               textShadow: '0 4px 24px rgba(0,0,0,0.25)',
@@ -341,7 +341,7 @@ export default async function TeamProfilePage({ params }: Props) {
                 <div>
                   <div style={{
                     fontFamily: 'var(--font-space, monospace)',
-                    fontSize: 36, fontWeight: 800, color: '#ff8400',
+                    fontSize: 28, fontWeight: 700, color: '#ff8400',
                     fontVariantNumeric: 'tabular-nums', lineHeight: 1,
                   }}>{member.yearsAtCBI}</div>
                   <div style={{
@@ -425,7 +425,7 @@ export default async function TeamProfilePage({ params }: Props) {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em',
             }}>
               Meet the rest of <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3 }}>the team.</em>

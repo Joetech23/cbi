@@ -35,7 +35,7 @@
   /* Motion + chrome */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out:    cubic-bezier(0.0, 0, 0.2, 1);
-  --nav-height:  72px;
+  --nav-height:  104px;
 }
 
 /* ─── Reset ─────────────────────────────────────────────── */
@@ -54,20 +54,20 @@ html {
 img, svg, video { max-width: 100%; }
 
 body {
-  font-family: var(--font-jakarta, 'Poppins', system-ui, sans-serif);
+  font-family: var(--font-jakarta, 'DM Sans', system-ui, sans-serif);
   color: var(--ink);
   background: var(--white);
   overflow-x: hidden;
   letter-spacing: -0.005em;
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "liga", "kern";
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-playfair, 'Jost', system-ui, sans-serif);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.08;
-  font-feature-settings: "ss01", "cv11";
+  font-family: var(--font-playfair, 'Cormorant Garamond', Georgia, serif);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  font-feature-settings: "liga", "kern", "onum";
 }
 
 ::selection { background: rgba(255,132,0,0.25); color: var(--royal-dark); }
@@ -147,75 +147,137 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 20px;
 }
 
-/* ─── Buttons ───────────────────────────────────────────── */
-.btn {
+/* ─── Premium Button System ─────────────────────────────── */
+
+/* Base — all .cbi-btn variants share this */
+.cbi-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   font-family: var(--font-jakarta, sans-serif);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  border-radius: 8px;
-  padding: 14px 28px;
-  min-height: 52px;
-  border: 2px solid transparent;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.025em;
+  border-radius: 6px;
+  padding: 12px 26px;
+  border: 1.5px solid transparent;
   cursor: pointer;
-  transition: all 220ms var(--ease-spring);
   text-decoration: none;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  transition:
+    transform 220ms var(--ease-spring),
+    box-shadow 220ms var(--ease-spring),
+    background 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    gap 150ms ease;
+  -webkit-user-select: none;
+  user-select: none;
 }
-.btn:active { transform: translateY(1px) !important; }
 
-.btn-royal {
-  background: var(--royal);
+/* Shimmer sweep on hover — pseudo-element slides across */
+.cbi-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -80%; width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  pointer-events: none;
+}
+.cbi-btn:hover::before {
+  animation: btnShimmer 550ms ease forwards;
+}
+.cbi-btn:active  { transform: translateY(1px) scale(0.985) !important; }
+
+/* ── Variants ── */
+.cbi-btn-primary {
+  background: #0102F1;
   color: white;
-  border-color: var(--royal);
+  border-color: #0102F1;
+  box-shadow: 0 2px 10px rgba(1,2,241,0.18);
 }
-.btn-royal:hover {
-  background: #3335f3;
-  border-color: #3335f3;
+.cbi-btn-primary:hover {
+  background: #2224f5;
+  border-color: #2224f5;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(1,2,241,0.35);
+  box-shadow: 0 8px 28px rgba(1,2,241,0.32);
 }
 
-.btn-gold {
-  background: var(--gold);
-  color: var(--ink);
-  border-color: var(--gold);
+.cbi-btn-gold {
+  background: #ff8400;
+  color: #010278;
+  border-color: #ff8400;
+  box-shadow: 0 2px 10px rgba(255,132,0,0.22);
 }
-.btn-gold:hover {
-  background: var(--gold-dark);
-  border-color: var(--gold-dark);
+.cbi-btn-gold:hover {
+  background: #e87600;
+  border-color: #e87600;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,132,0,0.4);
+  box-shadow: 0 8px 28px rgba(255,132,0,0.38);
 }
 
-.btn-outline-white {
+.cbi-btn-outline-blue {
+  background: transparent;
+  color: #0102F1;
+  border-color: #0102F1;
+}
+.cbi-btn-outline-blue:hover {
+  background: #0102F1;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(1,2,241,0.22);
+}
+
+.cbi-btn-outline-white {
   background: transparent;
   color: white;
-  border-color: rgba(255,255,255,0.55);
+  border-color: rgba(255,255,255,0.4);
 }
-.btn-outline-white:hover {
-  background: white;
-  color: var(--royal);
-  border-color: white;
+.cbi-btn-outline-white:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.8);
   transform: translateY(-2px);
 }
 
-.btn-outline-royal {
-  background: transparent;
-  color: var(--royal);
-  border-color: var(--royal);
-}
-.btn-outline-royal:hover {
-  background: var(--royal);
+.cbi-btn-ghost {
+  background: rgba(255,255,255,0.07);
   color: white;
+  border-color: rgba(255,255,255,0.18);
+}
+.cbi-btn-ghost:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.4);
   transform: translateY(-2px);
 }
+
+/* ── Loop animations ── */
+
+/* Donate: repeating glow pulse (applies on top of any variant) */
+.cbi-btn-pulse {
+  animation: btnDonateGlow 2.6s ease-in-out infinite;
+}
+.cbi-btn-pulse:hover { animation: none; }   /* stop pulse on hover — hover state takes over */
+
+/* Donate nav: outlined flip — reversed colours on hover */
+.cbi-btn-nav-donate {
+  background: #0102F1;
+  color: white;
+  border-color: #0102F1;
+  animation: btnNavPulse 3s ease-in-out infinite;
+}
+.cbi-btn-nav-donate:hover {
+  animation: none;
+  background: transparent;
+  color: #0102F1;
+  box-shadow: none;
+}
+
+/* ─── Legacy .btn aliases (keep old code working) ─────── */
+.btn { }
+.btn-royal       { } .btn-gold { } .btn-outline-white { } .btn-outline-royal { }
 
 /* ─── Card ──────────────────────────────────────────────── */
 .card-hover {
@@ -277,10 +339,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Stat Number ───────────────────────────────────────── */
 .stat-number {
-  font-family: var(--font-space, 'Jost', system-ui, sans-serif);
-  font-weight: 800;
+  font-family: var(--font-space, 'Montserrat', system-ui, sans-serif);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
   line-height: 1;
 }
 
@@ -361,6 +423,85 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Font-weight 700 helper ────────────────────────────── */
 .font-700 { font-weight: 700; }
+
+/* ─── Loop & interaction keyframes ─────────────────────── */
+
+/* Button shimmer sweep */
+@keyframes btnShimmer {
+  from { left: -80%; }
+  to   { left: 160%; }
+}
+
+/* Donate button soft glow pulse */
+@keyframes btnDonateGlow {
+  0%, 100% { box-shadow: 0 2px 10px rgba(255,132,0,0.22), 0 0 0 0   rgba(255,132,0,0.30); }
+  50%       { box-shadow: 0 2px 10px rgba(255,132,0,0.22), 0 0 0 8px rgba(255,132,0,0); }
+}
+
+/* Nav donate subtle pulse */
+@keyframes btnNavPulse {
+  0%, 100% { box-shadow: 0 2px 10px rgba(1,2,241,0.18), 0 0 0 0   rgba(1,2,241,0.25); }
+  50%       { box-shadow: 0 2px 10px rgba(1,2,241,0.18), 0 0 0 6px rgba(1,2,241,0); }
+}
+
+/* Floating badge / card */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* Scroll-down chevron bounce */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0);   opacity: 0.55; }
+  50%       { transform: translateX(-50%) translateY(7px); opacity: 1; }
+}
+
+/* Pulsing dot (live indicator) */
+@keyframes livePulse {
+  0%, 100% { transform: scale(1);   opacity: 1; }
+  50%       { transform: scale(1.6); opacity: 0; }
+}
+
+/* Slow ken-burns (reusable) */
+@keyframes kenBurns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* Underline draw */
+@keyframes drawUnderline {
+  from { transform: scaleX(0); transform-origin: left; }
+  to   { transform: scaleX(1); transform-origin: left; }
+}
+
+/* Ticker marquee (top bar) */
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Count-up shimmer on stat numbers */
+@keyframes statShine {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Border rotate (animated ring) */
+@keyframes borderSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Tag blink (programmes scroll) */
+@keyframes tagBlink {
+  0%, 80%, 100% { opacity: 1; }
+  40%            { opacity: 0.55; }
+}
+
+/* ─── Utility animation classes ─────────────────────────── */
+.anim-float     { animation: floatY       4s ease-in-out infinite; }
+.anim-pulse-dot { animation: livePulse    1.6s ease-out   infinite; }
+.anim-bounce    { animation: scrollBounce 1.8s ease-in-out infinite; }
+.anim-spin      { animation: borderSpin  4s linear        infinite; }
 
 /* ─── Reduced Motion ────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

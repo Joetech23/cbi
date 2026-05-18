@@ -7,18 +7,29 @@ import PageHero from '@/components/layout/PageHero'
 const CATEGORIES = ['All', 'Health', 'Education', 'WASH', 'Community', 'Nutrition']
 
 const PHOTOS = [
-  { src: '/images/programs/IMG_8929-health.jpg',     caption: 'Primary health outreach — field clinic',         category: 'Health',    h: 460 },
-  { src: '/images/programs/IMG_9278-education.jpg',  caption: 'Education in Emergency programme',               category: 'Education', h: 320 },
-  { src: '/images/programs/IMG_9297-nutrition.jpg',  caption: 'Nutrition screening — community level',          category: 'Nutrition', h: 380 },
-  { src: '/images/branding/Care-Best-3.jpg',         caption: 'CBI field team in the community',                category: 'Community', h: 420 },
-  { src: '/images/mother-newborn.jpg',               caption: 'Mother with newborn — Adamawa State',            category: 'Health',    h: 380 },
-  { src: '/images/boy-smiling.jpg',                  caption: 'Child in education program — Borno State',       category: 'Education', h: 360 },
-  { src: '/images/girl-water.jpg',                   caption: 'Clean water from rehabilitated borehole',        category: 'WASH',      h: 460 },
-  { src: '/images/family-lush.jpg',                  caption: 'Family supported through nutrition program',     category: 'Community', h: 320 },
-  { src: '/images/boy-mother-park.jpg',              caption: 'Mother and son in community outreach',           category: 'Community', h: 420 },
-  { src: '/images/girl-portrait.jpg',                caption: 'Portrait — Fatima, age 8, Borno',                category: 'Education', h: 440 },
-  { src: '/images/hero-woman.jpg',                   caption: 'Community advocate — Yobe State',                category: 'Community', h: 380 },
-  { src: '/images/programs/IMG_9297-nutrition.jpg',  caption: 'Hand-pump installation site',                    category: 'WASH',      h: 380 },
+  { src: '/images/programs/IMG_8929-health.jpg',          caption: 'Primary health outreach — field clinic',                     category: 'Health',    h: 460 },
+  { src: '/images/cbi-health-program.jpg',                caption: 'Community health programme in Borno State',                  category: 'Health',    h: 380 },
+  { src: '/images/cbi-children-treatment.jpg',            caption: 'Children receiving treatment with CBI doctor',               category: 'Health',    h: 420 },
+  { src: '/images/cbi-child-health.jpg',                  caption: 'Child receiving medication during medical outreach',         category: 'Health',    h: 360 },
+  { src: '/images/cbi-medical-outreach.jpg',              caption: 'CBI medical outreach team in the field',                    category: 'Health',    h: 400 },
+  { src: '/images/cbi-medical-bicycle.jpg',               caption: 'Distributing mosquito nets to elderly — Yobe State',        category: 'Health',    h: 440 },
+  { src: '/images/cbi-medical-wheelchair-net.jpg',        caption: 'Reaching persons with disability — mosquito net distribution', category: 'Health',  h: 380 },
+  { src: '/images/cbi-woman-wheelchair.jpg',              caption: 'Woman on wheelchair receiving treatment — CBI clinic',       category: 'Health',    h: 400 },
+  { src: '/images/programs/IMG_9278-education.jpg',       caption: 'Education in Emergency programme — Adamawa',                category: 'Education', h: 320 },
+  { src: '/images/cbi-education-class.jpg',               caption: 'Children learning and raising books in class',               category: 'Education', h: 460 },
+  { src: '/images/cbi-children-books.jpg',                caption: 'Children raising books with pride — Borno State',           category: 'Education', h: 400 },
+  { src: '/images/cbi-child-uniform.jpg',                 caption: 'Child in school uniform — Education in Emergency',          category: 'Education', h: 440 },
+  { src: '/images/cbi-child-smiling.jpg',                 caption: 'Child smiling in school uniform — Borno State',             category: 'Education', h: 360 },
+  { src: '/images/cbi-teaching-child.jpg',                caption: 'CBI teacher working one-on-one with a child',               category: 'Education', h: 420 },
+  { src: '/images/cbi-wash-sanitizer.jpg',                caption: 'Children receiving hand sanitizer — WASH programme',        category: 'WASH',      h: 460 },
+  { src: '/images/cbi-wash-program.jpg',                  caption: 'WASH programme field delivery',                             category: 'WASH',      h: 380 },
+  { src: '/images/cbi-wash-global.jpg',                   caption: 'CBI WASH global programme — clean water access',            category: 'WASH',      h: 420 },
+  { src: '/images/programs/IMG_9297-nutrition.jpg',       caption: 'Nutrition screening — community level',                     category: 'Nutrition', h: 380 },
+  { src: '/images/cbi-mother-baby.jpg',                   caption: 'Mother and baby — CBI nutrition and care support',          category: 'Nutrition', h: 440 },
+  { src: '/images/cbi-community-1.jpg',                   caption: 'Community engagement session — Northern Nigeria',           category: 'Community', h: 420 },
+  { src: '/images/cbi-community-2.jpg',                   caption: 'CBI community mobilisation in the field',                   category: 'Community', h: 380 },
+  { src: '/images/branding/Care-Best-3.jpg',              caption: 'CBI field team working with the community',                 category: 'Community', h: 400 },
+  { src: '/images/cbi-events.jpg',                        caption: 'CBI programme event — 2023',                               category: 'Community', h: 360 },
 ]
 
 export default function GalleryPage() {
@@ -84,7 +95,7 @@ export default function GalleryPage() {
                 }}>
                   <span style={{
                     background: '#ff8400', color: '#010278', alignSelf: 'flex-start',
-                    padding: '3px 10px', borderRadius: 100, fontSize: 9, fontWeight: 800,
+                    padding: '3px 10px', borderRadius: 100, fontSize: 9, fontWeight: 700,
                     letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8,
                     fontFamily: 'var(--font-jakarta, sans-serif)',
                   }}>{p.category}</span>

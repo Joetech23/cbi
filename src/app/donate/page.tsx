@@ -145,7 +145,7 @@ export default function DonatePage() {
             }}>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 28, fontWeight: 800, color: '#000000',
+                fontSize: 28, fontWeight: 700, color: '#000000',
                 marginBottom: 8, letterSpacing: '-0.02em',
               }}>Choose Your Impact</h2>
               <p style={{
@@ -169,7 +169,7 @@ export default function DonatePage() {
                       <div style={{
                         fontFamily: 'var(--font-space, monospace)',
                         fontSize: t.label === 'Custom' ? 16 : 18,
-                        fontWeight: 800,
+                        fontWeight: 700,
                         color: on ? '#0102F1' : '#010278', marginBottom: 4,
                       }}>{t.label}</div>
                       <div style={{
@@ -209,7 +209,7 @@ export default function DonatePage() {
                       position: 'absolute', left: 16, top: '50%',
                       transform: 'translateY(-50%)',
                       fontFamily: 'var(--font-space, monospace)',
-                      fontSize: 18, fontWeight: 800, color: '#94a3b8',
+                      fontSize: 18, fontWeight: 700, color: '#94a3b8',
                     }}>₦</span>
                     <input
                       type="number" value={custom} onChange={e => setCustom(e.target.value)}
@@ -390,7 +390,7 @@ export default function DonatePage() {
                       alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0, marginTop: 1,
                     }}>
-                      <span style={{ color: '#16a34a', fontSize: 10, fontWeight: 900 }}>✓</span>
+                      <span style={{ color: '#16a34a', fontSize: 10, fontWeight: 700 }}>✓</span>
                     </div>
                     <span style={{
                       fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -405,7 +405,7 @@ export default function DonatePage() {
                 position: 'relative', overflow: 'hidden',
               }}>
                 <Image
-                  src="/images/boy-smiling.jpg"
+                  src="/images/cbi-child-smiling.jpg"
                   alt="" aria-hidden="true" fill
                   style={{ objectFit: 'cover', opacity: 0.14 }}
                 />

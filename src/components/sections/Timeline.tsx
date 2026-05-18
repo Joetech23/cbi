@@ -58,7 +58,7 @@ export default function Timeline() {
           </div>
           <h2 style={{
             fontFamily: 'var(--font-playfair, Georgia, serif)',
-            fontSize: 'clamp(30px,3.5vw,48px)', fontWeight: 800,
+            fontSize: 'clamp(22px,2.6vw,36px)', fontWeight: 700,
             letterSpacing: '-0.025em', color: '#000000', marginTop: 6, lineHeight: 1.1,
           }}>
             Seven Years of<br />
@@ -120,7 +120,7 @@ export default function Timeline() {
                   <div style={{
                     marginTop: 10,
                     fontFamily: 'var(--font-space, monospace)',
-                    fontSize: 14, fontWeight: 800,
+                    fontSize: 14, fontWeight: 700,
                     color: on ? '#ff8400' : '#94a3b8',
                     transition: 'color 300ms',
                   }}>{t.year}</div>
@@ -155,7 +155,7 @@ export default function Timeline() {
           }}>
             <div style={{
               fontFamily: 'var(--font-space, monospace)',
-              fontSize: 72, fontWeight: 900,
+              fontSize: 52, fontWeight: 700,
               background: 'linear-gradient(135deg, #ff8400 0%, #e07500 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',

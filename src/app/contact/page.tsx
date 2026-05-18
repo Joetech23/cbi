@@ -54,7 +54,7 @@ export default function ContactPage() {
               }}>
                 <h2 style={{
                   fontFamily: 'var(--font-playfair, Georgia, serif)',
-                  fontSize: 28, fontWeight: 800, color: '#000000',
+                  fontSize: 28, fontWeight: 700, color: '#000000',
                   marginBottom: 6, letterSpacing: '-0.02em',
                 }}>Send a Message</h2>
                 <p style={{
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 }}>✓</div>
                 <h2 style={{
                   fontFamily: 'var(--font-playfair, Georgia, serif)',
-                  fontSize: 32, fontWeight: 800, color: '#000000', marginBottom: 12,
+                  fontSize: 24, fontWeight: 700, color: '#000000', marginBottom: 12,
                 }}>Message Sent!</h2>
                 <p style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',

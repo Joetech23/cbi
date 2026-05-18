@@ -38,7 +38,7 @@ export default function PhotoCollage() {
             {/* Tall left image */}
             <div style={{ gridRow: '1/3', borderRadius: 12, overflow: 'hidden', height: 420 }}>
               <Image
-                src="/images/mother-newborn.jpg"
+                src="/images/cbi-mother-baby.jpg"
                 alt="Mother with newborn — CBI health program"
                 width={300} height={420}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 420ms ease-out' }}
@@ -49,7 +49,7 @@ export default function PhotoCollage() {
             {/* Top-right */}
             <div style={{ borderRadius: 12, overflow: 'hidden', height: 200 }}>
               <Image
-                src="/images/boy-smiling.jpg"
+                src="/images/cbi-child-smiling.jpg"
                 alt="Child in education program"
                 width={200} height={200}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 420ms ease-out' }}
@@ -60,7 +60,7 @@ export default function PhotoCollage() {
             {/* Bottom-right */}
             <div style={{ borderRadius: 12, overflow: 'hidden', height: 200 }}>
               <Image
-                src="/images/girl-water.jpg"
+                src="/images/cbi-wash-sanitizer.jpg"
                 alt="Child accessing clean water — WASH program"
                 width={200} height={200}
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', transition: 'transform 420ms ease-out' }}
@@ -88,7 +88,7 @@ export default function PhotoCollage() {
 
           <h2 style={{
             fontFamily: 'var(--font-playfair, Georgia, serif)',
-            fontSize: 'clamp(30px,3.5vw,50px)', fontWeight: 800,
+            fontSize: 'clamp(22px,2.6vw,38px)', fontWeight: 700,
             letterSpacing: '-0.025em', color: '#000000', lineHeight: 1.1, marginBottom: 24,
           }}>
             What does your<br />support actually<br />
@@ -108,28 +108,14 @@ export default function PhotoCollage() {
             Boreholes built. Children back in school. Mothers supported through safe pregnancies. 150,000+ individuals reached across 10 states.
           </p>
 
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <Link href="/about" style={{
-              padding: '13px 28px', background: 'transparent',
-              border: '2px solid #0102F1', color: '#0102F1',
-              borderRadius: 8, fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
-              transition: 'all 150ms', textDecoration: 'none', display: 'inline-block',
-            }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#0102F1'; el.style.color = 'white' }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'transparent'; el.style.color = '#0102F1' }}
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Link href="/about" className="cbi-btn cbi-btn-outline-blue"
+              style={{ fontFamily: 'var(--font-jakarta, sans-serif)' }}
             >About Us →</Link>
 
-            <Link href="/donate" style={{
-              padding: '13px 28px', background: '#0102F1', color: 'white',
-              border: '2px solid #0102F1',
-              borderRadius: 8, fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
-              transition: 'all 150ms', textDecoration: 'none', display: 'inline-block',
-            }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#3335f3'; el.style.borderColor = '#3335f3'; el.style.transform = 'translateY(-2px)' }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#0102F1'; el.style.borderColor = '#0102F1'; el.style.transform = 'none' }}
-            >Donate Now</Link>
+            <Link href="/donate" className="cbi-btn cbi-btn-primary cbi-btn-pulse"
+              style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontWeight: 700 }}
+            >♥ Donate Now</Link>
           </div>
         </div>
       </div>

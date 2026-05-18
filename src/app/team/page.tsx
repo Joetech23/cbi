@@ -31,7 +31,7 @@ export default function TeamPage() {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(28px,3.4vw,44px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,34px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em', lineHeight: 1.1,
             }}>
               Executive <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3 }}>Team.</em>
@@ -86,7 +86,7 @@ export default function TeamPage() {
                       background: p.accent, color: 'white',
                       padding: '5px 14px', borderRadius: 100,
                       fontFamily: 'var(--font-jakarta, sans-serif)',
-                      fontSize: 10, fontWeight: 800,
+                      fontSize: 10, fontWeight: 700,
                       letterSpacing: '0.12em', textTransform: 'uppercase',
                     }}>{p.role}</span>
                   </div>
@@ -96,7 +96,7 @@ export default function TeamPage() {
                 <div style={{ padding: 28 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-playfair, Georgia, serif)',
-                    fontSize: 22, fontWeight: 800, color: '#010278', marginBottom: 8,
+                    fontSize: 18, fontWeight: 700, color: '#010278', marginBottom: 8,
                   }}>{p.name}</h3>
 
                   <div style={{
@@ -163,7 +163,7 @@ export default function TeamPage() {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(28px,3.2vw,40px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,32px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em', lineHeight: 1.1,
             }}>
               Our <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3 }}>staff.</em>

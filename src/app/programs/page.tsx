@@ -33,7 +33,7 @@ const PROG_DETAIL = [
   {
     key: 'WASH', title: 'WASH',
     color: '#e0f2fe', tc: '#075985',
-    img: '/images/girl-water.jpg',
+    img: '/images/cbi-wash-sanitizer.jpg',
     impact: '30,000+ with clean water access',
     who: 'Communities lacking safe water, schools, and health facilities.',
     acts: ['Borehole construction & rehabilitation', 'Hand pump installation', 'Latrine & sanitation facility construction', 'Hygiene promotion & CLTS', 'Water quality testing'],
@@ -41,7 +41,7 @@ const PROG_DETAIL = [
   {
     key: 'Protection', title: 'Protection & GBV',
     color: '#fce7f3', tc: '#9d174d',
-    img: '/images/hero-woman.jpg',
+    img: '/images/cbi-community-2.jpg',
     impact: '5,000+ protection cases managed',
     who: 'Women, girls, IDPs, and individuals at risk of GBV.',
     acts: ['Safe spaces for women and girls', 'GBV case management & referrals', 'Psychosocial support', 'Legal aid facilitation', 'Community awareness on SGBV'],
@@ -49,7 +49,7 @@ const PROG_DETAIL = [
   {
     key: 'Food', title: 'Food Security & Livelihoods',
     color: '#f0fdf4', tc: '#166534',
-    img: '/images/boy-mother-park.jpg',
+    img: '/images/cbi-mother-baby.jpg',
     impact: '20,000+ food-secure households',
     who: 'Food-insecure households, smallholder farmers, women-led households.',
     acts: ['Multi-purpose cash transfers', 'Agricultural input distribution', 'Vocational & livelihood training', 'Village savings & loans associations', 'Market systems development'],
@@ -105,7 +105,7 @@ export default function ProgramsPage() {
               </div>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 40, fontWeight: 800, color: '#000000',
+                fontSize: 30, fontWeight: 700, color: '#000000',
                 marginBottom: 20, letterSpacing: '-0.025em', lineHeight: 1.1,
               }}>{p.title}</h2>
               <p style={{

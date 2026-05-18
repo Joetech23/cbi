@@ -55,7 +55,7 @@ export default function CareersPage() {
               </div>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+                fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
                 color: '#010278', letterSpacing: '-0.025em',
               }}>Current openings</h2>
             </div>
@@ -68,7 +68,7 @@ export default function CareersPage() {
               <div>
                 <p style={{
                   fontFamily: 'var(--font-space, monospace)',
-                  fontSize: 22, fontWeight: 800, color: '#010278', lineHeight: 1,
+                  fontSize: 18, fontWeight: 700, color: '#010278', lineHeight: 1,
                 }}>0</p>
                 <p style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -93,7 +93,7 @@ export default function CareersPage() {
             </div>
             <h3 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 22, fontWeight: 800, color: '#010278', marginBottom: 10,
+              fontSize: 18, fontWeight: 700, color: '#010278', marginBottom: 10,
             }}>No open positions right now.</h3>
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -132,7 +132,7 @@ export default function CareersPage() {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em',
             }}>Why professionals choose us.</h2>
           </div>
@@ -161,7 +161,7 @@ export default function CareersPage() {
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   marginBottom: 14,
                 }}>
-                  <span style={{ color: '#7a3d00', fontWeight: 800, fontSize: 14 }}>✓</span>
+                  <span style={{ color: '#7a3d00', fontWeight: 700, fontSize: 14 }}>✓</span>
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -203,7 +203,7 @@ export default function CareersPage() {
               </div>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+                fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
                 color: '#010278', letterSpacing: '-0.025em', marginBottom: 28,
               }}>Where you could work.</h2>
 
@@ -236,7 +236,7 @@ export default function CareersPage() {
               </div>
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+                fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
                 color: '#010278', letterSpacing: '-0.025em', marginBottom: 28,
               }}>Three simple steps.</h2>
 
@@ -251,7 +251,7 @@ export default function CareersPage() {
                     <span style={{
                       color: '#ff8400',
                       fontFamily: 'var(--font-space, monospace)',
-                      fontSize: 13, fontWeight: 800,
+                      fontSize: 13, fontWeight: 700,
                     }}>{s.step}</span>
                   </div>
                   <div>

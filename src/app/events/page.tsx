@@ -34,7 +34,7 @@ export default function EventsPage() {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <span style={{ color: '#010278', fontSize: 16, fontWeight: 800 }}>!</span>
+              <span style={{ color: '#010278', fontSize: 16, fontWeight: 700 }}>!</span>
             </div>
             <div>
               <h3 style={{
@@ -59,7 +59,7 @@ export default function EventsPage() {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em',
             }}>Recent gatherings &amp; field events.</h2>
           </div>
@@ -92,7 +92,7 @@ export default function EventsPage() {
                 }}>
                   <div style={{
                     fontFamily: 'var(--font-space, monospace)',
-                    fontSize: 22, fontWeight: 800, color: '#010278', lineHeight: 1,
+                    fontSize: 18, fontWeight: 700, color: '#010278', lineHeight: 1,
                   }}>{e.day}</div>
                   <div style={{
                     fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -135,7 +135,7 @@ export default function EventsPage() {
           }}>
             <h3 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 22, fontWeight: 700, color: 'white', marginBottom: 8,
+              fontSize: 18, fontWeight: 700, color: 'white', marginBottom: 8,
             }}>Be the first to know.</h3>
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',

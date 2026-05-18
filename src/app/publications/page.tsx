@@ -35,7 +35,7 @@ export default function PublicationsPage() {
           <div style={{ marginBottom: 36 }}>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(26px,3vw,36px)', fontWeight: 800,
+              fontSize: 'clamp(20px,2.4vw,30px)', fontWeight: 700,
               color: '#010278', letterSpacing: '-0.025em',
             }}>{PUBLICATIONS.length} publications available</h2>
           </div>
@@ -78,7 +78,7 @@ export default function PublicationsPage() {
                       <span style={{
                         background: `${color}10`, color, border: `1px solid ${color}30`,
                         padding: '3px 12px', borderRadius: 100,
-                        fontSize: 10, fontWeight: 800,
+                        fontSize: 10, fontWeight: 700,
                         letterSpacing: '0.1em', textTransform: 'uppercase',
                         fontFamily: 'var(--font-jakarta, sans-serif)',
                       }}>{p.type}</span>
@@ -126,7 +126,7 @@ export default function PublicationsPage() {
             <div>
               <h3 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 22, fontWeight: 800, color: '#010278', marginBottom: 4,
+                fontSize: 18, fontWeight: 700, color: '#010278', marginBottom: 4,
               }}>Need a specific report or raw data?</h3>
               <p style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',

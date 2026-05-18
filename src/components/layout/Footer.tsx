@@ -26,10 +26,10 @@ export default function Footer() {
           {/* ── Brand ── */}
           <div>
             <Image
-              src="/images/cbi-logo.webp"
+              src="/images/logo-white.png"
               alt="Care Best Initiative"
-              width={120} height={44}
-              style={{ objectFit: 'contain', height: 44, width: 'auto', marginBottom: 20, filter: 'brightness(10) saturate(0)' }}
+              width={160} height={56}
+              style={{ objectFit: 'contain', height: 56, width: 'auto', marginBottom: 20 }}
             />
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',

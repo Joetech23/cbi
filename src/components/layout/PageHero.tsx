@@ -30,8 +30,8 @@ export default function PageHero({ tag, headline, emph, sub }: Props) {
         </div>
         <h1 style={{
           fontFamily: 'var(--font-playfair, Georgia, serif)',
-          fontWeight: 800,
-          fontSize: 'clamp(38px,5vw,70px)',
+          fontWeight: 700,
+          fontSize: 'clamp(28px,3.6vw,52px)',
           lineHeight: 1.06, letterSpacing: '-0.025em',
           color: 'white', maxWidth: 720, margin: 0,
         }}>

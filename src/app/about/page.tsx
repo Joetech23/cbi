@@ -63,7 +63,7 @@ export default function AboutPage() {
                 </div>
                 <h2 style={{
                   fontFamily: 'var(--font-playfair, Georgia, serif)',
-                  fontSize: 32, fontWeight: 800, color: '#000000',
+                  fontSize: 24, fontWeight: 700, color: '#000000',
                   marginBottom: 16, letterSpacing: '-0.02em',
                 }}>{c.title}</h2>
                 <p style={{
@@ -113,7 +113,7 @@ export default function AboutPage() {
               <div style={{ width: 4, height: 48, background: '#ff8400', borderRadius: 4, marginBottom: 28 }} />
               <h2 style={{
                 fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(26px,3vw,38px)', fontWeight: 800,
+                fontSize: 'clamp(19px,2.2vw,29px)', fontWeight: 700,
                 color: 'white', lineHeight: 1.25, marginBottom: 20,
                 letterSpacing: '-0.02em', fontStyle: 'italic',
               }}>
@@ -153,7 +153,7 @@ export default function AboutPage() {
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 'clamp(30px,3.5vw,44px)', fontWeight: 800,
+              fontSize: 'clamp(22px,2.6vw,34px)', fontWeight: 700,
               letterSpacing: '-0.025em', color: '#000000', marginTop: 6, lineHeight: 1.1,
             }}>
               Our Core <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3 }}>Values</em>
