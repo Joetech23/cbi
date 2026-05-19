@@ -263,23 +263,58 @@ export default function DonatePage() {
                 </div>
               </div>
 
-              {/* Card / USSD CTA */}
+              {/* Card / USSD CTA — links to Paystack */}
               {method !== 'bank' && (
-                <button style={{
-                  width: '100%', padding: 17, background: '#0102F1', color: 'white',
-                  border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700,
-                  cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
-                  transition: 'all 200ms cubic-bezier(0.16,1,0.3,1)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                  boxShadow: '0 4px 16px rgba(1,2,241,0.2)',
-                  animation: 'fadeIn 300ms ease-out',
-                }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#3335f3'; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 10px 28px rgba(1,2,241,0.35)' }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#0102F1'; el.style.transform = 'none'; el.style.boxShadow = '0 4px 16px rgba(1,2,241,0.2)' }}
-                >
-                  <span>Donate {finalAmount || ''} {method === 'card' ? 'via Paystack' : 'via USSD'}</span>
-                  <span style={{ color: '#ff8400' }}>→</span>
-                </button>
+                <div style={{ animation: 'fadeIn 300ms ease-out' }}>
+                  {/* Paystack badge */}
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    background: '#f0fdf4', border: '1px solid #bbf7d0',
+                    borderRadius: 10, padding: '10px 16px', marginBottom: 14,
+                  }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="12" r="10" fill="#0a9e5c"/>
+                      <path d="M8 12.5l2.5 2.5L16 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span style={{
+                      fontFamily: 'var(--font-jakarta, sans-serif)',
+                      fontSize: 12, fontWeight: 600, color: '#15803d',
+                    }}>
+                      Secured by <strong>Paystack</strong> — bank-grade encryption
+                    </span>
+                  </div>
+
+                  <a
+                    href="https://paystack.com/pay/cbidonation"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                      width: '100%', padding: 17,
+                      background: '#0102F1', color: 'white',
+                      borderRadius: 12, fontSize: 16, fontWeight: 700,
+                      textDecoration: 'none',
+                      fontFamily: 'var(--font-jakarta, sans-serif)',
+                      boxShadow: '0 4px 16px rgba(1,2,241,0.2)',
+                      transition: 'all 200ms cubic-bezier(0.16,1,0.3,1)',
+                    }}
+                    onMouseEnter={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = '#3335f3'
+                      el.style.transform = 'translateY(-2px)'
+                      el.style.boxShadow = '0 10px 28px rgba(1,2,241,0.35)'
+                    }}
+                    onMouseLeave={e => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.background = '#0102F1'
+                      el.style.transform = 'none'
+                      el.style.boxShadow = '0 4px 16px rgba(1,2,241,0.2)'
+                    }}
+                  >
+                    <span>Donate {finalAmount || ''} via Paystack</span>
+                    <span style={{ color: '#ff8400' }}>→</span>
+                  </a>
+                </div>
               )}
 
               {/* Bank transfer accordion */}

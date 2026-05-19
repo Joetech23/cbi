@@ -33,7 +33,7 @@ function useCountUp(target: number, duration = 2200) {
 }
 
 const STATS = [
-  { target: 150000, suffix: '+', label: 'Beneficiaries Reached',    sub: 'across 10 Nigerian states' },
+  { target: 1500000, suffix: '+', label: 'Beneficiaries Reached',    sub: 'across 10 Nigerian states' },
   { target: 45000,  suffix: '+', label: 'Health Consultations',      sub: 'community & field clinics' },
   { target: 35,     suffix: '+', label: 'Partner Organisations',      sub: 'UN agencies, donors & NGOs' },
   { target: 6,      suffix: '',  label: 'Active Programs',            sub: 'integrated humanitarian work' },

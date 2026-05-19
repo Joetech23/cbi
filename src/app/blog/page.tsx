@@ -6,7 +6,7 @@ import PageHero from '@/components/layout/PageHero'
 const CATEGORIES = ['All', 'Impact', 'Programs', 'Stories', 'Events']
 
 const POSTS = [
-  { id: 1, category: 'Impact',   title: '150,000 lives touched — our 2024 in review',                 date: 'Dec 18, 2024', read: '6 min', color: '#0102F1', excerpt: 'A year of integrated programs across 10 Nigerian states. Here\'s what your support made possible.' },
+  { id: 1, category: 'Impact',   title: '1,500,000 lives touched — our 2024 in review',                 date: 'Dec 18, 2024', read: '6 min', color: '#0102F1', excerpt: 'A year of integrated programs across 10 Nigerian states. Here\'s what your support made possible.' },
   { id: 2, category: 'Stories',  title: 'Fatima\'s return to school after two lost years',            date: 'Nov 12, 2024', read: '4 min', color: '#be123c', excerpt: 'How CBI\'s Education in Emergency program reopened a future for one displaced 8-year-old.' },
   { id: 3, category: 'Programs', title: 'Borno borehole rehabilitation — 8,000 lives reached',        date: 'Oct 25, 2024', read: '5 min', color: '#0891b2', excerpt: 'Twelve new boreholes brought clean water to communities that walked 5km each day.' },
   { id: 4, category: 'Impact',   title: 'How we trained 50+ community health workers in one year',    date: 'Sep 30, 2024', read: '7 min', color: '#0102F1', excerpt: 'A model that places medical knowledge in the hands of the communities themselves.' },

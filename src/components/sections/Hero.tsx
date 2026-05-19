@@ -17,7 +17,7 @@ const SLIDES = [
     line2:        'Restoring',
     emph:         'Dignity.',
     lead:         'Integrated healthcare, education, clean water and protection for Nigeria\'s most vulnerable — across 10 states.',
-    stat:         { num: '150K+', lbl: 'Lives Reached' },
+    stat:         { num: '1.5M+', lbl: 'Lives Reached' },
   },
   {
     img:          '/images/cbi-education-class.jpg',

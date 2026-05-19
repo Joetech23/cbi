@@ -120,7 +120,7 @@ export default function Programs() {
       <div ref={ref} style={{ maxWidth: 1280, margin: '0 auto' }}>
 
         {/* ── Header ── */}
-        <div style={{
+        <div className="progs-header" style={{
           display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
           flexWrap: 'wrap', gap: 16, marginBottom: 36,
           opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(20px)',
@@ -148,7 +148,7 @@ export default function Programs() {
           {/* Right: arrows + view-all link */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             {/* Prev / Next */}
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div className="progs-arrows" style={{ display: 'flex', gap: 8 }}>
               {([
                 { dir: 'left'  as const, Icon: ChevronLeft,  can: canLeft  },
                 { dir: 'right' as const, Icon: ChevronRight, can: canRight },
@@ -209,8 +209,8 @@ export default function Programs() {
                 style={{
                   position: 'relative',
                   flexShrink: 0,
-                  width: CARD_W,
-                  height: CARD_H,
+                  width: CARD_W,   /* overridden by .prog-card CSS on small screens */
+                  height: CARD_H,  /* overridden by .prog-card CSS on small screens */
                   borderRadius: 10,
                   overflow: 'hidden',
                   display: 'block',
@@ -302,16 +302,38 @@ export default function Programs() {
 
         .progs-section { padding: 72px 80px 80px; }
 
+        /* cards: let CSS clamp width so they're never wider than ~82vw */
+        .prog-card { width: min(272px, 82vw) !important; }
+
         .prog-card:hover .prog-img          { transform: scale(1.06); }
         .prog-card:hover .prog-overlay      { opacity: 1; }
         .prog-card:hover .prog-default-label{ opacity: 0; }
         .prog-card:hover .prog-hover-body   { opacity: 1; transform: translateY(0); }
 
+        /* touch: always show description (no hover on mobile) */
+        @media (hover: none) {
+          .prog-card .prog-overlay      { opacity: 0.7 !important; }
+          .prog-card .prog-default-label{ opacity: 0 !important; }
+          .prog-card .prog-hover-body   { opacity: 1 !important; transform: translateY(0) !important; }
+        }
+
         @media (max-width: 1024px) {
           .progs-section { padding: 56px 32px 64px !important; }
         }
+
+        @media (max-width: 768px) {
+          /* hide prev/next arrows — users swipe */
+          .progs-arrows { display: none !important; }
+          /* slightly taller cards look better on portrait phones */
+          .prog-card { height: 340px !important; }
+        }
+
         @media (max-width: 640px) {
           .progs-section { padding: 48px 16px 56px !important; }
+          /* almost full-width card with a peek of the next */
+          .prog-card { width: min(260px, 78vw) !important; height: 320px !important; }
+          /* header: stack label + link below heading */
+          .progs-header { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
         }
       `}</style>
     </section>

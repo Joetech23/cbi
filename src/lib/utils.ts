@@ -56,7 +56,7 @@ export const NAV_LINKS = [
 ]
 
 export const STATS = [
-  { value: 150000, label: 'Beneficiaries Reached', suffix: '+' },
+  { value: 1500000, label: 'Beneficiaries Reached', suffix: '+' },
   { value: 10,     label: 'States Covered',        suffix: '' },
   { value: 35,     label: 'Global Partners',        suffix: '+' },
   { value: 6,      label: 'Core Programs',          suffix: '' },
@@ -156,7 +156,7 @@ export const TIMELINE = [
   { year: 2019, title: 'Founded', description: 'Care Best Initiative founded by a team of 7. Launched "Stand Against Rape: Say No to Violence" — impacting 500+ youths and adults in Northeast Nigeria.', stat: '500+ impacted' },
   { year: 2020, title: 'Nutrition Scale-Up', description: 'Expanded to Borno State delivering nutrition services; managed food distribution and COVID-19 prevention across vulnerable communities.', stat: '25,000+ served' },
   { year: 2021, title: 'New Partnerships', description: 'Partnered with UNICEF. Launched cholera prevention campaigns and distributed hygiene kits to households across the North-East.', stat: '100,000+ reached' },
-  { year: 2022, title: 'Broadened Impact', description: 'Extended to multiple Northern states. Enabled acute malnutrition response and emergency WASH services.', stat: '150,000+ individuals' },
+  { year: 2022, title: 'Broadened Impact', description: 'Extended to multiple Northern states. Enabled acute malnutrition response and emergency WASH services.', stat: '1,500,000+ individuals' },
   { year: 2023, title: 'Humanitarian Commitment', description: 'Partnered with UNICEF and Solidarites International for WASH assistance. Collaborated on education and GBV prevention campaigns.', stat: '8 LGAs covered' },
   { year: 2024, title: 'Girl-Child Empowerment', description: 'Launched school-based learning and girl-child empowerment. Focus on safe learning spaces and leadership skills development.', stat: '12 communities' },
   { year: 2025, title: 'Community Health Outreach', description: 'Delivering medical outreach and primary healthcare at grassroots level. Empowering community health workers across 10 states.', stat: '10 states active' },

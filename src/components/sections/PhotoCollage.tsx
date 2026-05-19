@@ -105,7 +105,7 @@ export default function PhotoCollage() {
             fontFamily: 'var(--font-jakarta, sans-serif)',
             fontSize: 16, lineHeight: 1.78, color: '#64748b', marginBottom: 36,
           }}>
-            Boreholes built. Children back in school. Mothers supported through safe pregnancies. 150,000+ individuals reached across 10 states.
+            Boreholes built. Children back in school. Mothers supported through safe pregnancies. 1,500,000+ individuals reached across 10 states.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>

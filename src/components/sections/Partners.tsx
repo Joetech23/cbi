@@ -38,24 +38,19 @@ function LogoCard({ p }: { p: typeof PARTNERS[0] }) {
         el.style.borderColor = '#ff8400'
         el.style.transform = 'translateY(-4px)'
         el.style.boxShadow = '0 14px 36px rgba(1,2,241,0.18)'
-        const img = el.querySelector('img') as HTMLImageElement | null
-        if (img) { img.style.filter = 'grayscale(0%)'; img.style.opacity = '1' }
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLElement
         el.style.borderColor = 'rgba(1,2,241,0.08)'
         el.style.transform = 'none'
         el.style.boxShadow = 'none'
-        const img = el.querySelector('img') as HTMLImageElement | null
-        if (img) { img.style.filter = 'grayscale(100%)'; img.style.opacity = '0.7' }
       }}>
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <Image
           src={p.src} alt={p.name} fill sizes="180px"
           style={{
             objectFit: 'contain',
-            filter: 'grayscale(100%)', opacity: 0.7,
-            transition: 'all 280ms',
+            transition: 'transform 280ms',
           }}
         />
       </div>

@@ -49,7 +49,7 @@ export default function ImpactStatement() {
             <div style={{
               fontFamily: 'var(--font-playfair, sans-serif)',
               fontSize: 42, fontWeight: 700, color: '#ff8400', lineHeight: 1,
-            }}>150K+</div>
+            }}>1.5M+</div>
             <div style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 12, fontWeight: 500, color: 'rgba(255,255,255,0.75)',
@@ -97,7 +97,7 @@ export default function ImpactStatement() {
             lineHeight: 1.45, letterSpacing: '-0.01em',
             color: '#000000', margin: '0 0 12px',
           }}>
-            Since 2019, we have touched over 150,000 lives across 10 Nigerian states — one community at a time.
+            Since 2019, we have touched over 1,500,000 lives across 10 Nigerian states — one community at a time.
           </blockquote>
 
           <div style={{

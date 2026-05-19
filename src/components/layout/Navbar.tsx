@@ -51,7 +51,7 @@ const SOCIALS = [
 
 /* ── Rolling news items ── */
 const NEWS = [
-  '🟠 CBI reaches 150,000+ beneficiaries across 10 Nigerian states',
+  '🟠 CBI reaches 1,500,000+ beneficiaries across 10 Nigerian states',
   '🔵 New WASH programme launched in 12 LGAs — Yobe & Borno States',
   '🟠 CBI partners with UNICEF on Education in Emergency — 900+ children back in school',
   '🔵 Medical outreach programme extended to Adamawa State — 2024',
@@ -321,21 +321,26 @@ export default function Navbar() {
           {/* Right: Donate + hamburger */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
             <Link href="/donate" className="nav-donate cbi-btn cbi-btn-nav-donate" style={{
-              fontSize: 13, fontWeight: 600,
-              textDecoration: 'none', letterSpacing: '0.03em',
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '9px 20px', borderRadius: 8,
+              fontSize: 13, fontWeight: 700,
+              textDecoration: 'none', letterSpacing: '0.02em',
               fontFamily: 'var(--font-jakarta, sans-serif)',
+              background: 'linear-gradient(135deg, #ffb96b 0%, #ff8400 100%)',
+              color: '#010278', border: 'none', boxShadow: '0 14px 36px rgba(255,132,0,0.18)',
+              transition: 'transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease',
             }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.background = 'transparent'
-                el.style.color = '#0102F1'
-                el.style.boxShadow = 'none'
+                el.style.transform = 'translateY(-2px)'
+                el.style.boxShadow = '0 20px 48px rgba(255,132,0,0.28)'
+                el.style.opacity = '0.98'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLElement
-                el.style.background = '#0102F1'
-                el.style.color = 'white'
-                el.style.boxShadow = ''
+                el.style.transform = 'none'
+                el.style.boxShadow = '0 14px 36px rgba(255,132,0,0.18)'
+                el.style.opacity = '1'
               }}
             >
               <span style={{ display: 'inline-block', animation: 'livePulse 2s ease-in-out infinite', fontSize: 14 }}>♥</span>
