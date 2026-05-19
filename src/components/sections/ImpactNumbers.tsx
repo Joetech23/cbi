@@ -140,6 +140,9 @@ export default function ImpactNumbers() {
 
       <style>{`
         .stats-section { padding: 80px 80px; }
+        @media (max-width: 1024px) {
+          .stats-section { padding: 64px 32px !important; }
+        }
         @media (max-width: 960px) {
           .stats-section { padding: 56px 24px !important; }
           .stats-grid { grid-template-columns: repeat(2,1fr) !important; gap: 40px !important; }
@@ -150,6 +153,11 @@ export default function ImpactNumbers() {
         @media (max-width: 520px) {
           .stats-section { padding: 44px 16px !important; }
           .stats-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+        }
+        @media (max-width: 360px) {
+          .stats-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.08) !important; padding-bottom: 24px; }
+          .stats-grid > div:last-child { border-bottom: none !important; }
         }
       `}</style>
     </section>

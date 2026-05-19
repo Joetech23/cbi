@@ -180,13 +180,6 @@ export default function Programs() {
 
         {/* ── Horizontal scroll track ── */}
         <div style={{ position: 'relative' }}>
-          {/* Fade mask right edge */}
-          <div aria-hidden style={{
-            position: 'absolute', top: 0, right: 0, bottom: 0, width: 48, zIndex: 2,
-            background: 'linear-gradient(to right, transparent, #f8fafc)',
-            pointerEvents: 'none',
-          }} />
-
           <div
             ref={trackRef}
             onScroll={onScroll}

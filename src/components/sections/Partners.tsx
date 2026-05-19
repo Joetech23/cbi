@@ -69,8 +69,8 @@ export default function Partners() {
       padding: '80px 0', overflow: 'hidden', position: 'relative',
     }}>
       {/* Header */}
-      <div style={{
-        maxWidth: 1280, margin: '0 auto 48px', padding: '0 80px', textAlign: 'center',
+      <div className="partners-header-pad" style={{
+        maxWidth: 1280, margin: '0 auto 48px', textAlign: 'center',
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(28px)',
         transition: 'opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1)',
@@ -139,6 +139,7 @@ export default function Partners() {
         @keyframes marqueeL { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
         @keyframes marqueeR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
         .marquee-row:hover { animation-play-state: paused; }
+        .partners-header-pad { padding: 0 80px; }
         .marquee-fade-l {
           position: absolute; left: 0; top: 0; bottom: 0; width: 120px; z-index: 2;
           pointer-events: none;
@@ -149,8 +150,12 @@ export default function Partners() {
           pointer-events: none;
           background: linear-gradient(to left, #eef2f7 0%, transparent 100%);
         }
+        @media (max-width: 1024px) {
+          .partners-header-pad { padding: 0 32px !important; }
+        }
         @media (max-width: 768px) {
-          .partners-section { padding: 56px 0 !important; }
+          .partners-section     { padding: 56px 0 !important; }
+          .partners-header-pad  { padding: 0 16px !important; }
           .marquee-fade-l, .marquee-fade-r { width: 40px !important; }
         }
       `}</style>

@@ -196,14 +196,12 @@ export default function Hero() {
         </div>
 
         {/* ── Bottom bar: stat + controls + progress ── */}
-        <div style={{
+        <div className="hero-bottom" style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          marginTop: 48, paddingTop: 24,
-          borderTop: '1px solid rgba(255,255,255,0.12)',
         }}>
 
           {/* Stat */}
-          <div key={`stat-${active}`} style={{ animation: 'hFadeUp 600ms ease 400ms both' }}>
+          <div className="hero-bottom-stat" key={`stat-${active}`} style={{ animation: 'hFadeUp 600ms ease 400ms both' }}>
             <div style={{
               fontFamily: 'var(--font-playfair, sans-serif)',
               fontSize: 'clamp(26px,3.5vw,40px)', fontWeight: 700,
@@ -217,7 +215,7 @@ export default function Hero() {
           </div>
 
           {/* Slide dots + arrows */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div className="hero-bottom-ctrl" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             {/* Dots */}
             <div style={{ display: 'flex', gap: 6 }}>
               {SLIDES.map((_, i) => (
@@ -300,7 +298,7 @@ export default function Hero() {
       </div>
 
       {/* ── Scroll-down indicator ── */}
-      <div className="anim-bounce" style={{
+      <div className="anim-bounce hero-scroll-hint" style={{
         position: 'absolute', bottom: 28, left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
@@ -321,17 +319,24 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(22px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .hero-wrap  { padding: 0 80px; }
+        .hero-wrap    { padding: 0 80px; }
         .hero-counter { display: flex; }
+        .hero-bottom  { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
 
         @media (max-width: 900px) {
           .hero-wrap    { padding: 0 24px !important; padding-bottom: 56px !important; }
           .hero-counter { display: none !important; }
-          section       { height: calc(100vh - 68px) !important; }
         }
         @media (max-width: 600px) {
-          .hero-wrap    { padding: 0 20px !important; padding-bottom: 40px !important; }
-          .hero-text    { max-width: 100% !important; }
+          .hero-wrap       { padding: 0 16px !important; padding-bottom: 36px !important; }
+          .hero-text       { max-width: 100% !important; }
+          .hero-bottom     { margin-top: 28px !important; padding-top: 18px !important; flex-wrap: wrap !important; gap: 16px !important; }
+          .hero-bottom-stat { flex: 1 1 100% !important; }
+          .hero-bottom-ctrl { flex: 1 1 100% !important; justify-content: flex-start !important; }
+          .hero-scroll-hint { display: none !important; }
+        }
+        @media (max-width: 400px) {
+          .hero-wrap { padding: 0 14px !important; }
         }
       `}</style>
     </section>

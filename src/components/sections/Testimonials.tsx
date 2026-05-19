@@ -160,12 +160,19 @@ export default function Testimonials() {
 
       <style>{`
         .stories-section { padding: 96px 80px; }
-        @media (max-width: 960px) {
-          .stories-section { padding: 64px 24px !important; }
-          .stories-grid { grid-template-columns: 1fr !important; }
+
+        @media (max-width: 1024px) {
+          .stories-section { padding: 64px 32px !important; }
         }
-        @media (max-width: 520px) {
+        @media (max-width: 860px) {
+          .stories-section { padding: 56px 24px !important; }
+          /* 2 cols at tablet */
+          .stories-grid { grid-template-columns: repeat(2,1fr) !important; gap: 16px !important; }
+        }
+        @media (max-width: 560px) {
           .stories-section { padding: 48px 16px !important; }
+          /* 1 col on phones */
+          .stories-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

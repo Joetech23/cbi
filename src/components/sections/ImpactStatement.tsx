@@ -40,7 +40,7 @@ export default function ImpactStatement() {
           </div>
 
           {/* Floating stat card */}
-          <div className="anim-float" style={{
+          <div className="anim-float stmt-badge" style={{
             position: 'absolute', bottom: -24, right: -28,
             background: '#0102F1', borderRadius: 12,
             padding: '22px 28px', boxShadow: '0 16px 48px rgba(1,2,241,0.3)',
@@ -108,7 +108,7 @@ export default function ImpactStatement() {
           }}>— Rejoice Mark, Executive Director</div>
 
           {/* Pillars row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, marginBottom: 40, borderTop: '1px solid rgba(1,2,241,0.08)', paddingTop: 28 }}>
+          <div className="stmt-pillars" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 0, marginBottom: 40, borderTop: '1px solid rgba(1,2,241,0.08)', paddingTop: 28 }}>
             {PILLARS.map((p, i) => (
               <div key={p.unit} style={{
                 paddingRight: i < 2 ? 20 : 0,
@@ -135,13 +135,23 @@ export default function ImpactStatement() {
 
       <style>{`
         .stmt-section { padding: 100px 80px; }
-        .stmt-grid { grid-template-columns: 1fr 1fr !important; }
+        .stmt-grid    { grid-template-columns: 1fr 1fr !important; }
+
+        @media (max-width: 1024px) {
+          .stmt-section { padding: 72px 32px !important; }
+        }
         @media (max-width: 900px) {
           .stmt-section { padding: 64px 24px !important; }
-          .stmt-grid    { grid-template-columns: 1fr !important; gap: 56px !important; }
+          .stmt-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+          /* badge pulls in so it doesn't bleed off-screen on stacked layout */
+          .stmt-badge   { right: 12px !important; bottom: -16px !important; }
         }
         @media (max-width: 520px) {
           .stmt-section { padding: 48px 16px !important; }
+          /* pillars: 3 cols is too cramped — go 3-across with smaller numbers */
+          .stmt-pillars { gap: 0 !important; }
+          .stmt-badge   { right: 8px !important; padding: 14px 18px !important; min-width: 150px !important; }
+          .stmt-badge div:first-child { font-size: 32px !important; }
         }
       `}</style>
     </section>

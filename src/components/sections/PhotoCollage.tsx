@@ -22,7 +22,7 @@ export default function PhotoCollage() {
           transition: 'all 900ms cubic-bezier(0.16,1,0.3,1)',
         }}>
           {/* Gold brushstroke */}
-          <svg viewBox="0 0 280 50" aria-hidden="true" style={{
+          <svg viewBox="0 0 280 50" aria-hidden="true" className="collage-brush" style={{
             position: 'absolute', bottom: -8, left: -24,
             width: 320, zIndex: 0, opacity: 0.28,
           }}>
@@ -36,7 +36,7 @@ export default function PhotoCollage() {
             gap: 12, position: 'relative', zIndex: 1,
           }}>
             {/* Tall left image */}
-            <div style={{ gridRow: '1/3', borderRadius: 12, overflow: 'hidden', height: 420 }}>
+            <div className="collage-tall" style={{ gridRow: '1/3', borderRadius: 12, overflow: 'hidden' }}>
               <Image
                 src="/images/cbi-mother-baby.jpg"
                 alt="Mother with newborn — CBI health program"
@@ -47,7 +47,7 @@ export default function PhotoCollage() {
               />
             </div>
             {/* Top-right */}
-            <div style={{ borderRadius: 12, overflow: 'hidden', height: 200 }}>
+            <div className="collage-short" style={{ borderRadius: 12, overflow: 'hidden' }}>
               <Image
                 src="/images/cbi-child-smiling.jpg"
                 alt="Child in education program"
@@ -58,7 +58,7 @@ export default function PhotoCollage() {
               />
             </div>
             {/* Bottom-right */}
-            <div style={{ borderRadius: 12, overflow: 'hidden', height: 200 }}>
+            <div className="collage-short" style={{ borderRadius: 12, overflow: 'hidden' }}>
               <Image
                 src="/images/cbi-wash-sanitizer.jpg"
                 alt="Child accessing clean water — WASH program"
@@ -122,13 +122,25 @@ export default function PhotoCollage() {
 
       <style>{`
         .collage-section { padding: 100px 80px; }
+        .collage-tall    { height: 420px; }
+        .collage-short   { height: 200px; }
+
+        @media (max-width: 1024px) {
+          .collage-section { padding: 72px 32px !important; }
+        }
         @media (max-width: 960px) {
           .collage-section { padding: 64px 24px !important; }
-          .collage-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .collage-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .collage-brush   { display: none !important; }
+          /* On stacked layout, mosaic takes full width — cap heights */
+          .collage-tall    { height: 340px !important; }
+          .collage-short   { height: 170px !important; }
         }
         @media (max-width: 520px) {
           .collage-section { padding: 48px 16px !important; }
-          .collage-grid { gap: 32px !important; }
+          .collage-grid    { gap: 32px !important; }
+          .collage-tall    { height: 260px !important; }
+          .collage-short   { height: 130px !important; }
         }
       `}</style>
     </section>
