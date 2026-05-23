@@ -7,18 +7,11 @@ import DonationCTA from '@/components/sections/DonationCTA'
 
 const PROG_DETAIL = [
   {
-    key: 'Education', title: 'Education in Emergency',
-    color: '#d8d8ff', tc: '#0102F1',
-    img: '/images/programs/IMG_9278-education.jpg',
-    impact: '12,000+ children enrolled',
-    who: 'Out-of-school children ages 5–17 in conflict-affected communities.',
-    acts: ['Temporary Learning Centres (TLCs)', 'Teacher training & recruitment', 'School supply distribution', 'Psychosocial support integration', 'Accelerated Education Programs'],
-  },
-  {
     key: 'Health', title: 'Health & Primary Care',
-    color: '#dcfce7', tc: '#166534',
+    color: '#fee2e2', tc: '#991b1b',
     img: '/images/programs/IMG_8929-health.jpg',
     impact: '45,000+ health consultations',
+    desc: 'Strengthening communities through accessible primary healthcare, while equipping health workers and caregivers with the knowledge, skills, and support needed to save lives, promote wellness, and provide compassionate care where it matters most.',
     who: 'Pregnant women, children under 5, and adults in underserved communities.',
     acts: ['Mobile health clinics', 'Maternal and newborn care', 'Immunization campaigns', 'Community health worker deployment', 'Primary health centre support'],
   },
@@ -27,14 +20,16 @@ const PROG_DETAIL = [
     color: '#fff3e0', tc: '#7a3d00',
     img: '/images/programs/IMG_9297-nutrition.jpg',
     impact: '8,000+ children treated',
+    desc: 'Protecting the future of children by ensuring the early detection, timely treatment, and sustained recovery of under-five children affected by acute malnutrition, giving them a healthier start to life and a greater chance to thrive.',
     who: 'Children under 5, pregnant and lactating women, adolescent girls.',
-    acts: ['CMAM — community-based management of acute malnutrition', 'Supplementary feeding programs', 'IYCF counseling', 'Growth monitoring', 'Nutrition-sensitive agriculture'],
+    acts: ['CMAM — community-based management of acute malnutrition', 'Supplementary feeding programs', 'IYCF counselling', 'Growth monitoring', 'Nutrition-sensitive agriculture'],
   },
   {
     key: 'WASH', title: 'WASH',
     color: '#e0f2fe', tc: '#075985',
     img: '/images/cbi-wash-sanitizer.jpg',
     impact: '30,000+ with clean water access',
+    desc: 'Improving the wellbeing and dignity of vulnerable communities through access to safe water, rehabilitated boreholes, and sustainable WASH services that promote healthier and safer living conditions.',
     who: 'Communities lacking safe water, schools, and health facilities.',
     acts: ['Borehole construction & rehabilitation', 'Hand pump installation', 'Latrine & sanitation facility construction', 'Hygiene promotion & CLTS', 'Water quality testing'],
   },
@@ -43,16 +38,27 @@ const PROG_DETAIL = [
     color: '#fce7f3', tc: '#9d174d',
     img: '/images/cbi-community-2.jpg',
     impact: '5,000+ protection cases managed',
+    desc: 'Creating safer communities by strengthening child safeguarding systems and delivering responsive Gender-Based Violence prevention and support services that protect dignity, restore hope, and empower vulnerable individuals.',
     who: 'Women, girls, IDPs, and individuals at risk of GBV.',
     acts: ['Safe spaces for women and girls', 'GBV case management & referrals', 'Psychosocial support', 'Legal aid facilitation', 'Community awareness on SGBV'],
   },
   {
-    key: 'Food', title: 'Food Security & Livelihoods',
+    key: 'Food Security & Livelihoods', title: 'Food Security & Livelihoods',
     color: '#f0fdf4', tc: '#166534',
-    img: '/images/cbi-mother-baby.jpg',
+    img: '/images/cbi-community-1.jpg',
     impact: '20,000+ food-secure households',
+    desc: 'Enhancing household resilience through sustainable livelihood support and improved access to food, empowering vulnerable families to achieve stability, self-reliance, and long-term economic wellbeing.',
     who: 'Food-insecure households, smallholder farmers, women-led households.',
     acts: ['Multi-purpose cash transfers', 'Agricultural input distribution', 'Vocational & livelihood training', 'Village savings & loans associations', 'Market systems development'],
+  },
+  {
+    key: 'Education', title: 'Education in Emergency',
+    color: '#d8d8ff', tc: '#0102F1',
+    img: '/images/programs/IMG_9278-education.jpg',
+    impact: '12,000+ children enrolled',
+    desc: 'Delivering safe, inclusive, and resilient learning environments that ensure children and young people continue accessing quality education despite conflict, displacement, or humanitarian crises.',
+    who: 'Out-of-school children ages 5–17 in conflict-affected communities.',
+    acts: ['Temporary Learning Centres (TLCs)', 'Teacher training & recruitment', 'School supply distribution', 'Psychosocial support integration', 'Accelerated Education Programs'],
   },
 ]
 
@@ -112,7 +118,7 @@ export default function ProgramsPage() {
                 fontFamily: 'var(--font-jakarta, sans-serif)',
                 fontSize: 16, color: '#64748b', lineHeight: 1.78, marginBottom: 28,
               }}>
-                CBI delivers evidence-based, community-centred interventions. This program reaches the most underserved — those other organizations cannot or do not reach.
+                {p.desc}
               </p>
 
               <div style={{ marginBottom: 24 }}>

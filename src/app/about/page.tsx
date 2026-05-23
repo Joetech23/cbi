@@ -18,13 +18,13 @@ const PILLS = [
   {
     tag: 'Our Mission',
     title: 'Why We Exist',
-    text: "To deliver integrated, evidence-based humanitarian programs that improve the health, education, nutrition, and protection outcomes of Nigeria's most vulnerable populations.",
+    text: 'To deliver humanitarian aid, drive sustainable development and empower vulnerable communities through community-based, inclusive and innovative programs globally',
     accent: '#0102F1',
   },
   {
     tag: 'Our Vision',
     title: "Where We're Going",
-    text: 'A Nigeria where every community — regardless of location, ethnicity, or circumstance — has access to the basic services required for a dignified, healthy, and prosperous life.',
+    text: 'A world where everyone thrives with dignity, equity and resilience',
     accent: '#ff8400',
   },
 ]

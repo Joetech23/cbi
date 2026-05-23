@@ -8,21 +8,12 @@ import { useReveal } from '@/lib/reveal'
 
 const PROGRAMS = [
   {
-    key:    'education',
-    title:  'Education in Emergency',
-    tag:    'Education',
-    accent: '#0102F1',
-    img:    '/images/cbi-education-class.jpg',
-    desc:   'Safe learning environments, trained teachers, and school supplies — keeping children learning through crisis.',
-    stat:   '900+ children back in school',
-  },
-  {
     key:    'health',
     title:  'Health & Primary Care',
     tag:    'Health',
     accent: '#e11d48',
     img:    '/images/cbi-health-program.jpg',
-    desc:   'Community health services including maternal care, immunisation, and emergency outreach to underserved populations.',
+    desc:   'Strengthening communities through accessible primary healthcare, equipping health workers and caregivers with the knowledge and skills needed to save lives and promote wellness.',
     stat:   '45,000+ consultations',
   },
   {
@@ -31,7 +22,7 @@ const PROGRAMS = [
     tag:    'Nutrition',
     accent: '#d97706',
     img:    '/images/cbi-mother-baby.jpg',
-    desc:   'Therapeutic feeding, growth monitoring, and IYCF counselling for mothers and children under 5.',
+    desc:   'Protecting the future of children through early detection, timely treatment, and sustained recovery of under-five children affected by acute malnutrition.',
     stat:   '8,000+ children treated',
   },
   {
@@ -40,7 +31,7 @@ const PROGRAMS = [
     tag:    'Clean Water',
     accent: '#0891b2',
     img:    '/images/cbi-wash-sanitizer.jpg',
-    desc:   'Clean water, sanitation facilities, and hygiene promotion for communities living without safe water.',
+    desc:   'Improving wellbeing and dignity through access to safe water, rehabilitated boreholes, and sustainable WASH services that promote healthier living conditions.',
     stat:   '30,000+ with clean water',
   },
   {
@@ -49,7 +40,7 @@ const PROGRAMS = [
     tag:    'Protection',
     accent: '#7c3aed',
     img:    '/images/cbi-community-2.jpg',
-    desc:   'Safe spaces, GBV case management, and psychosocial support for vulnerable women, girls, and IDPs.',
+    desc:   'Creating safer communities by strengthening child safeguarding systems and delivering responsive GBV prevention and support services that protect dignity and restore hope.',
     stat:   '5,000+ cases managed',
   },
   {
@@ -58,8 +49,17 @@ const PROGRAMS = [
     tag:    'Livelihoods',
     accent: '#16a34a',
     img:    '/images/cbi-community-1.jpg',
-    desc:   'Cash transfers, agricultural input, and skills training helping families achieve lasting food security.',
+    desc:   'Enhancing household resilience through sustainable livelihood support and improved access to food, empowering vulnerable families to achieve stability and self-reliance.',
     stat:   '20,000+ food-secure homes',
+  },
+  {
+    key:    'education',
+    title:  'Education in Emergency',
+    tag:    'Education',
+    accent: '#0102F1',
+    img:    '/images/cbi-education-class.jpg',
+    desc:   'Delivering safe, inclusive, and resilient learning environments ensuring children and young people continue accessing quality education despite conflict, displacement, or crisis.',
+    stat:   '900+ children back in school',
   },
 ]
 

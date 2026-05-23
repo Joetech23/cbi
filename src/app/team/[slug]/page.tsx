@@ -7,6 +7,7 @@ import {
   GraduationCap, Award, Globe, CheckCircle2, ArrowRight,
 } from 'lucide-react'
 import { TEAM, getMember } from '@/lib/team'
+import TeamAvatar, { hasHeadshot } from '@/components/ui/TeamAvatar'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -43,16 +44,37 @@ export default async function TeamProfilePage({ params }: Props) {
         background: '#010278',
         overflow: 'hidden',
       }}>
-        <Image
-          src={member.photo}
-          alt={member.name}
-          fill priority sizes="100vw"
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'top center',
-            opacity: 0.6,
-          }}
-        />
+        {hasHeadshot(member.photo) ? (
+          <Image
+            src={member.photo}
+            alt={member.name}
+            fill priority sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'top center', opacity: 0.55 }}
+          />
+        ) : (
+          /* No headshot — show a rich gradient with large initials */
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: `linear-gradient(135deg, ${member.accent}55 0%, #010278 60%)`,
+            display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
+            paddingRight: '8vw',
+          }}>
+            <div style={{
+              width: 260, height: 260, borderRadius: '50%',
+              background: `${member.accent}22`,
+              border: `2px solid ${member.accent}44`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <span style={{
+                fontFamily: 'var(--font-playfair, Georgia, serif)',
+                fontSize: 96, fontWeight: 700, color: `${member.accent}99`,
+                lineHeight: 1, userSelect: 'none',
+              }}>
+                {member.name.replace(/^Dr\.?\s*/i,'').split(/\s+/).filter(Boolean).slice(0,2).map((w: string) => w[0].toUpperCase()).join('')}
+              </span>
+            </div>
+          </div>
+        )}
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0,
           background: `linear-gradient(105deg, rgba(1,2,120,0.92) 0%, rgba(1,2,241,0.55) 45%, rgba(1,2,120,0.25) 80%, rgba(1,2,120,0.75) 100%)`,
@@ -94,7 +116,7 @@ export default async function TeamProfilePage({ params }: Props) {
                 fontSize: 10, fontWeight: 700, letterSpacing: '0.22em',
                 textTransform: 'uppercase', color: '#ffa340',
               }}>
-                {member.level === 'leadership' ? 'Leadership' : 'Team'} · {member.role}
+                {member.level === 'executive' ? 'Executive Team' : member.level === 'thematic' ? 'Thematic Leader' : 'Departmental Leader'} · {member.role}
               </span>
             </div>
 
@@ -268,9 +290,22 @@ export default async function TeamProfilePage({ params }: Props) {
             )}
           </div>
 
-          {/* RIGHT — sticky contact card */}
+          {/* RIGHT — sticky sidebar */}
           <aside className="profile-aside" style={{ position: 'sticky', top: 100 }}>
-            {/* Contact card */}
+
+            {/* 1 — Photo / Initials */}
+            <div style={{
+              borderRadius: 16, overflow: 'hidden', position: 'relative',
+              height: 300, marginBottom: 16,
+              boxShadow: '0 4px 24px rgba(1,2,241,0.08)',
+            }}>
+              <TeamAvatar
+                photo={member.photo} name={member.name} avatarColor={member.accent}
+                fill
+              />
+            </div>
+
+            {/* 2 — Get in Touch */}
             <div style={{
               background: 'white', borderRadius: 16, padding: 28,
               border: '1px solid rgba(1,2,241,0.08)',
@@ -298,7 +333,7 @@ export default async function TeamProfilePage({ params }: Props) {
                 <ArrowRight size={14} />
               </a>
 
-              {member.linkedin && (
+              {member.linkedin && member.linkedin !== '#' && (
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" style={{
                   display: 'flex', alignItems: 'center', gap: 12,
                   padding: 14, borderRadius: 10,
@@ -316,17 +351,16 @@ export default async function TeamProfilePage({ params }: Props) {
               )}
             </div>
 
-            {/* Quick facts card */}
+            {/* 3 — Quick Facts */}
             <div style={{
               background: 'linear-gradient(135deg, #010278 0%, #0102F1 100%)',
               borderRadius: 16, padding: 28, color: 'white',
-              marginBottom: 16, position: 'relative', overflow: 'hidden',
+              position: 'relative', overflow: 'hidden',
             }}>
-              {/* Decorative accent */}
               <div aria-hidden="true" style={{
                 position: 'absolute', top: -40, right: -40,
                 width: 140, height: 140, borderRadius: '50%',
-                background: `radial-gradient(circle, ${member.accent}55 0%, transparent 70%)`,
+                background: 'radial-gradient(circle, rgba(255,132,0,0.4) 0%, transparent 70%)',
                 filter: 'blur(8px)',
               }} />
 
@@ -353,7 +387,7 @@ export default async function TeamProfilePage({ params }: Props) {
                   }}>Years at CBI</div>
                 </div>
 
-                <div style={{ height: 1, background: 'rgba(255,255,255,0.1)' }} />
+                <div style={{ height: 1, background: 'rgba(255,255,255,0.10)' }} />
 
                 <div>
                   <div style={{
@@ -367,7 +401,7 @@ export default async function TeamProfilePage({ params }: Props) {
                     {member.languages.map(l => (
                       <span key={l} style={{
                         padding: '4px 10px', borderRadius: 100,
-                        background: 'rgba(255,255,255,0.1)',
+                        background: 'rgba(255,255,255,0.10)',
                         border: '1px solid rgba(255,255,255,0.15)',
                         fontFamily: 'var(--font-jakarta, sans-serif)',
                         fontSize: 12, fontWeight: 600, color: 'white',
@@ -376,17 +410,6 @@ export default async function TeamProfilePage({ params }: Props) {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Photo card */}
-            <div style={{
-              borderRadius: 16, overflow: 'hidden', position: 'relative',
-              height: 280,
-            }}>
-              <Image
-                src={member.photo} alt={member.name} fill
-                style={{ objectFit: 'cover', objectPosition: 'top center' }}
-              />
             </div>
           </aside>
         </div>
@@ -443,10 +466,10 @@ export default async function TeamProfilePage({ params }: Props) {
                 transition: 'all 250ms cubic-bezier(0.16,1,0.3,1)',
                 display: 'block',
               }}>
-                <div style={{ height: 200, position: 'relative', overflow: 'hidden', background: '#f8fafc' }}>
-                  <Image
-                    src={o.photo} alt={o.name} fill
-                    style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                <div style={{ height: 200, position: 'relative', overflow: 'hidden', background: '#f1f5f9' }}>
+                  <TeamAvatar
+                    photo={o.photo} name={o.name} avatarColor={o.accent}
+                    fill
                   />
                 </div>
                 <div style={{ padding: 18 }}>
@@ -456,7 +479,7 @@ export default async function TeamProfilePage({ params }: Props) {
                   }}>{o.name}</h3>
                   <p style={{
                     fontFamily: 'var(--font-jakarta, sans-serif)',
-                    fontSize: 11, fontWeight: 700, color: o.accent,
+                    fontSize: 11, fontWeight: 700, color: '#0102F1',
                     letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 4,
                   }}>{o.role}</p>
                 </div>
