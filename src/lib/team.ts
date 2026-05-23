@@ -447,3 +447,8 @@ export const STAFF         = [...THEMATIC, ...DEPARTMENTAL]
 export function getMember(slug: string): TeamMember | undefined {
   return TEAM.find(m => m.slug === slug)
 }
+
+/** Returns true when the member has a real headshot in /images/team/ */
+export function hasHeadshot(photo: string): boolean {
+  return Boolean(photo) && photo.startsWith('/images/team/')
+}

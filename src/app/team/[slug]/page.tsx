@@ -6,8 +6,8 @@ import {
   ArrowLeft, Mail, MapPin, Calendar, Languages,
   GraduationCap, Award, Globe, CheckCircle2, ArrowRight,
 } from 'lucide-react'
-import { TEAM, getMember } from '@/lib/team'
-import TeamAvatar, { hasHeadshot } from '@/components/ui/TeamAvatar'
+import { TEAM, getMember, hasHeadshot } from '@/lib/team'
+import TeamAvatar from '@/components/ui/TeamAvatar'
 
 interface Props {
   params: Promise<{ slug: string }>

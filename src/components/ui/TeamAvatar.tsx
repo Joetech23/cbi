@@ -4,11 +4,12 @@
  * TeamAvatar
  *
  * Shows the team member's headshot when one exists (photo path starts with
- * /images/team/ or /images/team/).  For members whose photos we don't have,
+ * /images/team/).  For members whose photos we don't have,
  * renders a WhatsApp-style initials avatar instead of a dummy field image.
  */
 
 import Image from 'next/image'
+import { hasHeadshot } from '@/lib/team'
 
 interface Props {
   photo:       string          // path from team.ts
@@ -32,11 +33,6 @@ function getInitials(name: string): string {
     .slice(0, 2)
     .map(w => w[0].toUpperCase())
     .join('')
-}
-
-/** Returns true when the photo is a real headshot in /images/team/ */
-export function hasHeadshot(photo: string): boolean {
-  return Boolean(photo) && photo.startsWith('/images/team/')
 }
 
 export default function TeamAvatar({
