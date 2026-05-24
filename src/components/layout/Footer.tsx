@@ -183,8 +183,12 @@ export default function Footer() {
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 2,
             }}>
-              <div>info@cbi.ngo</div>
-              <div>+234 (0) 800 000 0000</div>
+              <div>
+                <a href="mailto:admin@cbi.ngo" style={{ color: 'inherit', textDecoration: 'underline' }}>admin@cbi.ngo</a>
+              </div>
+              <div>
+                <a href="tel:+2349153493317" style={{ color: 'inherit', textDecoration: 'underline' }}>+234 (0) 915 349 3317</a>
+              </div>
               <div>Abuja, Federal Capital Territory, Nigeria</div>
             </div>
           </div>

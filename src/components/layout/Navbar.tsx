@@ -61,10 +61,10 @@ const NEWS = [
 
 const NAV = [
   { label: 'Home',        href: '/' },
-  { label: 'About Us',    href: '/about', children: [
-    { label: 'Our Story',        href: '/about' },
+  { label: 'Who We Are',  href: '/about', children: [
+    { label: 'About Us',         href: '/about' },
+    { label: 'Mission & Vision', href: '/about#mission' },
     { label: 'Our Team',         href: '/team' },
-    { label: 'Mission & Values', href: '/about' },
   ]},
   { label: 'Programs',    href: '/programs', children: [
     { label: 'Education in Emergency', href: '/programs' },

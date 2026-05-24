@@ -33,6 +33,7 @@ export default function AboutPage() {
   const pills    = useStagger(140, 24)
   const values   = useStagger(80, 24)
   const photoRev = useReveal()
+  const intro    = useReveal()
   return (
     <>
       <PageHero
@@ -41,8 +42,111 @@ export default function AboutPage() {
         emph="since 2019."
       />
 
+      {/* About CBI intro */}
+      <section className="about-intro" style={{ background: 'white' }}>
+        <div
+          ref={intro.ref}
+          style={{
+            maxWidth: 920, margin: '0 auto',
+            opacity: intro.visible ? 1 : 0,
+            transform: intro.visible ? 'none' : 'translateY(20px)',
+            transition: 'all 800ms cubic-bezier(0.16,1,0.3,1)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
+            <span style={{ display: 'block', width: 24, height: 1, background: '#ff8400' }} />
+            <span style={{
+              fontFamily: 'var(--font-jakarta, sans-serif)',
+              fontSize: 10, fontWeight: 700, letterSpacing: '0.2em',
+              textTransform: 'uppercase', color: '#ff8400',
+            }}>About CBI</span>
+          </div>
+
+          <h2 style={{
+            fontFamily: 'var(--font-playfair, Georgia, serif)',
+            fontSize: 'clamp(26px,3vw,38px)', fontWeight: 700,
+            letterSpacing: '-0.025em', color: '#000000',
+            lineHeight: 1.2, marginBottom: 28,
+          }}>
+            Women-led, youth-driven, and{' '}
+            <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3, fontStyle: 'italic' }}>
+              built for impact.
+            </em>
+          </h2>
+
+          <div style={{
+            display: 'flex', flexDirection: 'column', gap: 20,
+          }}>
+            <p style={{
+              fontFamily: 'var(--font-jakarta, sans-serif)',
+              fontSize: 16.5, color: '#475569', lineHeight: 1.82,
+            }}>
+              We are a <strong style={{ color: '#0102F1', fontWeight: 700 }}>women-led and youth-driven</strong> non-governmental and not-for-profit organization founded in 2019 and presently operational in states across Nigeria with a readiness to expand our reach.
+            </p>
+
+            <p style={{
+              fontFamily: 'var(--font-jakarta, sans-serif)',
+              fontSize: 16.5, color: '#475569', lineHeight: 1.82,
+            }}>
+              We are passionate about saving lives and easing the suffering of children, youth, women, and other vulnerable people — as well as maintaining human dignity and supporting the resilience of individuals and communities affected by crisis, poverty and inequality.
+            </p>
+
+            <p style={{
+              fontFamily: 'var(--font-jakarta, sans-serif)',
+              fontSize: 16.5, color: '#475569', lineHeight: 1.82,
+            }}>
+              We believe every individual deserves dignity, respect and the opportunity to thrive; hence we are committed to providing <strong style={{ color: '#000', fontWeight: 600 }}>humanitarian aid services</strong>, fostering <strong style={{ color: '#000', fontWeight: 600 }}>human capital development</strong> and strengthening <strong style={{ color: '#000', fontWeight: 600 }}>systems</strong> to empower vulnerable individuals and communities.
+            </p>
+          </div>
+
+          {/* Quick stat ribbon */}
+          <div style={{
+            display: 'flex', flexWrap: 'wrap', gap: 0,
+            marginTop: 40,
+            background: '#f8fafc',
+            borderRadius: 14,
+            border: '1px solid rgba(1,2,241,0.07)',
+            overflow: 'hidden',
+          }}>
+            {[
+              { num: '2019',       label: 'Founded' },
+              { num: '7+',         label: 'States of Presence' },
+              { num: '1.5M+',      label: 'Lives Reached' },
+              { num: 'Women-led',  label: 'Leadership' },
+            ].map((s, i, a) => (
+              <div key={s.label} style={{
+                flex: '1 1 200px',
+                padding: '20px 24px',
+                borderRight: i < a.length - 1 ? '1px solid rgba(1,2,241,0.07)' : 'none',
+                textAlign: 'center',
+              }}>
+                <div style={{
+                  fontFamily: 'var(--font-playfair, Georgia, serif)',
+                  fontSize: 24, fontWeight: 700, color: '#0102F1',
+                  letterSpacing: '-0.02em', marginBottom: 4,
+                }}>{s.num}</div>
+                <div style={{
+                  fontFamily: 'var(--font-jakarta, sans-serif)',
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
+                  textTransform: 'uppercase', color: '#64748b',
+                }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`
+          .about-intro { padding: 80px 80px 56px; }
+          @media (max-width: 768px) {
+            .about-intro { padding: 56px 24px 40px !important; }
+          }
+          @media (max-width: 520px) {
+            .about-intro { padding: 40px 16px 32px !important; }
+          }
+        `}</style>
+      </section>
+
       {/* Mission + Vision */}
-      <section className="about-mv" style={{ background: 'white' }}>
+      <section id="mission" className="about-mv" style={{ background: 'white' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div ref={pills.ref} className="mv-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 28 }}>
             {PILLS.map((c, i) => (
@@ -75,7 +179,7 @@ export default function AboutPage() {
           </div>
         </div>
         <style>{`
-          .about-mv { padding: 80px 80px; }
+          .about-mv { padding: 40px 80px 80px; scroll-margin-top: 120px; }
           @media (max-width: 768px) {
             .about-mv { padding: 56px 24px !important; }
             .mv-grid  { grid-template-columns: 1fr !important; }

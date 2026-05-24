@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import StickyContact from "@/components/layout/StickyContact";
 
 // ── Fonts ────────────────────────────────────────────────────────────────────
 
@@ -127,18 +128,28 @@ export const metadata: Metadata = {
 
   // ── Icons ────────────────────────────────────────────────────────────────────
   // icon.png + apple-icon.png placed in src/app/ are auto-detected by Next.js.
-  // The entries below are explicit fallbacks.
+  // The entries below are explicit fallbacks for older crawlers / browsers.
   icons: {
     icon: [
-      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico",   sizes: "any" },
+      { url: "/icon.png",      type: "image/png", sizes: "512x512" },
+      { url: "/icon-192.png",  type: "image/png", sizes: "192x192" },
     ],
     apple: [
-      { url: "/apple-icon.png", type: "image/png" },
+      { url: "/apple-icon.png", type: "image/png", sizes: "180x180" },
     ],
+    shortcut: ["/favicon.ico"],
   },
 
   // ── Manifest ─────────────────────────────────────────────────────────────────
   manifest: "/manifest.webmanifest",
+
+  // ── Category / classification ───────────────────────────────────────────────
+  category: "non-profit",
+  classification: "Humanitarian / Non-Governmental Organization",
+  applicationName: SITE_NAME,
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: true, email: true, address: false },
 
   // ── Verification (add tokens from Google / Bing Search Console) ─────────────
   verification: {
@@ -172,18 +183,31 @@ const jsonLd = {
         "@type": "Country",
         name: "Nigeria",
       },
+      email: "admin@cbi.ngo",
+      telephone: "+234-915-349-3317",
       address: {
         "@type": "PostalAddress",
+        streetAddress: "No. 139, Aero Gardens Estate, Kyami, Airport Road",
         addressLocality: "Abuja",
         addressRegion: "Federal Capital Territory",
         addressCountry: "NG",
       },
-      contactPoint: {
-        "@type": "ContactPoint",
-        email: "info@cbi.ngo",
-        contactType: "customer service",
-        availableLanguage: "English",
-      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          email: "admin@cbi.ngo",
+          telephone: "+234-915-349-3317",
+          contactType: "customer service",
+          areaServed: "NG",
+          availableLanguage: ["English"],
+        },
+        {
+          "@type": "ContactPoint",
+          email: "borno@cbi.ngo",
+          contactType: "regional office",
+          areaServed: "Borno State, Nigeria",
+        },
+      ],
       sameAs: [
         "https://web.facebook.com/profile.php?id=100083698905161",
         "https://x.com/BestInitiative",
@@ -243,6 +267,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <StickyContact />
       </body>
     </html>
   );
