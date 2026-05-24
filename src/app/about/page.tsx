@@ -7,11 +7,11 @@ import DonationCTA from '@/components/sections/DonationCTA'
 import { useStagger, useReveal } from '@/lib/reveal'
 
 const VALUES = [
-  { icon: '🌱', title: 'Accountability', desc: 'Transparent stewardship of every resource entrusted to us.' },
-  { icon: '🤝', title: 'Partnership',    desc: 'We work with, not for, the communities we serve.' },
-  { icon: '⚡', title: 'Innovation',     desc: 'Evidence-based approaches adapted to local realities.' },
-  { icon: '🛡️', title: 'Integrity',      desc: 'Principled action in everything we do, always.' },
-  { icon: '❤️', title: 'Compassion',     desc: 'Human dignity is the foundation of every decision.' },
+  { icon: '🌱', title: 'Transparency', desc: 'Transparent stewardship of every resource entrusted to us.' },
+  { icon: '🤝', title: 'Team Work',    desc: 'We work with, not for, the communities we serve.' },
+  { icon: '⚡', title: 'Excellency',     desc: 'Evidence-based approaches adapted to local realities.' },
+  { icon: '🛡️', title: 'Equity',      desc: 'Principled action in everything we do, always.' },
+  { icon: '❤️', title: 'Service in Love',     desc: 'Human dignity is the foundation of every decision.' },
 ]
 
 const PILLS = [
