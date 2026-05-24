@@ -14,9 +14,35 @@ const SUBJECTS = [
 ]
 
 export default function ContactPage() {
-  const [form, setForm]   = useState({ name: '', email: '', subject: '', message: '' })
-  const [sent, setSent]   = useState(false)
-  const [focus, setFocus] = useState<string | null>(null)
+  const [form, setForm]     = useState({ name: '', email: '', subject: '', message: '', website: '' })
+  const [sent, setSent]     = useState(false)
+  const [focus, setFocus]   = useState<string | null>(null)
+  const [sending, setSending] = useState(false)
+  const [error, setError]   = useState<string | null>(null)
+
+  async function submitForm(e: React.FormEvent) {
+    e.preventDefault()
+    setError(null)
+    setSending(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data.ok) {
+        setError(data.error || 'Could not send your message. Please try again or email admin@cbi.ngo directly.')
+        setSending(false)
+        return
+      }
+      setSent(true)
+      setSending(false)
+    } catch {
+      setError('Network error. Please check your connection or email admin@cbi.ngo directly.')
+      setSending(false)
+    }
+  }
 
   const inputBase: React.CSSProperties = {
     width: '100%', padding: '13px 16px', borderRadius: 10,
@@ -78,9 +104,22 @@ export default function ContactPage() {
                   </div>
 
                   <form
-                    onSubmit={e => { e.preventDefault(); setSent(true) }}
+                    onSubmit={submitForm}
                     style={{ display: 'flex', flexDirection: 'column', gap: 22 }}
                   >
+                    {/* Honeypot — hidden from real users, bots fill it */}
+                    <div style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }} aria-hidden="true">
+                      <label>
+                        Website
+                        <input
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                          value={form.website}
+                          onChange={e => setForm({ ...form, website: e.target.value })}
+                        />
+                      </label>
+                    </div>
                     {/* Name + Email row */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                       <div>
@@ -159,19 +198,83 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <button type="submit" style={{
-                      padding: '16px 24px', background: '#0102F1', color: 'white',
-                      border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700,
-                      cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
-                      transition: 'all 180ms cubic-bezier(0.16,1,0.3,1)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                      boxShadow: '0 4px 14px rgba(1,2,241,0.22)',
-                    }}
-                      onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#3335f3'; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 10px 28px rgba(1,2,241,0.3)' }}
-                      onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#0102F1'; el.style.transform = 'none'; el.style.boxShadow = '0 4px 14px rgba(1,2,241,0.22)' }}
+                    {/* Error banner */}
+                    {error && (
+                      <div role="alert" style={{
+                        padding: '12px 16px',
+                        background: '#fef2f2',
+                        border: '1px solid #fecaca',
+                        borderRadius: 10,
+                        display: 'flex', gap: 12, alignItems: 'flex-start',
+                      }}>
+                        <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>⚠️</span>
+                        <div style={{
+                          fontFamily: 'var(--font-jakarta, sans-serif)',
+                          fontSize: 13, color: '#b91c1c', lineHeight: 1.55,
+                        }}>
+                          {error}
+                          {' '}
+                          <a
+                            href={`mailto:admin@cbi.ngo?subject=${encodeURIComponent(form.subject || 'Website enquiry')}&body=${encodeURIComponent(form.message)}`}
+                            style={{ color: '#0102F1', fontWeight: 600, textDecoration: 'underline' }}
+                          >
+                            Open in your mail app instead
+                          </a>
+                        </div>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={sending}
+                      style={{
+                        padding: '16px 24px',
+                        background: sending ? '#94a3b8' : '#0102F1',
+                        color: 'white',
+                        border: 'none', borderRadius: 12, fontSize: 15, fontWeight: 700,
+                        cursor: sending ? 'not-allowed' : 'pointer',
+                        fontFamily: 'var(--font-jakarta, sans-serif)',
+                        transition: 'all 180ms cubic-bezier(0.16,1,0.3,1)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                        boxShadow: sending ? 'none' : '0 4px 14px rgba(1,2,241,0.22)',
+                        opacity: sending ? 0.85 : 1,
+                      }}
+                      onMouseEnter={e => {
+                        if (sending) return
+                        const el = e.currentTarget as HTMLElement
+                        el.style.background = '#3335f3'
+                        el.style.transform = 'translateY(-2px)'
+                        el.style.boxShadow = '0 10px 28px rgba(1,2,241,0.3)'
+                      }}
+                      onMouseLeave={e => {
+                        if (sending) return
+                        const el = e.currentTarget as HTMLElement
+                        el.style.background = '#0102F1'
+                        el.style.transform = 'none'
+                        el.style.boxShadow = '0 4px 14px rgba(1,2,241,0.22)'
+                      }}
                     >
-                      Send Message <span style={{ color: '#ff8400', fontSize: 17 }}>→</span>
+                      {sending ? (
+                        <>
+                          <span style={{
+                            width: 16, height: 16, borderRadius: '50%',
+                            border: '2px solid rgba(255,255,255,0.35)',
+                            borderTopColor: 'white',
+                            animation: 'contactSpin 700ms linear infinite',
+                            display: 'inline-block',
+                          }} />
+                          Sending…
+                        </>
+                      ) : (
+                        <>Send Message <span style={{ color: '#ff8400', fontSize: 17 }}>→</span></>
+                      )}
                     </button>
+                    <style>{`
+                      @keyframes contactSpin {
+                        from { transform: rotate(0deg); }
+                        to   { transform: rotate(360deg); }
+                      }
+                    `}</style>
                   </form>
                 </div>
               ) : (
@@ -196,7 +299,11 @@ export default function ContactPage() {
                     maxWidth: 380, margin: '0 auto 32px',
                   }}>Thank you for reaching out. Our team will respond within 48 business hours.</p>
                   <button
-                    onClick={() => { setSent(false); setForm({ name: '', email: '', subject: '', message: '' }) }}
+                    onClick={() => {
+                      setSent(false)
+                      setError(null)
+                      setForm({ name: '', email: '', subject: '', message: '', website: '' })
+                    }}
                     style={{
                       padding: '13px 32px', background: '#0102F1', color: 'white',
                       border: 'none', borderRadius: 10, fontSize: 15, fontWeight: 700,
