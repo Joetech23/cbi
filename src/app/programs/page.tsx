@@ -7,7 +7,7 @@ import DonationCTA from '@/components/sections/DonationCTA'
 
 const PROG_DETAIL = [
   {
-    key: 'Health', title: 'Health & Primary Care',
+    key: 'Health', title: 'Health',
     color: '#fee2e2', tc: '#991b1b',
     img: '/images/programs/IMG_8929-health.jpg',
     impact: '45,000+ health consultations',
@@ -34,7 +34,7 @@ const PROG_DETAIL = [
     acts: ['Borehole construction & rehabilitation', 'Hand pump installation', 'Latrine & sanitation facility construction', 'Hygiene promotion & CLTS', 'Water quality testing'],
   },
   {
-    key: 'Protection', title: 'Protection & GBV',
+    key: 'Protection', title: 'Protection',
     color: '#fce7f3', tc: '#9d174d',
     img: '/images/cbi-community-2.jpg',
     impact: '5,000+ protection cases managed',
