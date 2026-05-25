@@ -194,19 +194,25 @@ export default function AboutPage() {
       {/* Photo + tagline */}
       <section ref={photoRev.ref} style={{ background: '#010278', position: 'relative', overflow: 'hidden' }}>
         <div className="about-photo-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+          {/* Left panel — white logo on navy */}
           <div style={{
-            height: 440, overflow: 'hidden', position: 'relative',
+            height: 440, position: 'relative',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(255,255,255,0.04)',
+            borderRight: '1px solid rgba(255,255,255,0.08)',
             opacity: photoRev.visible ? 1 : 0,
             transform: photoRev.visible ? 'none' : 'translateX(-32px)',
             transition: 'all 900ms cubic-bezier(0.16,1,0.3,1)',
           }}>
             <Image
-              src="/images/branding/Care-Best-3.jpg"
-              alt="Care Best Initiative in the field"
-              fill
-              style={{ objectFit: 'cover' }}
+              src="/images/logo-white.png"
+              alt="Care Best Initiative"
+              width={240}
+              height={80}
+              style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: 240, opacity: 0.92 }}
             />
           </div>
+
           <div className="about-photo-text" style={{
             display: 'flex', alignItems: 'center', padding: '60px 64px',
             opacity: photoRev.visible ? 1 : 0,
