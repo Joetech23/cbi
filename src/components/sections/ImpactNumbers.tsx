@@ -34,7 +34,7 @@ function useCountUp(target: number, duration = 2200) {
 
 const STATS = [
   { target: 1500000, suffix: '+', label: 'Beneficiaries Reached',    sub: 'across 10 Nigerian states' },
-  { target: 45000,  suffix: '+', label: 'Health Consultations',      sub: 'community & field clinics' },
+  { target: 70000,  suffix: '+', label: 'Health Consultations',      sub: 'community & field clinics' },
   { target: 35,     suffix: '+', label: 'Partner Organisations',      sub: 'UN agencies, donors & NGOs' },
   { target: 6,      suffix: '',  label: 'Active Programs',            sub: 'integrated humanitarian work' },
 ]
@@ -111,7 +111,7 @@ export default function ImpactNumbers() {
               <em style={{ color: '#ff8400', fontStyle: 'italic' }}>Lives transformed.</em>
             </h2>
           </div>
-          <Link href="/about" className="cbi-btn cbi-btn-outline-white"
+          <Link href="/impact" className="cbi-btn cbi-btn-outline-white"
             style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12 }}
           >See Our Impact →</Link>
         </div>

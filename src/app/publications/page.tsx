@@ -15,7 +15,7 @@ const PUBLICATIONS = [
   { type: 'Annual Report',      title: 'CBI Annual Report 2024',                              date: 'March 2025',   pages: '52 pages',  desc: 'A comprehensive review of CBI\'s programs, impact, finances, and strategic direction for 2024. Covers all six thematic areas across 10 states.' },
   { type: 'Assessment Report',  title: 'WASH Needs Assessment: North-East Nigeria 2024',     date: 'November 2024', pages: '36 pages',  desc: 'Field-level assessment of water, sanitation, and hygiene conditions across 8 LGAs in Borno and Adamawa states.' },
   { type: 'Situation Report',   title: 'Nutrition Situation Analysis: Yobe State 2024',      date: 'September 2024', pages: '28 pages', desc: 'Situational analysis of acute malnutrition prevalence and response capacity in Yobe State.' },
-  { type: 'Learning Brief',     title: 'Education in Emergency: Lessons from Borno',         date: 'July 2024',     pages: '18 pages',  desc: 'Key lessons and promising practices from CBI\'s education programs in conflict-affected communities, 2021–2024.' },
+  { type: 'Learning Brief',     title: 'Education: Lessons from Borno',         date: 'July 2024',     pages: '18 pages',  desc: 'Key lessons and promising practices from CBI\'s education programs in conflict-affected communities, 2021–2024.' },
   { type: 'Strategic Document', title: 'CBI Strategic Plan 2023–2026',                        date: 'January 2023', pages: '60 pages',  desc: 'CBI\'s three-year strategic framework outlining vision, mission, programmatic priorities, and organisational development objectives.' },
 ]
 

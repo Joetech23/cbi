@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server'
 /**
  * Contact form delivery endpoint.
  *
- * Delivers to admin@cbi.ngo. Tries providers in this order:
+ * Delivers to info@cbi.ngo. Tries providers in this order:
  *   1. Resend  — if  RESEND_API_KEY  is set
  *   2. FormSubmit — fallback that works without any API key
  *                  (first submission triggers a one-time activation email
- *                  that admin@cbi.ngo must click to enable)
+ *                  that info@cbi.ngo must click to enable)
  *
  * To upgrade to Resend (recommended for production):
  *   1. Sign up at https://resend.com
@@ -17,7 +17,7 @@ import { NextRequest, NextResponse } from 'next/server'
  *        CONTACT_FROM_EMAIL=contact-form@cbi.ngo
  */
 
-const TO_EMAIL    = 'admin@cbi.ngo'
+const TO_EMAIL    = 'info@cbi.ngo'
 const FROM_FALLBACK = 'contact-form@cbi.ngo'
 
 interface Payload {
@@ -193,7 +193,7 @@ export async function POST(req: NextRequest) {
 
   console.error('[contact] all providers failed:', errors)
   return NextResponse.json(
-    { ok: false, error: 'Unable to deliver your message right now. Please email admin@cbi.ngo directly.' },
+    { ok: false, error: 'Unable to deliver your message right now. Please email info@cbi.ngo directly.' },
     { status: 502 }
   )
 }

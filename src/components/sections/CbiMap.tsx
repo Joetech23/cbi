@@ -24,7 +24,7 @@ const OFFICES: Office[] = [
   {
     id: 'abuja', label: 'Abuja', type: 'HQ', state: 'Federal Capital Territory',
     address: 'No. 139, Aero Gardens Estate, Kyami, Airport Road, Abuja',
-    email: 'admin@cbi.ngo', phone: '+234 (0) 915 349 3317',
+    email: 'info@cbi.ngo', phone: '+234 (0) 915 349 3317',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 38, y: 60,
   },

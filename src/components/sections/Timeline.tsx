@@ -7,7 +7,7 @@ const MILESTONES = [
   {
     year:  '2019',
     title: 'CBI Founded',
-    desc:  'Established in Nigeria with a founding team of 7. Our first programme — Education in Emergency — launched in Northeast Nigeria, enrolling 120 children within weeks.',
+    desc:  'Established in Nigeria with a founding team of 7. Our first programme — Education — launched in Northeast Nigeria, enrolling 120 children within weeks.',
     stat:  '120 beneficiaries',
     color: '#0102F1',
     icon:  '🌱',
@@ -30,7 +30,7 @@ const MILESTONES = [
   },
   {
     year:  '2022',
-    title: 'Protection & GBV',
+    title: 'Protection',
     desc:  'Established safe spaces and GBV case management services. 2,400 women and girls in conflict-affected areas received psychosocial support, legal aid, and emergency referrals.',
     stat:  '2,400 women & girls',
     color: '#7c3aed',

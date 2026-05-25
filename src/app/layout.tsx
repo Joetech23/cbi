@@ -183,7 +183,7 @@ const jsonLd = {
         "@type": "Country",
         name: "Nigeria",
       },
-      email: "admin@cbi.ngo",
+      email: "info@cbi.ngo",
       telephone: "+234-915-349-3317",
       address: {
         "@type": "PostalAddress",
@@ -195,7 +195,7 @@ const jsonLd = {
       contactPoint: [
         {
           "@type": "ContactPoint",
-          email: "admin@cbi.ngo",
+          email: "info@cbi.ngo",
           telephone: "+234-915-349-3317",
           contactType: "customer service",
           areaServed: "NG",
@@ -216,7 +216,7 @@ const jsonLd = {
       ],
       knowsAbout: [
         "Humanitarian Aid",
-        "Education in Emergency",
+        "Education",
         "WASH",
         "Primary Healthcare",
         "Nutrition",

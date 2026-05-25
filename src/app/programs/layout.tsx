@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Our Programs — Education, Health, WASH, Nutrition & More",
   description:
-    "Six integrated humanitarian programmes: Education in Emergency, Health & Primary Care, Nutrition, WASH, Protection & GBV, and Food Security & Livelihoods. Serving communities across Nigeria since 2019.",
+    "Six integrated humanitarian programmes: Education, Health, Nutrition, WASH, Protection, and Food Security & Livelihoods. Serving communities across Nigeria since 2019.",
   alternates: { canonical: "https://cbi.ngo/programs" },
   keywords: [
     "education in emergency Nigeria",

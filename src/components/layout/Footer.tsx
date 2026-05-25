@@ -4,10 +4,46 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const COLS: Record<string, string[]> = {
-  'About Us':  ['Our Story', 'Mission & Vision', 'Our Team', 'Core Values', 'Annual Reports'],
-  'Our Work':  ['Programs', 'Impact Stories', 'Publications', 'Gallery', 'Media'],
-}
+/* ── Footer link columns ── */
+const COLS = [
+  {
+    heading: 'Who We Are',
+    links: [
+      { label: 'About Us',         href: '/about' },
+      { label: 'Mission & Vision', href: '/about#mission' },
+      { label: 'Our Team',         href: '/team' },
+    ],
+  },
+  {
+    heading: 'Programs',
+    links: [
+      { label: 'Health',                      href: '/programs/health' },
+      { label: 'Nutrition',                   href: '/programs/nutrition' },
+      { label: 'WASH',                        href: '/programs/wash' },
+      { label: 'Protection',                  href: '/programs/protection' },
+      { label: 'Food Security & Livelihoods', href: '/programs/food-security-livelihoods' },
+      { label: 'Education',                   href: '/programs/education' },
+    ],
+  },
+  {
+    heading: 'Our Stories',
+    links: [
+      { label: 'News & Stories', href: '/blog' },
+      { label: 'Gallery',        href: '/gallery' },
+      { label: 'Events',         href: '/events' },
+      { label: 'Publications',   href: '/publications' },
+    ],
+  },
+  {
+    heading: 'Get Involved',
+    links: [
+      { label: 'Our Impact', href: '/impact' },
+      { label: 'Donate',     href: '/donate' },
+      { label: 'Careers',    href: '/careers' },
+      { label: 'Contact Us', href: '/contact' },
+    ],
+  },
+]
 
 const SOCIALS = [
   {
@@ -53,17 +89,15 @@ const SOCIALS = [
 
 export default function Footer() {
   const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
 
   return (
     <footer style={{ background: '#010278', color: 'white' }}>
       <div className="footer-inner" style={{ maxWidth: 1280, margin: '0 auto' }}>
 
-        <div className="footer-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: '1.6fr 1fr 1fr 1.6fr',
-          gap: 48, marginBottom: 56,
-        }}>
-          {/* ── Brand ── */}
+        <div className="footer-grid">
+
+          {/* ── Brand column ── */}
           <div>
             <Image
               src="/images/logo-white.png"
@@ -74,17 +108,51 @@ export default function Footer() {
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 14, color: 'rgba(255,255,255,0.55)',
-              lineHeight: 1.75, marginBottom: 28, maxWidth: 270,
+              lineHeight: 1.75, marginBottom: 20, maxWidth: 260,
             }}>
               Reaching Nigeria&apos;s most vulnerable communities — one life at a time since 2019.
             </p>
-            <div style={{ display: 'flex', gap: 10 }}>
+
+            {/* Newsletter mini-form */}
+            <p style={{
+              fontFamily: 'var(--font-jakarta, sans-serif)',
+              fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
+              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 10,
+            }}>Stay Updated</p>
+            {subscribed ? (
+              <p style={{
+                fontFamily: 'var(--font-jakarta, sans-serif)',
+                fontSize: 13, color: '#ff8400',
+              }}>✓ Thanks — you&apos;re on the list!</p>
+            ) : (
+              <form onSubmit={e => { e.preventDefault(); if (email) setSubscribed(true) }}
+                style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
+                <input
+                  type="email" value={email} onChange={e => setEmail(e.target.value)}
+                  placeholder="your@email.com" required
+                  style={{
+                    flex: 1, padding: '10px 12px', borderRadius: 7,
+                    border: '1px solid rgba(255,255,255,0.15)',
+                    background: 'rgba(255,255,255,0.07)',
+                    color: 'white', fontSize: 12,
+                    fontFamily: 'var(--font-jakarta, sans-serif)', outline: 'none',
+                  }}
+                  onFocus={e => (e.target.style.borderColor = '#ff8400')}
+                  onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.15)')}
+                />
+                <button type="submit" style={{
+                  padding: '10px 14px', background: '#ff8400', color: '#010278',
+                  border: 'none', borderRadius: 7, fontSize: 13, fontWeight: 700,
+                  cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
+                  whiteSpace: 'nowrap',
+                }}>Join →</button>
+              </form>
+            )}
+
+            {/* Social icons */}
+            <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
               {SOCIALS.map(s => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                   aria-label={s.label}
                   style={{
                     width: 38, height: 38, borderRadius: 8,
@@ -92,104 +160,72 @@ export default function Footer() {
                     background: 'rgba(255,255,255,0.05)',
                     color: 'rgba(255,255,255,0.55)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    textDecoration: 'none',
-                    transition: 'all 150ms',
+                    textDecoration: 'none', transition: 'all 150ms',
                   }}
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLElement
-                    el.style.background = '#ff8400'
-                    el.style.color = '#010278'
-                    el.style.borderColor = '#ff8400'
+                    el.style.background = '#ff8400'; el.style.color = '#010278'; el.style.borderColor = '#ff8400'
                   }}
                   onMouseLeave={e => {
                     const el = e.currentTarget as HTMLElement
-                    el.style.background = 'rgba(255,255,255,0.05)'
-                    el.style.color = 'rgba(255,255,255,0.55)'
-                    el.style.borderColor = 'rgba(255,255,255,0.12)'
+                    el.style.background = 'rgba(255,255,255,0.05)'; el.style.color = 'rgba(255,255,255,0.55)'; el.style.borderColor = 'rgba(255,255,255,0.12)'
                   }}
                 >{s.icon}</a>
               ))}
             </div>
           </div>
 
-          {/* ── Link cols ── */}
-          {Object.entries(COLS).map(([heading, links]) => (
-            <div key={heading}>
+          {/* ── Link columns ── */}
+          {COLS.map(col => (
+            <div key={col.heading}>
               <h4 style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
                 fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
                 textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 18,
-              }}>{heading}</h4>
+              }}>{col.heading}</h4>
               <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: 11 }}>
-                {links.map(l => (
-                  <li key={l}>
-                    <button style={{
-                      background: 'none', border: 'none',
+                {col.links.map(l => (
+                  <li key={l.label}>
+                    <Link href={l.href} style={{
                       fontFamily: 'var(--font-jakarta, sans-serif)',
-                      fontSize: 14, color: 'rgba(255,255,255,0.6)',
-                      cursor: 'pointer', padding: 0,
-                      transition: 'color 150ms', textAlign: 'left',
+                      fontSize: 14, color: 'rgba(255,255,255,0.60)',
+                      textDecoration: 'none', transition: 'color 150ms',
+                      display: 'inline-block',
                     }}
                       onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#ff8400'}
-                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.6)'}
-                    >{l}</button>
+                      onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.60)'}
+                    >{l.label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
 
-          {/* ── Newsletter + Contact ── */}
+          {/* ── Contact details ── */}
           <div>
             <h4 style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 12,
-            }}>Stay Close to the Mission</h4>
-            <p style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, marginBottom: 16,
-            }}>
-              Impact stories, field reports, and updates. No spam.
-            </p>
-            <form onSubmit={e => e.preventDefault()} style={{ display: 'flex', gap: 8, marginBottom: 28 }}>
-              <input
-                type="email" value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                style={{
-                  flex: 1, padding: '11px 14px', borderRadius: 8,
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  background: 'rgba(255,255,255,0.07)',
-                  color: 'white', fontSize: 13,
-                  fontFamily: 'var(--font-jakarta, sans-serif)', outline: 'none',
-                }}
-                onFocus={e => (e.target.style.borderColor = '#ff8400')}
-                onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.15)')}
-              />
-              <button type="submit" style={{
-                padding: '11px 16px', background: '#ff8400', color: '#010278',
-                border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700,
-                cursor: 'pointer', fontFamily: 'var(--font-jakarta, sans-serif)',
-                whiteSpace: 'nowrap',
-              }}>Join →</button>
-            </form>
-
-            <h4 style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 11, fontWeight: 700, letterSpacing: '0.12em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 12,
+              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 18,
             }}>Contact</h4>
             <div style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 2,
+              fontSize: 13.5, color: 'rgba(255,255,255,0.55)', lineHeight: 2,
+              display: 'flex', flexDirection: 'column', gap: 4,
             }}>
-              <div>
-                <a href="mailto:admin@cbi.ngo" style={{ color: 'inherit', textDecoration: 'underline' }}>admin@cbi.ngo</a>
-              </div>
-              <div>
-                <a href="tel:+2349153493317" style={{ color: 'inherit', textDecoration: 'underline' }}>+234 (0) 915 349 3317</a>
-              </div>
-              <div>Abuja, Federal Capital Territory, Nigeria</div>
+              <a href="mailto:info@cbi.ngo"
+                style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 150ms' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#ff8400'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
+              >✉ info@cbi.ngo</a>
+              <a href="tel:+2349153493317"
+                style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 150ms' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#ff8400'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
+              >📞 +234 (0) 915 349 3317</a>
+              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12.5 }}>
+                📍 No. 139, Aero Gardens Estate,<br />Kyami, Airport Road, Abuja
+              </span>
             </div>
           </div>
         </div>
@@ -207,16 +243,19 @@ export default function Footer() {
             © {new Date().getFullYear()} Care Best Initiative. All rights reserved. Registered NGO · Federal Republic of Nigeria.
           </p>
           <div style={{ display: 'flex', gap: 20 }}>
-            {['Privacy Policy', 'Terms of Use', 'Sitemap'].map(l => (
-              <button key={l} style={{
-                background: 'none', border: 'none',
+            {[
+              { label: 'Privacy Policy', href: '/privacy' },
+              { label: 'Terms of Use',   href: '/terms' },
+              { label: 'Sitemap',        href: '/sitemap.xml' },
+            ].map(l => (
+              <Link key={l.label} href={l.href} style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
                 fontSize: 12, color: 'rgba(255,255,255,0.28)',
-                cursor: 'pointer', padding: 0, transition: 'color 150ms',
+                textDecoration: 'none', transition: 'color 150ms',
               }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.65)'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.28)'}
-              >{l}</button>
+              >{l.label}</Link>
             ))}
           </div>
         </div>
@@ -224,11 +263,24 @@ export default function Footer() {
 
       <style>{`
         .footer-inner { padding: 72px 80px 40px; }
-        .footer-grid  { grid-template-columns: 1.6fr 1fr 1fr 1.6fr !important; }
-        @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr !important; } }
-        @media (max-width: 640px)  {
-          .footer-grid  { grid-template-columns: 1fr !important; gap: 36px !important; }
-          .footer-inner { padding: 48px 20px 32px !important; }
+        .footer-grid  {
+          display: grid;
+          grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+          gap: 40px;
+          margin-bottom: 56px;
+        }
+        @media (max-width: 1200px) {
+          .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 36px; }
+        }
+        @media (max-width: 1024px) {
+          .footer-inner { padding: 56px 40px 32px; }
+        }
+        @media (max-width: 768px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+        @media (max-width: 520px) {
+          .footer-grid  { grid-template-columns: 1fr; gap: 28px; }
+          .footer-inner { padding: 48px 20px 32px; }
         }
       `}</style>
     </footer>

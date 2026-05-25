@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
-  ArrowLeft, Mail, MapPin, Calendar, Languages,
+  ArrowLeft, Mail, MapPin, Calendar,
   GraduationCap, Award, Globe, CheckCircle2, ArrowRight,
 } from 'lucide-react'
 import { TEAM, getMember, hasHeadshot } from '@/lib/team'
@@ -193,7 +193,7 @@ export default async function TeamProfilePage({ params }: Props) {
               background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)',
               borderLeft: `5px solid ${member.accent}`,
               borderRadius: 14,
-              marginBottom: 48,
+              marginBottom: member.quote2 ? 20 : 48,
             }}>
               <span aria-hidden="true" style={{
                 position: 'absolute', top: 14, right: 22,
@@ -213,6 +213,30 @@ export default async function TeamProfilePage({ params }: Props) {
                 letterSpacing: '0.14em', textTransform: 'uppercase',
               }}>— {member.name}</cite>
             </blockquote>
+
+            {/* Second quote (if present) */}
+            {member.quote2 && (
+              <blockquote className="profile-quote" style={{
+                position: 'relative',
+                padding: '28px 28px 28px 36px',
+                background: `linear-gradient(135deg, ${member.accent}08 0%, ${member.accent}04 100%)`,
+                borderLeft: `5px solid ${member.accent}60`,
+                borderRadius: 14,
+                marginBottom: 48,
+              }}>
+                <p style={{
+                  fontFamily: 'var(--font-playfair, Georgia, serif)',
+                  fontStyle: 'italic', fontSize: 19, fontWeight: 600,
+                  color: '#010278', lineHeight: 1.55, marginBottom: 12,
+                }}>&ldquo;{member.quote2}&rdquo;</p>
+                <cite style={{
+                  fontFamily: 'var(--font-jakarta, sans-serif)',
+                  fontStyle: 'normal',
+                  fontSize: 11, fontWeight: 700, color: '#94a3b8',
+                  letterSpacing: '0.14em', textTransform: 'uppercase',
+                }}>— {member.name}</cite>
+              </blockquote>
+            )}
 
             {/* Expertise pills */}
             <div style={{ marginBottom: 48 }}>
@@ -387,6 +411,7 @@ export default async function TeamProfilePage({ params }: Props) {
                   }}>Years at CBI</div>
                 </div>
 
+                {/* Languages section — commented out for now
                 <div style={{ height: 1, background: 'rgba(255,255,255,0.10)' }} />
 
                 <div>
@@ -409,6 +434,7 @@ export default async function TeamProfilePage({ params }: Props) {
                     ))}
                   </div>
                 </div>
+                */}
               </div>
             </div>
           </aside>

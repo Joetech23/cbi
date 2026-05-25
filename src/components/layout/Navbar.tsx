@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, X, Menu } from 'lucide-react'
 
-/* ── Real social links ── */
+/* ── Social links ── */
 const SOCIALS = [
   {
     label: 'Facebook',
@@ -49,46 +49,55 @@ const SOCIALS = [
   },
 ]
 
-/* ── Rolling news items ── */
+/* ── Rolling news ticker ── */
 const NEWS = [
   '🟠 CBI reaches 1,500,000+ beneficiaries across 10 Nigerian states',
   '🔵 New WASH programme launched in 12 LGAs — Yobe & Borno States',
-  '🟠 CBI partners with UNICEF on Education in Emergency — 900+ children back in school',
+  '🟠 CBI partners with UNICEF on Education — 900+ children back in school',
   '🔵 Medical outreach programme extended to Adamawa State — 2024',
   '🟠 Food Security programme supports 20,000+ households this quarter',
   '🔵 CBI is recruiting — view open positions on our Careers page',
 ]
 
+/* ── 5-tab navigation structure ── */
 const NAV = [
-  { label: 'Home',        href: '/' },
-  { label: 'Who We Are',  href: '/about', children: [
+  { label: 'Home', href: '/' },
+
+  { label: 'Who We Are', href: '/about', children: [
     { label: 'About Us',         href: '/about' },
     { label: 'Mission & Vision', href: '/about#mission' },
     { label: 'Our Team',         href: '/team' },
   ]},
-  { label: 'Programs',    href: '/programs', children: [
-    { label: 'Education in Emergency', href: '/programs' },
-    { label: 'Health & Primary Care',  href: '/programs' },
-    { label: 'Nutrition',              href: '/programs' },
-    { label: 'WASH',                   href: '/programs' },
-    { label: 'Protection & GBV',       href: '/programs' },
-    { label: 'Food Security',          href: '/programs' },
+
+  { label: 'Programs', href: '/programs', children: [
+    { label: 'Health',                      href: '/programs/health' },
+    { label: 'Nutrition',                   href: '/programs/nutrition' },
+    { label: 'WASH',                        href: '/programs/wash' },
+    { label: 'Protection',                  href: '/programs/protection' },
+    { label: 'Food Security & Livelihoods', href: '/programs/food-security-livelihoods' },
+    { label: 'Education',                   href: '/programs/education' },
   ]},
-  { label: 'Impact',      href: '/impact' },
-  { label: 'Media',       href: '/blog', children: [
-    { label: 'News & Stories', href: '/blog' },
-    { label: 'Gallery',        href: '/gallery' },
-    { label: 'Events',         href: '/events' },
-    { label: 'Publications',   href: '/publications' },
+
+  { label: 'Our Stories', href: '/blog', children: [
+    { label: 'News & Stories',  href: '/blog' },
+    { label: 'Gallery',         href: '/gallery' },
+    { label: 'Events',          href: '/events' },
+    { label: 'Publications',    href: '/publications' },
   ]},
-  { label: 'Contact',     href: '/contact' },
+
+  { label: 'More', href: '/impact', children: [
+    { label: 'Our Impact',   href: '/impact' },
+    { label: 'Careers',      href: '/careers' },
+    { label: 'Contact Us',   href: '/contact' },
+  ]},
 ]
 
 export default function Navbar() {
   const pathname  = usePathname()
-  const [scrolled,  setScrolled]  = useState(false)
-  const [menuOpen,  setMenuOpen]  = useState(false)
-  const [dropdown,  setDropdown]  = useState<string | null>(null)
+  const [scrolled,       setScrolled]       = useState(false)
+  const [menuOpen,       setMenuOpen]       = useState(false)
+  const [dropdown,       setDropdown]       = useState<string | null>(null)
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -96,7 +105,23 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => { setMenuOpen(false); setDropdown(null) }, [pathname])
+  // Close everything on route change
+  useEffect(() => {
+    setMenuOpen(false)
+    setDropdown(null)
+    setMobileExpanded(null)
+  }, [pathname])
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
+  function closeMobile() {
+    setMenuOpen(false)
+    setMobileExpanded(null)
+  }
 
   return (
     <>
@@ -112,19 +137,15 @@ export default function Navbar() {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: '0 80px', gap: 24,
         }}>
-
-          {/* Left: LIVE label + rolling ticker */}
+          {/* Left: rolling ticker */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, overflow: 'hidden', minWidth: 0 }}>
-            {/* LIVE pill */}
             <div style={{
               display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0,
-              background: '#ff8400', borderRadius: 3,
-              padding: '2px 8px',
+              background: '#ff8400', borderRadius: 3, padding: '2px 8px',
             }}>
               <span style={{
                 width: 5, height: 5, borderRadius: '50%', background: 'white',
-                animation: 'livePulse 1.8s ease-in-out infinite',
-                display: 'inline-block',
+                animation: 'livePulse 1.8s ease-in-out infinite', display: 'inline-block',
               }} />
               <span style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
@@ -132,21 +153,15 @@ export default function Navbar() {
                 textTransform: 'uppercase', color: 'white',
               }}>LIVE</span>
             </div>
-
-            {/* Divider */}
             <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.18)', flexShrink: 0 }} />
-
-            {/* Ticker track */}
             <div style={{ overflow: 'hidden', flex: 1, minWidth: 0 }}>
-              <div className="ticker-track" style={{ display: 'flex', gap: 0, whiteSpace: 'nowrap' }}>
-                {/* Content duplicated for seamless loop */}
+              <div className="ticker-track" style={{ display: 'flex', whiteSpace: 'nowrap' }}>
                 {[0, 1].map(copy => (
-                  <span key={copy} style={{ display: 'inline-flex', alignItems: 'center', gap: 0 }}>
+                  <span key={copy} style={{ display: 'inline-flex', alignItems: 'center' }}>
                     {NEWS.map((item, i) => (
                       <span key={i} style={{
                         fontFamily: 'var(--font-jakarta, sans-serif)',
                         fontSize: 11, fontWeight: 400, color: 'rgba(255,255,255,0.80)',
-                        letterSpacing: '0.01em',
                         display: 'inline-flex', alignItems: 'center',
                       }}>
                         {item}
@@ -158,46 +173,25 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
-          {/* Right: NGO tag + social icons */}
+          {/* Right: tag + socials */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
             <span style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 9.5, fontWeight: 700, letterSpacing: '0.16em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)',
-              whiteSpace: 'nowrap',
+              textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', whiteSpace: 'nowrap',
             }}>NGO · Nigeria</span>
-
             <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.18)' }} />
-
             {SOCIALS.map(s => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
+              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   width: 26, height: 26, borderRadius: 4,
-                  color: 'rgba(255,255,255,0.55)',
-                  background: 'rgba(255,255,255,0.06)',
-                  transition: 'color 150ms, background 150ms',
-                  textDecoration: 'none',
+                  color: 'rgba(255,255,255,0.55)', background: 'rgba(255,255,255,0.06)',
+                  transition: 'color 150ms, background 150ms', textDecoration: 'none',
                 }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = '#ff8400'
-                  el.style.background = 'rgba(255,132,0,0.12)'
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.color = 'rgba(255,255,255,0.55)'
-                  el.style.background = 'rgba(255,255,255,0.06)'
-                }}
-              >
-                {s.icon}
-              </a>
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#ff8400'; el.style.background = 'rgba(255,132,0,0.12)' }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'rgba(255,255,255,0.55)'; el.style.background = 'rgba(255,255,255,0.06)' }}
+              >{s.icon}</a>
             ))}
           </div>
         </div>
@@ -206,8 +200,7 @@ export default function Navbar() {
       {/* ── Main navbar ───────────────────────────────────── */}
       <header style={{
         position: 'fixed', top: 36, left: 0, right: 0, zIndex: 1000,
-        height: 68,
-        background: 'white',
+        height: 68, background: 'white',
         borderBottom: scrolled ? 'none' : '1px solid rgba(1,2,241,0.07)',
         boxShadow: scrolled ? '0 4px 32px rgba(1,2,120,0.10)' : 'none',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
@@ -217,19 +210,14 @@ export default function Navbar() {
           maxWidth: 1280, margin: '0 auto', height: '100%',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
-
           {/* Logo */}
           <Link href="/" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-            <Image
-              src="/images/logo-blue.png"
-              alt="Care Best Initiative"
+            <Image src="/images/logo-blue.png" alt="Care Best Initiative"
               width={140} height={44}
-              style={{ objectFit: 'contain', height: 44, width: 'auto' }}
-              priority
-            />
+              style={{ objectFit: 'contain', height: 44, width: 'auto' }} priority />
           </Link>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav */}
           <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 2, height: '100%' }}>
             {NAV.map(link => {
               const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href + '/'))
@@ -244,11 +232,9 @@ export default function Navbar() {
                     display: 'flex', alignItems: 'center', gap: 4,
                     padding: '0 14px', height: '100%',
                     fontFamily: 'var(--font-jakarta, sans-serif)',
-                    fontSize: 13.5, fontWeight: 500, letterSpacing: '0.005em',
+                    fontSize: 13.5, fontWeight: 500,
                     color: active ? '#0102F1' : '#1a1a2e',
-                    textDecoration: 'none',
-                    position: 'relative',
-                    transition: 'color 150ms',
+                    textDecoration: 'none', position: 'relative', transition: 'color 150ms',
                   }}
                     onMouseEnter={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#0102F1' }}
                     onMouseLeave={e => { if (!active) (e.currentTarget as HTMLElement).style.color = '#1a1a2e' }}
@@ -256,12 +242,10 @@ export default function Navbar() {
                     {link.label}
                     {link.children && (
                       <ChevronDown size={12} style={{
-                        opacity: 0.5,
-                        transition: 'transform 200ms',
+                        opacity: 0.5, transition: 'transform 200ms',
                         transform: open ? 'rotate(180deg)' : 'none',
                       }} />
                     )}
-                    {/* Active underline */}
                     {active && (
                       <span style={{
                         position: 'absolute', bottom: 0, left: 14, right: 14,
@@ -270,7 +254,7 @@ export default function Navbar() {
                     )}
                   </Link>
 
-                  {/* Dropdown */}
+                  {/* Desktop dropdown */}
                   {link.children && (
                     <div style={{
                       position: 'absolute', top: '100%', left: 0,
@@ -290,21 +274,16 @@ export default function Navbar() {
                           padding: '9px 18px',
                           fontFamily: 'var(--font-jakarta, sans-serif)',
                           fontSize: 13, fontWeight: 400, color: '#2d2d3a',
-                          textDecoration: 'none',
-                          transition: 'all 130ms',
+                          textDecoration: 'none', transition: 'all 130ms',
                           borderBottom: ci < link.children!.length - 1 ? '1px solid rgba(1,2,241,0.05)' : 'none',
                         }}
                           onMouseEnter={e => {
                             const el = e.currentTarget as HTMLElement
-                            el.style.background = '#f5f5ff'
-                            el.style.color = '#0102F1'
-                            el.style.paddingLeft = '22px'
+                            el.style.background = '#f5f5ff'; el.style.color = '#0102F1'; el.style.paddingLeft = '22px'
                           }}
                           onMouseLeave={e => {
                             const el = e.currentTarget as HTMLElement
-                            el.style.background = 'transparent'
-                            el.style.color = '#2d2d3a'
-                            el.style.paddingLeft = '18px'
+                            el.style.background = 'transparent'; el.style.color = '#2d2d3a'; el.style.paddingLeft = '18px'
                           }}
                         >
                           <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#ff8400', flexShrink: 0 }} />
@@ -320,34 +299,24 @@ export default function Navbar() {
 
           {/* Right: Donate + hamburger */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-            <Link href="/donate" className="nav-donate cbi-btn cbi-btn-nav-donate" style={{
+            <Link href="/donate" className="nav-donate" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '9px 20px', borderRadius: 8,
-              fontSize: 13, fontWeight: 700,
-              textDecoration: 'none', letterSpacing: '0.02em',
+              fontSize: 13, fontWeight: 700, textDecoration: 'none',
               fontFamily: 'var(--font-jakarta, sans-serif)',
               background: 'linear-gradient(135deg, #ffb96b 0%, #ff8400 100%)',
-              color: '#010278', border: 'none', boxShadow: '0 14px 36px rgba(255,132,0,0.18)',
-              transition: 'transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease',
+              color: '#010278', border: 'none',
+              boxShadow: '0 14px 36px rgba(255,132,0,0.18)',
+              transition: 'transform 160ms ease, box-shadow 160ms ease',
             }}
-              onMouseEnter={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.transform = 'translateY(-2px)'
-                el.style.boxShadow = '0 20px 48px rgba(255,132,0,0.28)'
-                el.style.opacity = '0.98'
-              }}
-              onMouseLeave={e => {
-                const el = e.currentTarget as HTMLElement
-                el.style.transform = 'none'
-                el.style.boxShadow = '0 14px 36px rgba(255,132,0,0.18)'
-                el.style.opacity = '1'
-              }}
+              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'translateY(-2px)'; el.style.boxShadow = '0 20px 48px rgba(255,132,0,0.28)' }}
+              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform = 'none'; el.style.boxShadow = '0 14px 36px rgba(255,132,0,0.18)' }}
             >
-              <span style={{ display: 'inline-block', animation: 'livePulse 2s ease-in-out infinite', fontSize: 14 }}>♥</span>
+              <span style={{ animation: 'livePulse 2s ease-in-out infinite', fontSize: 14 }}>♥</span>
               Donate Now
             </Link>
 
-            <button className="hamburger" onClick={() => setMenuOpen(o => !o)}
+            <button className="hamburger" onClick={() => { setMenuOpen(o => !o); setMobileExpanded(null) }}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'none' }}>
               {menuOpen ? <X size={22} color="#1a1a2e" /> : <Menu size={22} color="#1a1a2e" />}
@@ -364,50 +333,124 @@ export default function Navbar() {
         transition: 'transform 300ms cubic-bezier(0.16,1,0.3,1)',
         overflowY: 'auto',
       }}>
-        <div style={{ height: 72, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', flexShrink: 0 }}>
-          <Image src="/images/logo-white.png" alt="CBI" width={110} height={40} style={{ objectFit: 'contain', height: 40, width: 'auto' }} />
-          <button onClick={() => setMenuOpen(false)}
+        {/* Mobile header */}
+        <div style={{
+          height: 72, display: 'flex', alignItems: 'center',
+          justifyContent: 'space-between', padding: '0 24px', flexShrink: 0,
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+        }}>
+          <Image src="/images/logo-white.png" alt="CBI" width={110} height={40}
+            style={{ objectFit: 'contain', height: 40, width: 'auto' }} />
+          <button onClick={closeMobile}
             style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8 }}>
             <X size={24} color="white" />
           </button>
         </div>
 
-        <ul style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', listStyle: 'none', padding: '0 32px', gap: 0 }}>
-          {NAV.map((link, i) => (
-            <li key={link.label} style={{ animation: menuOpen ? `mobileNavIn 400ms ease both` : 'none', animationDelay: `${i * 60}ms` }}>
-              <Link href={link.href} onClick={() => setMenuOpen(false)} style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                fontFamily: 'var(--font-playfair, sans-serif)',
-                fontSize: 22, fontWeight: 700, color: 'white',
-                padding: '16px 0', borderBottom: '1px solid rgba(255,255,255,0.08)',
-                textDecoration: 'none', letterSpacing: '-0.01em',
+        {/* Mobile nav items */}
+        <ul style={{ flex: 1, listStyle: 'none', padding: '8px 0', margin: 0, overflowY: 'auto' }}>
+          {NAV.map((link, i) => {
+            const isExpanded = mobileExpanded === link.label
+            const hasChildren = Boolean(link.children)
+
+            return (
+              <li key={link.label} style={{
+                animation: menuOpen ? 'mobileNavIn 350ms ease both' : 'none',
+                animationDelay: `${i * 55}ms`,
+                borderBottom: '1px solid rgba(255,255,255,0.07)',
               }}>
-                {link.label}
-                <span style={{ color: '#ff8400', fontSize: 18 }}>→</span>
-              </Link>
-            </li>
-          ))}
+                {/* Parent row */}
+                {hasChildren ? (
+                  // Tappable parent — toggles children (no navigation on tap)
+                  <button
+                    onClick={() => setMobileExpanded(isExpanded ? null : link.label)}
+                    style={{
+                      width: '100%', display: 'flex', alignItems: 'center',
+                      justifyContent: 'space-between',
+                      fontFamily: 'var(--font-playfair, sans-serif)',
+                      fontSize: 22, fontWeight: 700, color: 'white',
+                      padding: '18px 28px',
+                      background: 'none', border: 'none', cursor: 'pointer',
+                      textAlign: 'left',
+                    }}
+                  >
+                    {link.label}
+                    <ChevronDown size={18} color="rgba(255,255,255,0.5)" style={{
+                      transition: 'transform 250ms',
+                      transform: isExpanded ? 'rotate(180deg)' : 'none',
+                    }} />
+                  </button>
+                ) : (
+                  <Link href={link.href} onClick={closeMobile} style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    fontFamily: 'var(--font-playfair, sans-serif)',
+                    fontSize: 22, fontWeight: 700, color: 'white',
+                    padding: '18px 28px', textDecoration: 'none',
+                  }}>
+                    {link.label}
+                    <span style={{ color: '#ff8400', fontSize: 18 }}>→</span>
+                  </Link>
+                )}
+
+                {/* Children (accordion) */}
+                {hasChildren && (
+                  <div style={{
+                    maxHeight: isExpanded ? '400px' : '0',
+                    overflow: 'hidden',
+                    transition: 'max-height 300ms cubic-bezier(0.16,1,0.3,1)',
+                    background: 'rgba(0,0,0,0.25)',
+                  }}>
+                    {/* "View all" link for the parent page */}
+                    <Link href={link.href} onClick={closeMobile} style={{
+                      display: 'flex', alignItems: 'center', gap: 12,
+                      padding: '12px 28px 12px 40px',
+                      fontFamily: 'var(--font-jakarta, sans-serif)',
+                      fontSize: 13, color: 'rgba(255,255,255,0.45)',
+                      textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.06)',
+                    }}>
+                      <span style={{ fontSize: 10 }}>↗</span>
+                      View all {link.label}
+                    </Link>
+
+                    {link.children!.map(child => (
+                      <Link key={child.label} href={child.href} onClick={closeMobile} style={{
+                        display: 'flex', alignItems: 'center', gap: 12,
+                        padding: '13px 28px 13px 40px',
+                        fontFamily: 'var(--font-jakarta, sans-serif)',
+                        fontSize: 15, fontWeight: 500, color: 'rgba(255,255,255,0.85)',
+                        textDecoration: 'none',
+                        borderBottom: '1px solid rgba(255,255,255,0.05)',
+                      }}>
+                        <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#ff8400', flexShrink: 0 }} />
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </li>
+            )
+          })}
         </ul>
 
-        <div style={{ padding: '24px 32px', flexShrink: 0 }}>
-          <Link href="/donate" onClick={() => setMenuOpen(false)} style={{
+        {/* Mobile footer: Donate */}
+        <div style={{ padding: '20px 24px 28px', flexShrink: 0, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+          <Link href="/donate" onClick={closeMobile} style={{
             display: 'block', textAlign: 'center', padding: '16px 0',
-            background: '#ff8400', color: '#010278', borderRadius: 8,
+            background: '#ff8400', color: '#010278', borderRadius: 10,
             fontSize: 16, fontWeight: 700, textDecoration: 'none',
             fontFamily: 'var(--font-jakarta, sans-serif)',
           }}>♥ Donate Now</Link>
         </div>
       </div>
 
-      {/* ── Spacer (top-bar + navbar) ─────────────────────── */}
+      {/* ── Spacer ─────────────────────────────────────────── */}
       <div style={{ height: 104 }} aria-hidden="true" />
 
       <style>{`
-        .top-bar     { display: flex; }
-        .nav-inner   { padding: 0 80px; }
-        .hamburger   { display: none !important; }
+        .top-bar    { display: flex; }
+        .nav-inner  { padding: 0 80px; }
+        .hamburger  { display: none !important; }
 
-        /* News ticker */
         .ticker-track {
           animation: tickerScroll 42s linear infinite;
           will-change: transform;
@@ -418,10 +461,13 @@ export default function Navbar() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-
         @keyframes mobileNavIn {
-          from { opacity: 0; transform: translateX(20px); }
+          from { opacity: 0; transform: translateX(18px); }
           to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes livePulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%       { opacity: 0.35; transform: scale(0.85); }
         }
 
         @media (max-width: 1024px) {
@@ -430,7 +476,6 @@ export default function Navbar() {
         @media (max-width: 900px) {
           .top-bar    { display: none !important; }
           header      { top: 0 !important; }
-          .spacer     { height: 68px !important; }
           .nav-links  { display: none !important; }
           .nav-donate { display: none !important; }
           .hamburger  { display: flex !important; }

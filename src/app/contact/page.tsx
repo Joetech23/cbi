@@ -32,14 +32,14 @@ export default function ContactPage() {
       })
       const data = await res.json().catch(() => ({}))
       if (!res.ok || !data.ok) {
-        setError(data.error || 'Could not send your message. Please try again or email admin@cbi.ngo directly.')
+        setError(data.error || 'Could not send your message. Please try again or email info@cbi.ngo directly.')
         setSending(false)
         return
       }
       setSent(true)
       setSending(false)
     } catch {
-      setError('Network error. Please check your connection or email admin@cbi.ngo directly.')
+      setError('Network error. Please check your connection or email info@cbi.ngo directly.')
       setSending(false)
     }
   }
@@ -194,7 +194,7 @@ export default function ContactPage() {
                         <div style={{
                           fontFamily: 'var(--font-jakarta, sans-serif)',
                           fontSize: 13, color: '#0102F1', fontWeight: 600, marginTop: 2,
-                        }}>+234 (0) 915 349 3317 · admin@cbi.ngo</div>
+                        }}>+234 (0) 915 349 3317 · info@cbi.ngo</div>
                       </div>
                     </div>
 
@@ -215,7 +215,7 @@ export default function ContactPage() {
                           {error}
                           {' '}
                           <a
-                            href={`mailto:admin@cbi.ngo?subject=${encodeURIComponent(form.subject || 'Website enquiry')}&body=${encodeURIComponent(form.message)}`}
+                            href={`mailto:info@cbi.ngo?subject=${encodeURIComponent(form.subject || 'Website enquiry')}&body=${encodeURIComponent(form.message)}`}
                             style={{ color: '#0102F1', fontWeight: 600, textDecoration: 'underline' }}
                           >
                             Open in your mail app instead
@@ -316,23 +316,174 @@ export default function ContactPage() {
 
         </div>
 
-        {/* ── Interactive Map (full width below form) ── */}
+        {/* ── Office Directory ── */}
+        <div className="offices-wrap">
+
+          {/* Section header */}
+          <div style={{ marginBottom: 36, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+            <div>
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                background: '#eef0ff', borderRadius: 100,
+                padding: '5px 14px', marginBottom: 12,
+              }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#0102F1', display: 'inline-block' }} />
+                <span style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#0102F1' }}>Our Offices</span>
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 30, fontWeight: 700, color: '#010278', letterSpacing: '-0.02em', margin: 0, lineHeight: 1.2 }}>
+                Find Us Across Nigeria
+              </h2>
+              <p style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 15, color: '#64748b', marginTop: 8, maxWidth: 480, lineHeight: 1.6 }}>
+                One head office and six field offices — bringing humanitarian services closer to the communities we serve.
+              </p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 28, fontWeight: 800, color: '#ff8400', lineHeight: 1 }}>1</div>
+                <div style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 4 }}>Head Office</div>
+              </div>
+              <div style={{ width: 1, height: 36, background: '#e2e8f0' }} />
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 28, fontWeight: 800, color: '#0102F1', lineHeight: 1 }}>6</div>
+                <div style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 10, fontWeight: 700, color: '#94a3b8', letterSpacing: '0.1em', textTransform: 'uppercase', marginTop: 4 }}>Field Offices</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Office cards grid */}
+          <div className="offices-grid">
+
+            {/* ── Abuja HQ (featured) ── */}
+            <div className="office-card office-hq">
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18 }}>
+                <div>
+                  <span style={{
+                    display: 'inline-block', background: '#ff8400', color: 'white',
+                    fontSize: 9, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
+                    padding: '4px 12px', borderRadius: 100, marginBottom: 10,
+                    fontFamily: 'var(--font-jakarta, sans-serif)',
+                  }}>Head Office</span>
+                  <h3 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 22, fontWeight: 700, color: 'white', margin: 0, letterSpacing: '-0.01em' }}>Abuja</h3>
+                  <p style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 11, color: 'rgba(255,255,255,0.55)', margin: '3px 0 0', letterSpacing: '0.05em' }}>Federal Capital Territory</p>
+                </div>
+                <div style={{ width: 42, height: 42, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>🏛️</div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                  <span style={{ fontSize: 13, marginTop: 1, flexShrink: 0 }}>📍</span>
+                  <span style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.5 }}>No. 139, Aero Gardens Estate, Kyami, Airport Road, Abuja</span>
+                </div>
+                <div style={{ height: 1, background: 'rgba(255,255,255,0.1)' }} />
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, flexShrink: 0 }}>✉️</span>
+                  <a href="mailto:info@cbi.ngo" style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 13, color: '#ff8400', fontWeight: 600, textDecoration: 'none' }}>info@cbi.ngo</a>
+                </div>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, flexShrink: 0 }}>📞</span>
+                  <a href="tel:+2349153493317" style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 500, textDecoration: 'none' }}>+234 (0) 915 349 3317</a>
+                </div>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, flexShrink: 0 }}>🕐</span>
+                  <span style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 11.5, color: 'rgba(255,255,255,0.45)' }}>Mon – Fri · 8 AM – 5 PM WAT</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Field Offices ── */}
+            {[
+              { city: 'Maiduguri', state: 'Borno State',    icon: '🏕️', address: 'Behind UN House, Pompomari By-pass, Maiduguri',                                              email: 'borno@cbi.ngo',   phone: '+234 (0) 915 469 2357', tel: '+2349154692357' },
+              { city: 'Yola',      state: 'Adamawa State',  icon: '🌿', address: 'No. 6, Opp. Dunamis Church, Bature, Yola North',                                            email: 'adamawa@cbi.ngo', phone: '+234 (0) 915 469 2360', tel: '+2349154692360' },
+              { city: 'Damaturu', state: 'Yobe State',      icon: '🌾', address: "Muhammad Buhari Way, DonEtiebet Ext., Behind Mai Riga's House, Damaturu",                   email: 'yobe@cbi.ngo',    phone: '+234 (0) 915 469 2355', tel: '+2349154692355' },
+              { city: 'Bauchi',   state: 'Bauchi State',    icon: '🏔️', address: 'No. 12 Dass Park, Behind Larema Hotel, Opp. Christ Embassy Church, New GRA, Bauchi',      email: 'bauchi@cbi.ngo',  phone: '+234 (0) 915 469 2348', tel: '+2349154692348' },
+              { city: 'Gusau',    state: 'Zamfara State',   icon: '🌅', address: "White House, Behind Governor's House, GRA, Gusau, Zamfara",                                 email: 'zamfara@cbi.ngo', phone: '+234 (0) 915 349 3300', tel: '+2349153493300' },
+              { city: 'Sokoto',   state: 'Sokoto State',    icon: '🕌', address: 'No. 31, Alero Road, Opp. Magistrate Court, Runji Sambo, Sokoto',                           email: 'sokoto@cbi.ngo',  phone: '+234 (0) 915 349 3344', tel: '+2349153493344' },
+            ].map(o => (
+              <div key={o.city} className="office-card office-field">
+                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14 }}>
+                  <div>
+                    <span style={{
+                      display: 'inline-block', background: '#eef0ff', color: '#0102F1',
+                      fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
+                      padding: '3px 10px', borderRadius: 100, marginBottom: 8,
+                      fontFamily: 'var(--font-jakarta, sans-serif)',
+                    }}>Field Office</span>
+                    <h3 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 18, fontWeight: 700, color: '#010278', margin: 0, letterSpacing: '-0.01em' }}>{o.city}</h3>
+                    <p style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 11, color: '#94a3b8', margin: '2px 0 0', letterSpacing: '0.04em' }}>{o.state}</p>
+                  </div>
+                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{o.icon}</div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                    <span style={{ fontSize: 12, marginTop: 1, flexShrink: 0, color: '#64748b' }}>📍</span>
+                    <span style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5, color: '#475569', lineHeight: 1.5 }}>{o.address}</span>
+                  </div>
+                  <div style={{ height: 1, background: '#f1f5f9' }} />
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <span style={{ fontSize: 11, flexShrink: 0 }}>✉️</span>
+                    <a href={`mailto:${o.email}`} style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5, color: '#0102F1', fontWeight: 600, textDecoration: 'none' }}>{o.email}</a>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <span style={{ fontSize: 11, flexShrink: 0 }}>📞</span>
+                    <a href={`tel:${o.tel}`} style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5, color: '#374151', fontWeight: 500, textDecoration: 'none' }}>{o.phone}</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+          </div>
+        </div>
+
+        {/* ── Interactive Map (full width below offices) ── */}
         <div className="map-wrap">
           <CbiMap />
         </div>
 
         <style>{`
           .contact-wrap { padding: 80px 80px 100px; }
+          .offices-wrap { max-width: 1200px; margin: 64px auto 0; padding: 0 80px; }
+          .offices-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+          }
+          .office-hq {
+            grid-column: span 1;
+            background: linear-gradient(140deg, #010278 0%, #0102F1 100%);
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 12px 40px rgba(1,2,241,0.22);
+          }
+          .office-field {
+            background: white;
+            border: 1.5px solid #e8edf4;
+            border-radius: 16px;
+            padding: 22px;
+            transition: box-shadow 200ms, border-color 200ms, transform 200ms;
+          }
+          .office-field:hover {
+            border-color: #0102F1;
+            box-shadow: 0 8px 32px rgba(1,2,241,0.10);
+            transform: translateY(-2px);
+          }
           .map-wrap { max-width: 1200px; margin: 44px auto 0; padding: 0 80px; }
           @media (max-width: 1100px) {
+            .offices-wrap { padding: 0 40px; }
             .map-wrap { padding: 0 40px; }
+          }
+          @media (max-width: 900px) {
+            .offices-grid { grid-template-columns: 1fr 1fr; }
           }
           @media (max-width: 860px) {
             .contact-wrap { padding: 56px 28px 80px !important; }
+            .offices-wrap { padding: 0 28px; margin-top: 48px; }
             .map-wrap { padding: 0 28px; }
+          }
+          @media (max-width: 560px) {
+            .offices-grid { grid-template-columns: 1fr; }
           }
           @media (max-width: 520px) {
             .contact-wrap { padding: 40px 16px 60px !important; }
+            .offices-wrap { padding: 0 16px; margin-top: 36px; }
             .map-wrap { padding: 0 16px; margin-top: 32px; }
             .contact-wrap > div > div > div { padding: 28px !important; }
             .contact-wrap > div > div form > div:first-child {

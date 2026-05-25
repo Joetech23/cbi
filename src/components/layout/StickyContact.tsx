@@ -16,7 +16,7 @@ import { useState, useEffect, useRef } from 'react'
 
 const PHONE = '+2349153493317'
 const PHONE_DISPLAY = '+234 (0) 915 349 3317'
-const EMAIL = 'admin@cbi.ngo'
+const EMAIL = 'info@cbi.ngo'
 
 interface ChatMessage {
   id:   number

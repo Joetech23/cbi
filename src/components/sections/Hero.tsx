@@ -22,7 +22,7 @@ const SLIDES = [
   {
     img:          '/images/cbi-education-class.jpg',
     imgPosition:  'center 40%',
-    tag:          'Education in Emergency · 900+ Children',
+    tag:          'Education · 900+ Children',
     line1:        'Every Child',
     line2:        'Deserves to',
     emph:         'Learn.',

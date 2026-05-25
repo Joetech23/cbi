@@ -34,10 +34,10 @@ export const NAV_LINKS = [
     label: 'Programs',
     href: '/programs',
     children: [
-      { label: 'Education in Emergency', href: '/programs/education' },
+      { label: 'Education', href: '/programs/education' },
       { label: 'Health & Nutrition', href: '/programs/health' },
       { label: 'WASH', href: '/programs/wash' },
-      { label: 'Protection & GBV', href: '/programs/protection' },
+      { label: 'Protection', href: '/programs/protection' },
       { label: 'Food Security', href: '/programs/food-security' },
     ],
   },
@@ -65,7 +65,7 @@ export const STATS = [
 export const PROGRAMS = [
   {
     id: 'education',
-    title: 'Education in Emergency',
+    title: 'Education',
     description: 'Safe learning spaces ensuring access to quality education during crises and conflict.',
     icon: 'BookOpen',
     color: 'from-blue-50 to-blue-100',
@@ -74,7 +74,7 @@ export const PROGRAMS = [
   },
   {
     id: 'health',
-    title: 'Health & Primary Care',
+    title: 'Health',
     description: 'Primary healthcare services and training for health workers and caregivers across 10 states.',
     icon: 'Heart',
     color: 'from-rose-50 to-rose-100',
@@ -101,7 +101,7 @@ export const PROGRAMS = [
   },
   {
     id: 'protection',
-    title: 'Protection & GBV',
+    title: 'Protection',
     description: 'Child safeguarding and Gender-Based Violence prevention and response services.',
     icon: 'Shield',
     color: 'from-purple-50 to-purple-100',

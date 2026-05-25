@@ -214,22 +214,22 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* ── 2. Thematic Leaders ── */}
-      <section className="team-section team-thematic" style={{ background: '#f8fafc', borderTop: '1px solid rgba(1,2,241,0.05)' }}>
-        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
-          <SectionHeader label="Programmes" title="Thematic" emph="Leaders." />
-          <div className="staff-grid">
-            {THEMATIC.map((p, i) => <StaffCard key={p.slug} p={p} i={i} />)}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. Departmental Leaders ── */}
+      {/* ── 2. Departmental Leaders ── */}
       <section className="team-section team-dept" style={{ background: 'white', borderTop: '1px solid rgba(1,2,241,0.05)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <SectionHeader label="Operations & Support" title="Departmental" emph="Leaders." />
           <div className="staff-grid">
             {DEPARTMENTAL.map((p, i) => <StaffCard key={p.slug} p={p} i={i} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. Thematic Leaders ── */}
+      <section className="team-section team-thematic" style={{ background: '#f8fafc', borderTop: '1px solid rgba(1,2,241,0.05)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <SectionHeader label="Programmes" title="Thematic" emph="Leaders." />
+          <div className="staff-grid">
+            {THEMATIC.map((p, i) => <StaffCard key={p.slug} p={p} i={i} />)}
           </div>
 
           <div style={{ marginTop: 56, textAlign: 'center' }}>

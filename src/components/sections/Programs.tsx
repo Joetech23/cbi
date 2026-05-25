@@ -8,58 +8,52 @@ import { useReveal } from '@/lib/reveal'
 
 const PROGRAMS = [
   {
-    key:    'health',
-    title:  'Health & Primary Care',
+    slug:   'health',
+    title:  'Health',
     tag:    'Health',
-    accent: '#e11d48',
-    img:    '/images/cbi-health-program.jpg',
+    img:    '/images/programs/IMG_8929-health.jpg',
     desc:   'Strengthening communities through accessible primary healthcare, equipping health workers and caregivers with the knowledge and skills needed to save lives and promote wellness.',
-    stat:   '45,000+ consultations',
+    stat:   '70,000+ consultations',
   },
   {
-    key:    'nutrition',
+    slug:   'nutrition',
     title:  'Nutrition',
     tag:    'Nutrition',
-    accent: '#d97706',
     img:    '/images/cbi-mother-baby.jpg',
     desc:   'Protecting the future of children through early detection, timely treatment, and sustained recovery of under-five children affected by acute malnutrition.',
     stat:   '8,000+ children treated',
   },
   {
-    key:    'wash',
+    slug:   'wash',
     title:  'WASH',
     tag:    'Clean Water',
-    accent: '#0891b2',
     img:    '/images/cbi-wash-sanitizer.jpg',
     desc:   'Improving wellbeing and dignity through access to safe water, rehabilitated boreholes, and sustainable WASH services that promote healthier living conditions.',
     stat:   '30,000+ with clean water',
   },
   {
-    key:    'protection',
-    title:  'Protection & GBV',
+    slug:   'protection',
+    title:  'Protection',
     tag:    'Protection',
-    accent: '#7c3aed',
     img:    '/images/cbi-community-2.jpg',
     desc:   'Creating safer communities by strengthening child safeguarding systems and delivering responsive GBV prevention and support services that protect dignity and restore hope.',
     stat:   '5,000+ cases managed',
   },
   {
-    key:    'food',
+    slug:   'food-security-livelihoods',
     title:  'Food Security & Livelihoods',
     tag:    'Livelihoods',
-    accent: '#16a34a',
     img:    '/images/cbi-community-1.jpg',
     desc:   'Enhancing household resilience through sustainable livelihood support and improved access to food, empowering vulnerable families to achieve stability and self-reliance.',
-    stat:   '20,000+ food-secure homes',
+    stat:   '1,638+ households reached',
   },
   {
-    key:    'education',
-    title:  'Education in Emergency',
+    slug:   'education',
+    title:  'Education',
     tag:    'Education',
-    accent: '#0102F1',
     img:    '/images/cbi-education-class.jpg',
     desc:   'Delivering safe, inclusive, and resilient learning environments ensuring children and young people continue accessing quality education despite conflict, displacement, or crisis.',
-    stat:   '900+ children back in school',
+    stat:   '12,000+ children enrolled',
   },
 ]
 
@@ -196,8 +190,8 @@ export default function Programs() {
           >
             {PROGRAMS.map((p, i) => (
               <Link
-                href="/programs"
-                key={p.key}
+                href={`/programs/${p.slug}`}
+                key={p.slug}
                 className="prog-card"
                 style={{
                   position: 'relative',
@@ -225,20 +219,20 @@ export default function Programs() {
                 {/* Base gradient — always on */}
                 <div aria-hidden style={{
                   position: 'absolute', inset: 0,
-                  background: 'linear-gradient(to top, rgba(0,0,20,0.90) 0%, rgba(0,0,20,0.35) 50%, transparent 75%)',
+                  background: 'linear-gradient(to top, rgba(1,2,40,0.92) 0%, rgba(1,2,40,0.38) 55%, transparent 80%)',
                 }} />
 
-                {/* Coloured hover overlay */}
+                {/* Hover overlay — CBI blue */}
                 <div className="prog-overlay" style={{
                   position: 'absolute', inset: 0,
-                  background: `linear-gradient(to top, ${p.accent}f0 0%, ${p.accent}88 55%, transparent 100%)`,
+                  background: 'linear-gradient(to top, rgba(1,2,241,0.92) 0%, rgba(1,2,120,0.72) 55%, transparent 100%)',
                   opacity: 0, transition: 'opacity 320ms ease',
                 }} />
 
                 {/* Tag — top left */}
                 <div style={{
                   position: 'absolute', top: 13, left: 13,
-                  background: p.accent, color: 'white',
+                  background: '#ff8400', color: 'white',
                   padding: '3px 10px', borderRadius: 3,
                   fontFamily: 'var(--font-jakarta, sans-serif)',
                   fontSize: 9, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase',

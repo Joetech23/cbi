@@ -2,30 +2,31 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useReveal } from '@/lib/reveal'
 
 const STORIES = [
   {
     name:     'Fatima, age 8',
     location: 'Borno State',
-    program:  'Education in Emergency',
-    color:    '#0102F1',
+    program:  'Education',
+    href:     '/programs/education',
     img:      '/images/cbi-child-uniform.jpg',
     quote:    'Before CBI came, I had not been to school for two years. Now I go every day, and I can read.',
   },
   {
     name:     'Amina & Baby Zara',
     location: 'Adamawa State',
-    program:  'Health & Primary Care',
-    color:    '#e11d48',
+    program:  'Health',
+    href:     '/programs/health',
     img:      '/images/cbi-mother-baby.jpg',
     quote:    'The health worker came to my village. Without her, I don\'t know if my baby would be here today.',
   },
   {
     name:     'Ibrahim, age 7',
     location: 'Yobe State',
-    program:  'WASH Program',
-    color:    '#0891b2',
+    program:  'WASH',
+    href:     '/programs/wash',
     img:      '/images/cbi-wash-sanitizer.jpg',
     quote:    'I used to walk 4km every morning for water. Now there is a borehole in our compound.',
   },
@@ -65,6 +66,16 @@ export default function Testimonials() {
               <em style={{ fontStyle: 'italic', color: '#0102F1' }}>we serve.</em>
             </h2>
           </div>
+          <Link href="/blog" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 5,
+            fontFamily: 'var(--font-jakarta, sans-serif)',
+            fontSize: 12, fontWeight: 600, color: '#0102F1',
+            textDecoration: 'none', borderBottom: '1.5px solid rgba(1,2,241,0.25)',
+            paddingBottom: 1, transition: 'gap 150ms, border-color 150ms',
+          }}
+            onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.gap = '8px'; el.style.borderColor = '#0102F1' }}
+            onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.gap = '5px'; el.style.borderColor = 'rgba(1,2,241,0.25)' }}
+          >Read All Stories →</Link>
         </div>
 
         {/* Cards */}
@@ -72,17 +83,17 @@ export default function Testimonials() {
           {STORIES.map((s, i) => {
             const on = hov === i
             return (
-              <div key={s.name}
+              <Link key={s.name} href={s.href}
                 onMouseEnter={() => setHov(i)}
                 onMouseLeave={() => setHov(null)}
                 style={{
                   background: 'white', borderRadius: 14, overflow: 'hidden',
-                  border: `1px solid ${on ? s.color + '33' : 'rgba(1,2,241,0.07)'}`,
-                  boxShadow: on ? `0 16px 48px ${s.color}1a` : '0 2px 12px rgba(1,2,241,0.05)',
+                  border: `1px solid ${on ? 'rgba(1,2,241,0.25)' : 'rgba(1,2,241,0.07)'}`,
+                  boxShadow: on ? '0 16px 48px rgba(1,2,241,0.12)' : '0 2px 12px rgba(1,2,241,0.05)',
                   transform: visible ? (on ? 'translateY(-6px)' : 'none') : 'translateY(32px)',
                   opacity: visible ? 1 : 0,
                   transition: `opacity 700ms ease ${i * 100}ms, transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease`,
-                  cursor: 'default',
+                  textDecoration: 'none', display: 'block',
                 }}>
 
                 {/* Image */}
@@ -95,17 +106,17 @@ export default function Testimonials() {
                       transform: on ? 'scale(1.06)' : 'scale(1)',
                     }}
                   />
-                  {/* Gradient */}
+                  {/* Gradient — always CBI navy */}
                   <div aria-hidden style={{
                     position: 'absolute', inset: 0,
-                    background: `linear-gradient(to top, ${s.color}cc 0%, transparent 55%)`,
-                    opacity: on ? 1 : 0.6,
+                    background: 'linear-gradient(to top, rgba(1,2,120,0.85) 0%, transparent 55%)',
+                    opacity: on ? 1 : 0.7,
                     transition: 'opacity 300ms ease',
                   }} />
-                  {/* Program tag — bottom of image */}
+                  {/* Program tag */}
                   <div style={{
                     position: 'absolute', bottom: 14, left: 16,
-                    background: s.color, color: 'white',
+                    background: '#ff8400', color: 'white',
                     padding: '3px 10px', borderRadius: 4,
                     fontFamily: 'var(--font-jakarta, sans-serif)',
                     fontSize: 9, fontWeight: 700, letterSpacing: '0.12em',
@@ -119,7 +130,7 @@ export default function Testimonials() {
                   <div style={{
                     fontFamily: 'Georgia, serif',
                     fontSize: 52, lineHeight: 0.8,
-                    color: s.color, opacity: 0.15,
+                    color: '#0102F1', opacity: 0.12,
                     marginBottom: 6, userSelect: 'none',
                   }}>&ldquo;</div>
 
@@ -134,7 +145,7 @@ export default function Testimonials() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <div style={{
                       width: 36, height: 36, borderRadius: '50%',
-                      background: s.color + '18',
+                      background: 'rgba(1,2,241,0.07)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                     }}>
@@ -152,7 +163,7 @@ export default function Testimonials() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>
