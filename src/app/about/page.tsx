@@ -209,7 +209,8 @@ export default function AboutPage() {
               alt="Care Best Initiative"
               width={240}
               height={80}
-              style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: 240, opacity: 0.92 }}
+              className="logo-roll-breathe"
+              style={{ objectFit: 'contain', width: 'auto', height: 'auto', maxWidth: 240 }}
             />
           </div>
 
@@ -238,6 +239,20 @@ export default function AboutPage() {
           </div>
         </div>
         <style>{`
+          @keyframes logoRollBreathe {
+            0%   { transform: scale(1)    rotateY(0deg);  opacity: 1; }
+            15%  { transform: scale(1.07) rotateY(8deg);  opacity: 1; }
+            30%  { transform: scale(1)    rotateY(0deg);  opacity: 0.82; }
+            50%  { transform: scale(1.1)  rotateY(-8deg); opacity: 1; }
+            65%  { transform: scale(1)    rotateY(0deg);  opacity: 0.82; }
+            80%  { transform: scale(1.06) rotateY(5deg);  opacity: 1; }
+            100% { transform: scale(1)    rotateY(0deg);  opacity: 1; }
+          }
+          .logo-roll-breathe {
+            animation: logoRollBreathe 5s ease-in-out infinite;
+            transform-origin: center center;
+            transform-style: preserve-3d;
+          }
           @media (max-width: 768px) {
             .about-photo-grid { grid-template-columns: 1fr !important; }
             .about-photo-text { padding: 40px 24px !important; }
