@@ -228,7 +228,7 @@ export default function AboutPage() {
                 color: 'white', lineHeight: 1.25, marginBottom: 20,
                 letterSpacing: '-0.02em', fontStyle: 'italic',
               }}>
-                &ldquo;We didn&apos;t wait for permission to start. We started in 2019 with seven people and a mission.&rdquo;
+                &ldquo;Impact is the ultimate measure of leadership; every empowered woman, educated child, and resilient community is a victory worth pursuing.&rdquo;
               </h2>
               <p style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
