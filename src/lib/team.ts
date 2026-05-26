@@ -82,14 +82,14 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug:       'thomas-dayo',
-    name:       'Umazayi Thomas Dayo',
+    name:       'Thomas Umazayi Dayo',
     role:       'Head of Office & Programmes Manager',
     email:      'pm@cbi.ngo',
     photo:      '/images/team/thomas.jpg',
     accent:     '#0102F1',
     level:      'executive',
     location:   'Abuja, Nigeria',
-    yearsAtCBI: 6,
+    yearsAtCBI: 7,
     bio:        "Umazayi Thomas Dayo is a Chartered Project Management Professional with a background in Economics and a Fellowship in Humanitarian Leadership. He has over ten years of progressive experience spanning the humanitarian, development, and private sectors, and demonstrates a rare blend of technical competence, managerial depth, and people-centred leadership. As CBI's Head of Office and Programmes Manager, Thomas provides strategic leadership and management oversight for the organisation's programmes and operational functions. With a focus on sustainable impact, institutional capacity strengthening, and localisation, he facilitates partnerships, manages resources, and ensures compliance with regulatory standards.",
     shortBio:   "Chartered Project Management Professional with 10+ years across humanitarian, development, and private sectors. Leads CBI's programmes and operational functions.",
     quote:      'The will to create impact is what transforms ordinary intentions into extraordinary change.',
@@ -238,7 +238,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug:       'elraham-zoaka',
-    name:       'El-raham Mbursa Zoaka',
+    name:       'El-Raham Mbursa Zoaka',
     role:       'FSL Coordinator',
     email:      'fsl@cbi.ngo',
     photo:      '/images/team/elraham.jpg',
@@ -444,7 +444,7 @@ export const TEAM: TeamMember[] = [
   {
     slug:       'musa-amos',
     name:       'Musa Amos',
-    role:       'Audit & Compliance Officer',
+    role:       'Internal Audit and Compliance Officer',
     email:      'm.amos@cbi.ngo',
     photo:      '',
     accent:     '#d97706',
@@ -464,7 +464,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug:       'mai-ibrahim',
-    name:       'Mai Ibrahim',
+    name:       'Barr. Mai Ibrahim',
     role:       'Legal Adviser',
     email:      'maiibrahim481@gmail.com',
     photo:      '/images/team/mai.jpg',

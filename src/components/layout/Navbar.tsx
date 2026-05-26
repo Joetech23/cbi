@@ -49,17 +49,7 @@ const SOCIALS = [
   },
 ]
 
-/* ── Rolling news ticker ── */
-const NEWS = [
-  '🟠 CBI reaches 1,500,000+ beneficiaries across 10 Nigerian states',
-  '🔵 New WASH programme launched in 12 LGAs — Yobe & Borno States',
-  '🟠 CBI partners with UNICEF on Education — 900+ children back in school',
-  '🔵 Medical outreach programme extended to Adamawa State — 2024',
-  '🟠 Food Security programme supports 20,000+ households this quarter',
-  '🔵 CBI is recruiting — view open positions on our Careers page',
-]
-
-/* ── 5-tab navigation structure ── */
+/* ── 6-tab navigation structure ── */
 const NAV = [
   { label: 'Home', href: '/' },
 
@@ -69,7 +59,7 @@ const NAV = [
     { label: 'Our Team',         href: '/team' },
   ]},
 
-  { label: 'Programs', href: '/programs', children: [
+  { label: 'What We Do', href: '/programs', children: [
     { label: 'Health',                      href: '/programs/health' },
     { label: 'Nutrition',                   href: '/programs/nutrition' },
     { label: 'WASH',                        href: '/programs/wash' },
@@ -78,17 +68,22 @@ const NAV = [
     { label: 'Education',                   href: '/programs/education' },
   ]},
 
-  { label: 'Our Stories', href: '/blog', children: [
+  { label: 'How We Serve', href: '/blog', children: [
     { label: 'News & Stories',  href: '/blog' },
     { label: 'Gallery',         href: '/gallery' },
     { label: 'Events',          href: '/events' },
     { label: 'Publications',    href: '/publications' },
   ]},
 
-  { label: 'More', href: '/impact', children: [
-    { label: 'Our Impact',   href: '/impact' },
-    { label: 'Careers',      href: '/careers' },
-    { label: 'Contact Us',   href: '/contact' },
+  { label: 'Where We Work', href: '/impact', children: [
+    { label: 'Our Impact',  href: '/impact' },
+    { label: 'Our Reach',   href: '/contact' },
+  ]},
+
+  { label: 'Join Us', href: '/careers', children: [
+    { label: 'Careers',     href: '/careers' },
+    { label: 'Contact Us',  href: '/contact' },
+    { label: 'Donate',      href: '/donate' },
   ]},
 ]
 
@@ -125,81 +120,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ── Top info bar ──────────────────────────────────── */}
-      <div className="top-bar" style={{
-        background: '#010278',
-        height: 36,
-        display: 'flex', alignItems: 'center',
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1001,
-      }}>
-        <div className="top-bar-inner" style={{
-          maxWidth: 1280, margin: '0 auto', width: '100%',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '0 80px', gap: 24,
-        }}>
-          {/* Left: rolling ticker */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flex: 1, overflow: 'hidden', minWidth: 0 }}>
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0,
-              background: '#ff8400', borderRadius: 3, padding: '2px 8px',
-            }}>
-              <span style={{
-                width: 5, height: 5, borderRadius: '50%', background: 'white',
-                animation: 'livePulse 1.8s ease-in-out infinite', display: 'inline-block',
-              }} />
-              <span style={{
-                fontFamily: 'var(--font-jakarta, sans-serif)',
-                fontSize: 9, fontWeight: 800, letterSpacing: '0.15em',
-                textTransform: 'uppercase', color: 'white',
-              }}>LIVE</span>
-            </div>
-            <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.18)', flexShrink: 0 }} />
-            <div style={{ overflow: 'hidden', flex: 1, minWidth: 0 }}>
-              <div className="ticker-track" style={{ display: 'flex', whiteSpace: 'nowrap' }}>
-                {[0, 1].map(copy => (
-                  <span key={copy} style={{ display: 'inline-flex', alignItems: 'center' }}>
-                    {NEWS.map((item, i) => (
-                      <span key={i} style={{
-                        fontFamily: 'var(--font-jakarta, sans-serif)',
-                        fontSize: 11, fontWeight: 400, color: 'rgba(255,255,255,0.80)',
-                        display: 'inline-flex', alignItems: 'center',
-                      }}>
-                        {item}
-                        <span style={{ color: 'rgba(255,132,0,0.6)', margin: '0 20px', fontSize: 9 }}>◆</span>
-                      </span>
-                    ))}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-          {/* Right: tag + socials */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexShrink: 0 }}>
-            <span style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 9.5, fontWeight: 700, letterSpacing: '0.16em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', whiteSpace: 'nowrap',
-            }}>NGO · Nigeria</span>
-            <div style={{ width: 1, height: 12, background: 'rgba(255,255,255,0.18)' }} />
-            {SOCIALS.map(s => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  width: 26, height: 26, borderRadius: 4,
-                  color: 'rgba(255,255,255,0.55)', background: 'rgba(255,255,255,0.06)',
-                  transition: 'color 150ms, background 150ms', textDecoration: 'none',
-                }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.color = '#ff8400'; el.style.background = 'rgba(255,132,0,0.12)' }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.color = 'rgba(255,255,255,0.55)'; el.style.background = 'rgba(255,255,255,0.06)' }}
-              >{s.icon}</a>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Main navbar ───────────────────────────────────── */}
       <header style={{
-        position: 'fixed', top: 36, left: 0, right: 0, zIndex: 1000,
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
         height: 68, background: 'white',
         borderBottom: scrolled ? 'none' : '1px solid rgba(1,2,241,0.07)',
         boxShadow: scrolled ? '0 4px 32px rgba(1,2,120,0.10)' : 'none',
@@ -444,38 +367,21 @@ export default function Navbar() {
       </div>
 
       {/* ── Spacer ─────────────────────────────────────────── */}
-      <div style={{ height: 104 }} aria-hidden="true" />
+      <div style={{ height: 68 }} aria-hidden="true" />
 
       <style>{`
-        .top-bar    { display: flex; }
         .nav-inner  { padding: 0 80px; }
         .hamburger  { display: none !important; }
 
-        .ticker-track {
-          animation: tickerScroll 42s linear infinite;
-          will-change: transform;
-        }
-        .ticker-track:hover { animation-play-state: paused; }
-
-        @keyframes tickerScroll {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
         @keyframes mobileNavIn {
           from { opacity: 0; transform: translateX(18px); }
           to   { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes livePulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50%       { opacity: 0.35; transform: scale(0.85); }
         }
 
         @media (max-width: 1024px) {
           .nav-inner { padding: 0 32px !important; }
         }
         @media (max-width: 900px) {
-          .top-bar    { display: none !important; }
-          header      { top: 0 !important; }
           .nav-links  { display: none !important; }
           .nav-donate { display: none !important; }
           .hamburger  { display: flex !important; }

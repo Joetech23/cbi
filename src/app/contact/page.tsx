@@ -194,7 +194,7 @@ export default function ContactPage() {
                         <div style={{
                           fontFamily: 'var(--font-jakarta, sans-serif)',
                           fontSize: 13, color: '#0102F1', fontWeight: 600, marginTop: 2,
-                        }}>+234 (0) 915 349 3317 · info@cbi.ngo</div>
+                        }}>+234 7060563718 · info@cbi.ngo</div>
                       </div>
                     </div>
 
@@ -380,7 +380,7 @@ export default function ContactPage() {
                 </div>
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 12, flexShrink: 0 }}>📞</span>
-                  <a href="tel:+2349153493317" style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 500, textDecoration: 'none' }}>+234 (0) 915 349 3317</a>
+                  <a href="tel:+2347060563718" style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 500, textDecoration: 'none' }}>+234 7060563718</a>
                 </div>
                 <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <span style={{ fontSize: 12, flexShrink: 0 }}>🕐</span>

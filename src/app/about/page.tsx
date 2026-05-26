@@ -1,17 +1,47 @@
 'use client'
 
+import type React from 'react'
 import Image from 'next/image'
 import PageHero from '@/components/layout/PageHero'
 import ImpactNumbers from '@/components/sections/ImpactNumbers'
 import DonationCTA from '@/components/sections/DonationCTA'
 import { useStagger, useReveal } from '@/lib/reveal'
 
+const VALUE_ICONS: Record<string, React.ReactNode> = {
+  'Service In Love': (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+  ),
+  'Teamwork': (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>
+  ),
+  'Excellence': (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  ),
+  'Transparency': (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+  ),
+  'Equity': (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </svg>
+  ),
+}
+
 const VALUES = [
-  { icon: '🌱', title: 'Accountability', desc: 'Transparent stewardship of every resource entrusted to us.' },
-  { icon: '🤝', title: 'Partnership',    desc: 'We work with, not for, the communities we serve.' },
-  { icon: '⚡', title: 'Innovation',     desc: 'Evidence-based approaches adapted to local realities.' },
-  { icon: '🛡️', title: 'Integrity',      desc: 'Principled action in everything we do, always.' },
-  { icon: '❤️', title: 'Compassion',     desc: 'Human dignity is the foundation of every decision.' },
+  { title: 'Service In Love',  desc: 'Our services are motivated by genuine interest and empathy.' },
+  { title: 'Teamwork',         desc: 'We collaborate seamlessly, leveraging diverse skills and perspectives to achieve common goals.' },
+  { title: 'Excellence',        desc: 'We maintain the highest standards of conduct, competence, and integrity in all our interactions and operations.' },
+  { title: 'Transparency',     desc: 'We uphold openness and honesty in our actions, fostering trust and accountability within our organization and with stakeholders.' },
+  { title: 'Equity',           desc: 'We strive for fairness and equality in all our endeavours, ensuring everyone has access to opportunities and resources.' },
 ]
 
 const PILLS = [
@@ -38,8 +68,8 @@ export default function AboutPage() {
     <>
       <PageHero
         tag="About CBI"
-        headline="A national NGO delivering integrated humanitarian programs"
-        emph="since 2019."
+        headline="A Women-led and Youth-driven Non-Governmental and"
+        emph="Not-for-Profit Organization."
       />
 
       {/* About CBI intro */}
@@ -62,40 +92,12 @@ export default function AboutPage() {
             }}>About CBI</span>
           </div>
 
-          <h2 style={{
-            fontFamily: 'var(--font-playfair, Georgia, serif)',
-            fontSize: 'clamp(26px,3vw,38px)', fontWeight: 700,
-            letterSpacing: '-0.025em', color: '#000000',
-            lineHeight: 1.2, marginBottom: 28,
-          }}>
-            Women-led, youth-driven, and{' '}
-            <em style={{ borderBottom: '4px solid #ff8400', paddingBottom: 3, fontStyle: 'italic' }}>
-              built for impact.
-            </em>
-          </h2>
-
-          <div style={{
-            display: 'flex', flexDirection: 'column', gap: 20,
-          }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
               fontSize: 16.5, color: '#475569', lineHeight: 1.82,
             }}>
-              We are a <strong style={{ color: '#0102F1', fontWeight: 700 }}>women-led and youth-driven</strong> non-governmental and not-for-profit organization founded in 2019 and presently operational in states across Nigeria with a readiness to expand our reach.
-            </p>
-
-            <p style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 16.5, color: '#475569', lineHeight: 1.82,
-            }}>
-              We are passionate about saving lives and easing the suffering of children, youth, women, and other vulnerable people — as well as maintaining human dignity and supporting the resilience of individuals and communities affected by crisis, poverty and inequality.
-            </p>
-
-            <p style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 16.5, color: '#475569', lineHeight: 1.82,
-            }}>
-              We believe every individual deserves dignity, respect and the opportunity to thrive; hence we are committed to providing <strong style={{ color: '#000', fontWeight: 600 }}>humanitarian aid services</strong>, fostering <strong style={{ color: '#000', fontWeight: 600 }}>human capital development</strong> and strengthening <strong style={{ color: '#000', fontWeight: 600 }}>systems</strong> to empower vulnerable individuals and communities.
+              CBI was founded in 2019 and presently operational across 10 states with a readiness to expand its reach. We are passionate about saving lives and elevating the suffering of children, youth, women, and other vulnerable people, as well as maintaining human dignity and supporting the resilience of individuals and communities affected by crisis, poverty and inequality.
             </p>
           </div>
 
@@ -215,26 +217,18 @@ export default function AboutPage() {
           </div>
 
           <div className="about-photo-text" style={{
-            display: 'flex', alignItems: 'center', padding: '60px 64px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '60px 64px',
             opacity: photoRev.visible ? 1 : 0,
             transform: photoRev.visible ? 'none' : 'translateX(32px)',
             transition: 'all 900ms cubic-bezier(0.16,1,0.3,1) 200ms',
           }}>
-            <div>
-              <div style={{ width: 4, height: 48, background: '#ff8400', borderRadius: 4, marginBottom: 28 }} />
-              <h2 style={{
-                fontFamily: 'var(--font-playfair, Georgia, serif)',
-                fontSize: 'clamp(19px,2.2vw,29px)', fontWeight: 700,
-                color: 'white', lineHeight: 1.25, marginBottom: 20,
-                letterSpacing: '-0.02em', fontStyle: 'italic',
-              }}>
-                &ldquo;We didn&apos;t wait for permission to start. We started in 2019 with seven people and a mission.&rdquo;
-              </h2>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ width: 48, height: 3, background: '#ff8400', borderRadius: 4, margin: '0 auto 24px' }} />
               <p style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
-                fontSize: 14, color: 'rgba(255,255,255,0.55)',
-                letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600,
-              }}>Rejoice Mark, Executive Director</p>
+                fontSize: 'clamp(13px,1.2vw,16px)', color: 'rgba(255,255,255,0.6)',
+                letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600,
+              }}>Care Best Initiative · Est. 2019</p>
             </div>
           </div>
         </div>
@@ -293,7 +287,12 @@ export default function AboutPage() {
                 border: '1px solid rgba(1,2,241,0.07)',
                 ...values.style(i),
               }}>
-                <div style={{ fontSize: 30, marginBottom: 14 }}>{v.icon}</div>
+                <div style={{
+                  width: 48, height: 48, borderRadius: 12,
+                  background: 'rgba(1,2,241,0.07)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 16px',
+                }}>{VALUE_ICONS[v.title]}</div>
                 <h3 style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',
                   fontSize: 15, fontWeight: 700, color: '#000000', marginBottom: 8,

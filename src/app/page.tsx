@@ -3,7 +3,7 @@ import Programs       from '@/components/sections/Programs'
 import ImpactStatement from '@/components/sections/ImpactStatement'
 import PhotoCollage   from '@/components/sections/PhotoCollage'
 import ImpactNumbers  from '@/components/sections/ImpactNumbers'
-import Timeline       from '@/components/sections/Timeline'
+// import Timeline       from '@/components/sections/Timeline'
 import Testimonials   from '@/components/sections/Testimonials'
 import LatestStories  from '@/components/sections/LatestStories'
 import Partners       from '@/components/sections/Partners'
@@ -17,7 +17,7 @@ export default function HomePage() {
       <ImpactStatement />
       <PhotoCollage />
       <ImpactNumbers />
-      <Timeline />
+      {/* <Timeline /> */}
       <Testimonials />
       <LatestStories />
       <Partners />

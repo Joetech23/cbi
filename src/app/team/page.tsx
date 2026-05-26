@@ -148,14 +148,24 @@ function StaffCard({ p, i }: { p: TeamMember; i: number }) {
           letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 0,
         }}>{p.role}</p>
         <div style={{
-          display: 'flex', alignItems: 'center', gap: 6,
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           marginTop: 14, paddingTop: 14,
           borderTop: '1px solid rgba(1,2,241,0.07)',
-          fontFamily: 'var(--font-jakarta, sans-serif)',
-          fontSize: 12, color: '#94a3b8',
         }}>
-          <Mail size={12} />
-          <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.email}</span>
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 6,
+            fontFamily: 'var(--font-jakarta, sans-serif)',
+            fontSize: 12, color: '#94a3b8', minWidth: 0,
+          }}>
+            <Mail size={12} style={{ flexShrink: 0 }} />
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.email}</span>
+          </div>
+          <span className="card-arrow" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 3,
+            fontFamily: 'var(--font-jakarta, sans-serif)',
+            fontSize: 12, fontWeight: 700, color: '#0102F1', flexShrink: 0,
+            transition: 'transform 200ms',
+          }}>View <ArrowRight size={12} /></span>
         </div>
       </div>
     </Link>
@@ -218,7 +228,7 @@ export default function TeamPage() {
       <section className="team-section team-dept" style={{ background: 'white', borderTop: '1px solid rgba(1,2,241,0.05)' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <SectionHeader label="Operations & Support" title="Departmental" emph="Leaders." />
-          <div className="staff-grid">
+          <div className="dept-grid">
             {DEPARTMENTAL.map((p, i) => <StaffCard key={p.slug} p={p} i={i} />)}
           </div>
         </div>
@@ -260,21 +270,33 @@ export default function TeamPage() {
         }
         .team-section { padding: 80px 80px; }
         .exec-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 900px; margin: 0 auto; }
-        .staff-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .staff-grid { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 0 auto; justify-content: center; }
+        .staff-grid > * { flex: 0 0 calc(25% - 15px); min-width: 200px; }
+        .dept-grid  { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1100px; margin: 0 auto; justify-content: center; }
+        .dept-grid > * { flex: 0 0 calc(25% - 15px); min-width: 200px; }
+
+        /* Bold photo borders */
+        .exec-grid img, .staff-grid > * img, .dept-grid > * img {
+          border: 3px solid rgba(1,2,241,0.18);
+          box-shadow: 0 4px 16px rgba(1,2,120,0.12);
+        }
 
         @media (max-width: 1200px) {
-          .staff-grid { grid-template-columns: repeat(3, 1fr) !important; }
+          .staff-grid > * { flex: 0 0 calc(33.33% - 14px) !important; }
+          .dept-grid > * { flex: 0 0 calc(33.33% - 14px) !important; }
         }
         @media (max-width: 1024px) {
           .team-section { padding: 64px 32px !important; }
         }
         @media (max-width: 860px) {
           .exec-grid  { grid-template-columns: 1fr !important; max-width: 480px !important; }
-          .staff-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .staff-grid > * { flex: 0 0 calc(50% - 10px) !important; }
+          .dept-grid > * { flex: 0 0 calc(50% - 10px) !important; }
         }
         @media (max-width: 560px) {
           .team-section { padding: 48px 16px !important; }
-          .staff-grid   { grid-template-columns: 1fr !important; }
+          .staff-grid > * { flex: 0 0 100% !important; }
+          .dept-grid > * { flex: 0 0 100% !important; }
         }
       `}</style>
     </>

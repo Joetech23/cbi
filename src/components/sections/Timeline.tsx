@@ -120,8 +120,7 @@ export default function Timeline() {
             fontWeight: 700, color: '#000000',
             lineHeight: 1.08, letterSpacing: '-0.015em', margin: 0,
           }}>
-            Seven years of<br />
-            <em style={{ color: '#0102F1', fontStyle: 'italic' }}>growing impact.</em>
+            <em style={{ color: '#0102F1', fontStyle: 'italic' }}>Growing impact.</em>
           </h2>
         </div>
 
@@ -171,12 +170,7 @@ export default function Timeline() {
                   </div>
 
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{
-                      fontFamily: 'var(--font-space, monospace)',
-                      fontSize: 12.5, fontWeight: 700, letterSpacing: '0.05em',
-                      color: on ? m.color : '#94a3b8',
-                      transition: 'color 220ms',
-                    }}>{m.year}</div>
+                    <div style={{ display: 'none' }} />
                     <div style={{
                       fontFamily: 'var(--font-jakarta, sans-serif)',
                       fontSize: 12, fontWeight: on ? 600 : 400,
@@ -212,18 +206,7 @@ export default function Timeline() {
               }} />
             </div>
 
-            {/* Year watermark */}
-            <div key={`wm-${active}`} aria-hidden style={{
-              position: 'absolute', right: -16, top: '50%',
-              transform: 'translateY(-50%)',
-              fontFamily: 'var(--font-space, monospace)',
-              fontSize: 'clamp(80px, 13vw, 156px)',
-              fontWeight: 700, lineHeight: 1,
-              color: node.color, opacity: 0.045,
-              userSelect: 'none', pointerEvents: 'none',
-              letterSpacing: '-0.04em',
-              animation: 'jFadeWm 500ms ease both',
-            }}>{node.year}</div>
+            {/* watermark removed */}
 
             {/* Main content */}
             <div key={active} className="journey-content" style={{
@@ -232,7 +215,7 @@ export default function Timeline() {
               animation: 'jSlideIn 480ms cubic-bezier(0.16,1,0.3,1) both',
             }}>
 
-              {/* Top row: icon + year + counter */}
+              {/* Top row: icon + counter */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
                 <div style={{
                   width: 46, height: 46, borderRadius: 11,
@@ -241,18 +224,11 @@ export default function Timeline() {
                   fontSize: 20, flexShrink: 0,
                   boxShadow: `0 6px 20px ${node.color}44`,
                 }}>{node.icon}</div>
-                <div>
-                  <div style={{
-                    fontFamily: 'var(--font-space, monospace)',
-                    fontSize: 11.5, fontWeight: 700, letterSpacing: '0.14em',
-                    color: node.color, textTransform: 'uppercase',
-                  }}>{node.year}</div>
-                  <div style={{
-                    fontFamily: 'var(--font-jakarta, sans-serif)',
-                    fontSize: 10.5, color: '#94a3b8',
-                    letterSpacing: '0.06em', textTransform: 'uppercase',
-                  }}>Milestone {active + 1} / {MILESTONES.length}</div>
-                </div>
+                <div style={{
+                  fontFamily: 'var(--font-jakarta, sans-serif)',
+                  fontSize: 10.5, color: '#94a3b8',
+                  letterSpacing: '0.06em', textTransform: 'uppercase',
+                }}>Milestone {active + 1} / {MILESTONES.length}</div>
               </div>
 
               <h3 style={{

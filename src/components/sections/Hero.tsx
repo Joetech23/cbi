@@ -12,7 +12,7 @@ const SLIDES = [
   {
     img:          '/images/cbi-medical-outreach.jpg',
     imgPosition:  'center 35%',
-    tag:          'Humanitarian Aid · Since 2019',
+    tag:          'Humanitarian Aid and Development · Since 2019',
     line1:        'Reaching Lives,',
     line2:        'Restoring',
     emph:         'Dignity.',
