@@ -101,6 +101,76 @@ export default function AboutPage() {
             </p>
           </div>
 
+          {/* Strategic Objectives */}
+          <div style={{ marginTop: 40 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+              <span style={{ display: 'block', width: 24, height: 1, background: '#ff8400' }} />
+              <span style={{
+                fontFamily: 'var(--font-jakarta, sans-serif)',
+                fontSize: 10, fontWeight: 700, letterSpacing: '0.2em',
+                textTransform: 'uppercase', color: '#ff8400',
+              }}>Strategic Objectives</span>
+            </div>
+            <div className="objectives-grid">
+              {[
+                {
+                  title: 'Delivery Of Humanitarian Aid',
+                  desc:  'To deliver multisectoral life-saving assistance, shelter, food, water, and healthcare to vulnerable individuals.',
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                  ),
+                },
+                {
+                  title: 'Human Capital Development',
+                  desc:  'To build skills, knowledge and capacities of the most vulnerable.',
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  ),
+                },
+                {
+                  title: 'System Strengthening',
+                  desc:  'To enhance institutional capacities, governance and infrastructure to empower the vulnerable.',
+                  icon: (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0102F1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
+                    </svg>
+                  ),
+                },
+              ].map((obj, i) => (
+                <div key={i} style={{
+                  padding: '24px 28px',
+                  background: 'white',
+                  borderRadius: 12,
+                  border: '1px solid rgba(1,2,241,0.08)',
+                  borderLeft: '4px solid #0102F1',
+                  display: 'flex', flexDirection: 'column', gap: 10,
+                }}>
+                  <div style={{
+                    width: 40, height: 40, borderRadius: 10,
+                    background: 'rgba(1,2,241,0.07)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>{obj.icon}</div>
+                  <h3 style={{
+                    fontFamily: 'var(--font-jakarta, sans-serif)',
+                    fontSize: 14, fontWeight: 700, color: '#010278',
+                    margin: 0,
+                  }}>{obj.title}</h3>
+                  <p style={{
+                    fontFamily: 'var(--font-jakarta, sans-serif)',
+                    fontSize: 13.5, color: '#64748b', lineHeight: 1.7,
+                    margin: 0,
+                  }}>{obj.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Quick stat ribbon */}
           <div style={{
             display: 'flex', flexWrap: 'wrap', gap: 0,
@@ -138,8 +208,10 @@ export default function AboutPage() {
         </div>
         <style>{`
           .about-intro { padding: 80px 80px 56px; }
+          .objectives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
           @media (max-width: 768px) {
             .about-intro { padding: 56px 24px 40px !important; }
+            .objectives-grid { grid-template-columns: 1fr !important; }
           }
           @media (max-width: 520px) {
             .about-intro { padding: 40px 16px 32px !important; }
