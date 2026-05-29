@@ -82,7 +82,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug:       'thomas-dayo',
-    name:       'Thomas Umazayi Dayo',
+    name:       'Thomas Dayo Umazayi',
     role:       'Head of Office & Programmes Manager',
     email:      'pm@cbi.ngo',
     photo:      '/images/team/thomas.jpg',
