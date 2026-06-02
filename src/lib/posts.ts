@@ -72,7 +72,7 @@ export const POSTS: Post[] = [
     author:     'Muhammad Alhaji Muhammad',
     authorRole: 'Information Management Officer',
     program:    'WASH',
-    image:      '/images/cbi-wash-program.jpg',
+    image:      '/images/programs/wash.jpg',
     tags:       ['WASH', 'Clean Water', 'Borno State'],
     excerpt:    'Twelve new boreholes brought clean water to communities that walked 5km each day.',
     content: [
@@ -116,7 +116,7 @@ export const POSTS: Post[] = [
     author:     'Umazayi Thomas Dayo',
     authorRole: 'Head of Office & Programmes Manager',
     program:    'Nutrition',
-    image:      '/images/programs/IMG_9297-nutrition.jpg',
+    image:      '/images/programs/nutrition.jpg',
     tags:       ['Nutrition', 'UNICEF', 'Events', 'Abuja'],
     excerpt:    'Our learnings from the field shared with national stakeholders.',
     content: [

@@ -29,12 +29,12 @@ const ICON_MAP: Record<string, React.ReactNode> = {
 const SIZE = 480, CX = 240, CY = 240, R = 230, INNER = 54, GAP = 2.5
 
 const WHEEL = [
-  { name: 'Health',        slug: 'health',                    img: '/images/programs/IMG_8929-health.jpg',    color: '#0102F1' },
-  { name: 'Nutrition',     slug: 'nutrition',                 img: '/images/programs/IMG_9297-nutrition.jpg', color: '#e11d48' },
-  { name: 'Education',     slug: 'education',                 img: '/images/programs/IMG_9278-education.jpg', color: '#0891b2' },
-  { name: 'WASH',          slug: 'wash',                      img: '/images/cbi-wash-program.jpg',            color: '#16a34a' },
-  { name: 'Protection',    slug: 'protection',                img: '/images/cbi-community-2.jpg',             color: '#7c3aed' },
-  { name: 'Food Security', slug: 'food-security-livelihoods', img: '/images/cbi-community-1.jpg',             color: '#ea580c' },
+  { name: 'Health',        slug: 'health',                    img: '/images/programs/health.jpg',     color: '#0102F1' },
+  { name: 'Nutrition',     slug: 'nutrition',                 img: '/images/programs/nutrition.jpg',  color: '#e11d48' },
+  { name: 'Education',     slug: 'education',                 img: '/images/programs/education.jpg',  color: '#0891b2' },
+  { name: 'WASH',          slug: 'wash',                      img: '/images/programs/wash.jpg',       color: '#16a34a' },
+  { name: 'Protection',    slug: 'protection',                img: '/images/programs/protection.jpg', color: '#7c3aed' },
+  { name: 'Food Security', slug: 'food-security-livelihoods', img: '/images/cbi-community-1.jpg',    color: '#ea580c' },
 ]
 
 function wedgePath(startDeg: number, endDeg: number): string {

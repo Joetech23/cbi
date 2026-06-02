@@ -51,7 +51,7 @@ export const PROGRAMS: Program[] = [
     icon:       '🏥',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/programs/IMG_8929-health.jpg',
+    heroImage:  '/images/programs/health.jpg',
 
     description:
       'Strengthening communities through accessible healthcare, equipping health workers with the skills and tools to save lives and promote wellness where it matters most.',
@@ -62,7 +62,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/programs/IMG_8929-health.jpg',        caption: 'CBI health team conducting community consultations',                             alt: 'CBI health programme' },
+      { src: '/images/programs/health.jpg',                  caption: 'CBI health team conducting community consultations',                             alt: 'CBI health programme' },
       { src: '/images/cbi-health-program.jpg',              caption: 'Medical consultation at a CBI-supported facility',                               alt: 'Medical consultation' },
       { src: '/images/cbi-medical-outreach.jpg',            caption: 'Mobile health clinic serving a remote community',                                alt: 'Medical outreach' },
       { src: '/images/cbi-mother-baby.jpg',                 caption: 'Maternal and newborn care — supporting safe pregnancies',                        alt: 'Mother and baby healthcare' },
@@ -112,7 +112,7 @@ export const PROGRAMS: Program[] = [
     icon:       '🌱',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/programs/IMG_9297-nutrition.jpg',
+    heroImage:  '/images/programs/nutrition.jpg',
 
     description:
       'Early detection and timely treatment of acute malnutrition in children under five, giving every child a healthier start and a greater chance to thrive.',
@@ -138,7 +138,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/programs/IMG_9297-nutrition.jpg',  caption: 'Nutrition screening and treatment for children under five',    alt: 'Nutrition programme' },
+      { src: '/images/programs/nutrition.jpg',            caption: 'Nutrition screening and treatment for children under five',    alt: 'Nutrition programme' },
       { src: '/images/cbi-mother-baby.jpg',              caption: 'Maternal nutrition counselling for a lactating mother',        alt: 'Mother and baby nutrition' },
       { src: '/images/cbi-child-health.jpg',             caption: 'Child health and nutrition monitoring',                       alt: 'Child health monitoring' },
       { src: '/images/cbi-children-treatment.jpg',       caption: 'Community-based treatment for acute malnutrition',            alt: 'Treatment for malnutrition' },
@@ -186,7 +186,7 @@ export const PROGRAMS: Program[] = [
     icon:       '💧',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/cbi-wash-program.jpg',
+    heroImage:  '/images/programs/wash.jpg',
 
     description:
       'Improving well-being and dignity through safe water access, rehabilitated boreholes, and sustainable WASH services that promote healthier communities.',
@@ -197,7 +197,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/cbi-wash-program.jpg',           caption: 'WASH infrastructure serving vulnerable communities',                              alt: 'WASH programme' },
+      { src: '/images/programs/wash.jpg',              caption: 'WASH infrastructure serving vulnerable communities',                              alt: 'WASH programme' },
       { src: '/images/cbi-wash-sanitizer.jpg',         caption: 'Hygiene promotion — hand-washing with soap',                                     alt: 'Hand hygiene promotion' },
       { src: '/images/cbi-wash-global.jpg',            caption: 'Safe water access: a fundamental human right',                                   alt: 'Safe water access' },
       { src: '/images/cbi-medical-bicycle.jpg',        caption: 'CBI field team reaching remote communities',                                     alt: 'Community outreach' },
@@ -257,7 +257,7 @@ export const PROGRAMS: Program[] = [
     icon:       '🛡️',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/cbi-community-2.jpg',
+    heroImage:  '/images/programs/protection.jpg',
 
     description:
       'Creating safer communities by strengthening child safeguarding and delivering responsive GBV prevention and support services that protect dignity and restore hope.',
@@ -268,7 +268,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/cbi-community-2.jpg',            caption: 'Protection services delivered with dignity and care',                             alt: 'Protection programme' },
+      { src: '/images/programs/protection.jpg',        caption: 'Protection services delivered with dignity and care',                             alt: 'Protection programme' },
       { src: '/images/cbi-community-1.jpg',            caption: 'Community sensitisation on protection and rights',                               alt: 'Community engagement' },
       { src: '/images/cbi-events.jpg',                 caption: 'Protection awareness event reaching community members',                          alt: 'Protection awareness event' },
       { src: '/images/cbi-medical-wheelchair-net.jpg', caption: 'Dignity kits and humanitarian support for vulnerable persons',                   alt: 'Dignity kit distribution' },
@@ -379,7 +379,7 @@ export const PROGRAMS: Program[] = [
     icon:       '📚',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/programs/IMG_9278-education.jpg',
+    heroImage:  '/images/programs/education.jpg',
 
     description:
       'Delivering safe, inclusive, and resilient learning environments so children keep accessing quality education despite conflict, displacement, or crisis.',
@@ -390,7 +390,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/programs/IMG_9278-education.jpg',  caption: 'Children engaging in structured learning at a CBI-supported school',               alt: 'CBI education programme' },
+      { src: '/images/programs/education.jpg',            caption: 'Children engaging in structured learning at a CBI-supported school',               alt: 'CBI education programme' },
       { src: '/images/cbi-teaching-child.jpg',           caption: 'A CBI educator works one-on-one with a student',                                   alt: 'Teacher and student' },
       { src: '/images/cbi-education-class.jpg',          caption: 'Classroom session in a child-friendly learning space',                              alt: 'Classroom learning' },
       { src: '/images/cbi-child-smiling.jpg',            caption: 'Education transforms lives — one smile at a time',                                  alt: 'Happy child' },

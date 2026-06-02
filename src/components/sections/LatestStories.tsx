@@ -12,7 +12,7 @@ const POSTS = [
     date:     'May 2025',
     title:    'WASH Intervention Reaches 2,400 Families in Borno',
     excerpt:  'CBI\'s latest borehole rehabilitation and hygiene promotion campaign brings safe water access to over 12,000 individuals across hard-to-reach communities.',
-    img:      '/images/cbi-wash-program.jpg',
+    img:      '/images/programs/wash.jpg',
     href:     '/blog',
   },
   {
