@@ -184,7 +184,7 @@ const jsonLd = {
         name: "Nigeria",
       },
       email: "info@cbi.ngo",
-      telephone: "+234-915-349-3317",
+      telephone: "+2347060563718",
       address: {
         "@type": "PostalAddress",
         streetAddress: "No. 139, Aero Gardens Estate, Kyami, Airport Road",
@@ -196,7 +196,7 @@ const jsonLd = {
         {
           "@type": "ContactPoint",
           email: "info@cbi.ngo",
-          telephone: "+234-915-349-3317",
+          telephone: "+2347060563718",
           contactType: "customer service",
           areaServed: "NG",
           availableLanguage: ["English"],

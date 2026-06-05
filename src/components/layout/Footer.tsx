@@ -218,11 +218,11 @@ export default function Footer() {
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#ff8400'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
               >✉ info@cbi.ngo</a>
-              <a href="tel:+2349153493317"
+              <a href="tel:+2347060563718"
                 style={{ color: 'rgba(255,255,255,0.7)', textDecoration: 'none', transition: 'color 150ms' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#ff8400'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.7)'}
-              >📞 +234 (0) 915 349 3317</a>
+              >📞 +234 7060563718</a>
               <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12.5 }}>
                 📍 No. 139, Aero Gardens Estate,<br />Kyami, Airport Road, Abuja
               </span>

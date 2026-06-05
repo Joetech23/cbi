@@ -318,7 +318,7 @@ export const PROGRAMS: Program[] = [
     icon:       '🌾',
     accentHex:  '#0102F1',
     bgLight:    '#eef0ff',
-    heroImage:  '/images/cbi-community-1.jpg',
+    heroImage:  '/images/programs/food-security.jpg',
 
     description:
       'Enhancing household resilience through sustainable livelihood support and improved food access, empowering families to achieve stability and long-term economic well-being.',
@@ -329,7 +329,7 @@ export const PROGRAMS: Program[] = [
     ],
 
     gallery: [
-      { src: '/images/cbi-community-1.jpg',         caption: 'Livelihood support empowering vulnerable households',                             alt: 'Food security and livelihoods' },
+      { src: '/images/programs/food-security.jpg', caption: 'Livelihood support empowering vulnerable households',                             alt: 'Food security and livelihoods' },
       { src: '/images/cbi-community-2.jpg',         caption: 'Community engagement for food security programming',                             alt: 'Community engagement' },
       { src: '/images/cbi-events.jpg',              caption: 'Programme activities reaching crisis-affected populations',                       alt: 'Programme activities' },
       { src: '/images/branding/Care-Best-3.jpg',    caption: 'CBI field teams delivering integrated FSL interventions',                        alt: 'CBI in action' },

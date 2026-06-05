@@ -422,10 +422,6 @@ export default function ContactPage() {
                     <span style={{ fontSize: 11, flexShrink: 0 }}>✉️</span>
                     <a href={`mailto:${o.email}`} style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5, color: '#0102F1', fontWeight: 600, textDecoration: 'none' }}>{o.email}</a>
                   </div>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <span style={{ fontSize: 11, flexShrink: 0 }}>📞</span>
-                    <a href={`tel:${o.tel}`} style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5, color: '#374151', fontWeight: 500, textDecoration: 'none' }}>{o.phone}</a>
-                  </div>
                 </div>
               </div>
             ))}

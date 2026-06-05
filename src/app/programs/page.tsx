@@ -34,7 +34,7 @@ const WHEEL = [
   { name: 'Education',     slug: 'education',                 img: '/images/programs/education.jpg',  color: '#0891b2' },
   { name: 'WASH',          slug: 'wash',                      img: '/images/programs/wash.jpg',       color: '#16a34a' },
   { name: 'Protection',    slug: 'protection',                img: '/images/programs/protection.jpg', color: '#7c3aed' },
-  { name: 'Food Security', slug: 'food-security-livelihoods', img: '/images/cbi-community-1.jpg',    color: '#ea580c' },
+  { name: 'Food Security', slug: 'food-security-livelihoods', img: '/images/programs/food-security.jpg', color: '#ea580c' },
 ]
 
 function wedgePath(startDeg: number, endDeg: number): string {

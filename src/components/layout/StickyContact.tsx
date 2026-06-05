@@ -14,8 +14,8 @@ import { useState, useEffect, useRef } from 'react'
    tuck behind the main bubble until tapped.
 ─────────────────────────────────────────────────────────────── */
 
-const PHONE = '+2349153493317'
-const PHONE_DISPLAY = '+234 (0) 915 349 3317'
+const PHONE = '+2347060563718'
+const PHONE_DISPLAY = '+234 7060563718'
 const EMAIL = 'info@cbi.ngo'
 
 interface ChatMessage {

@@ -13,7 +13,7 @@ interface Office {
   state:    string
   address:  string
   email:    string
-  phone:    string
+  phone?:   string
   hours:    string
   /** pin position — % of the map image container */
   x: number
@@ -24,49 +24,49 @@ const OFFICES: Office[] = [
   {
     id: 'abuja', label: 'Abuja', type: 'HQ', state: 'Federal Capital Territory',
     address: 'No. 139, Aero Gardens Estate, Kyami, Airport Road, Abuja',
-    email: 'info@cbi.ngo', phone: '+234 (0) 915 349 3317',
+    email: 'info@cbi.ngo', phone: '+234 7060563718',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 38, y: 60,
   },
   {
     id: 'borno', label: 'Maiduguri', type: 'Field', state: 'Borno State',
     address: 'Behind UN House, Pompomari By-pass, Maiduguri',
-    email: 'borno@cbi.ngo', phone: '+234 (0) 915 469 2357',
+    email: 'borno@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 81, y: 21,
   },
   {
     id: 'adamawa', label: 'Yola', type: 'Field', state: 'Adamawa State',
     address: 'No. 6, Opp. Dunamis Church, Bature, Yola North',
-    email: 'adamawa@cbi.ngo', phone: '+234 (0) 915 469 2360',
+    email: 'adamawa@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 71, y: 58,
   },
   {
     id: 'yobe', label: 'Damaturu', type: 'Field', state: 'Yobe State',
     address: 'Muhammad Buhari Way, DonEtiebet Ext., Behind Mai Riga\'s House, Damaturu',
-    email: 'yobe@cbi.ngo', phone: '+234 (0) 915 469 2355',
+    email: 'yobe@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 67, y: 25,
   },
   {
     id: 'bauchi', label: 'Bauchi', type: 'Field', state: 'Bauchi State',
     address: 'No. 12 Dass Park, Behind Larema Hotel, Opp. Christ Embassy Church, New GRA, Bauchi',
-    email: 'bauchi@cbi.ngo', phone: '+234 (0) 915 469 2348',
+    email: 'bauchi@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 54, y: 39,
   },
   {
     id: 'zamfara', label: 'Gusau', type: 'Field', state: 'Zamfara State',
     address: 'White House, Behind Governor\'s House, GRA, Gusau, Zamfara',
-    email: 'zamfara@cbi.ngo', phone: '+234 (0) 915 349 3300',
+    email: 'zamfara@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 30, y: 22,
   },
   {
     id: 'sokoto', label: 'Sokoto', type: 'Field', state: 'Sokoto State',
     address: 'No. 31, Alero Road, Opp. Magistrate Court, Runji Sambo, Sokoto',
-    email: 'sokoto@cbi.ngo', phone: '+234 (0) 915 349 3344',
+    email: 'sokoto@cbi.ngo',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 14, y: 14,
   },
@@ -147,20 +147,22 @@ function OfficeCard({ office, flip }: { office: Office; flip?: boolean }) {
         </div>
 
         {/* Phone */}
-        <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ fontSize: 12, flexShrink: 0 }}>📞</span>
-          <a
-            href={`tel:${office.phone.replace(/[^\d+]/g, '')}`}
-            style={{
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 12.5, color: '#374151', fontWeight: 600,
-              textDecoration: 'none',
-              transition: 'color 150ms',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.color = '#0102F1' }}
-            onMouseLeave={e => { e.currentTarget.style.color = '#374151' }}
-          >{office.phone}</a>
-        </div>
+        {office.phone && (
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <span style={{ fontSize: 12, flexShrink: 0 }}>📞</span>
+            <a
+              href={`tel:${office.phone.replace(/[^\d+]/g, '')}`}
+              style={{
+                fontFamily: 'var(--font-jakarta, sans-serif)',
+                fontSize: 12.5, color: '#374151', fontWeight: 600,
+                textDecoration: 'none',
+                transition: 'color 150ms',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.color = '#0102F1' }}
+              onMouseLeave={e => { e.currentTarget.style.color = '#374151' }}
+            >{office.phone}</a>
+          </div>
+        )}
 
         {/* Hours */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
