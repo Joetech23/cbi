@@ -9,7 +9,7 @@ export const SITE = {
   name: 'Care Best Initiative',
   tagline: "Lifesaving Care for Nigeria's Most Vulnerable Communities",
   email: 'info@cbi.ngo',
-  phone: '+234 7060563718',
+  phone: '+234 (0) 915 349 3317',
   address: 'No. 139, Aero Gardens Estate, Kyami, Airport Road, Abuja, Nigeria',
   founded: 2019,
   socials: {

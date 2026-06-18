@@ -68,22 +68,20 @@ const NAV = [
     { label: 'Education',                   href: '/programs/education' },
   ]},
 
-  { label: 'How We Serve', href: '/blog', children: [
+  { label: 'Our Highlight', href: '/blog', children: [
     { label: 'News & Stories',  href: '/blog' },
     { label: 'Gallery',         href: '/gallery' },
     { label: 'Events',          href: '/events' },
     { label: 'Publications',    href: '/publications' },
+    { label: 'Our Impact',      href: '/impact' },
   ]},
 
-  { label: 'Where We Work', href: '/impact', children: [
-    { label: 'Our Impact',  href: '/impact' },
-    { label: 'Our Reach',   href: '/contact' },
+  { label: 'Reach Us', href: '/contact#map', children: [
+    { label: 'Contact Us',  href: '/contact' },
   ]},
 
   { label: 'Join Us', href: '/careers', children: [
     { label: 'Careers',     href: '/careers' },
-    { label: 'Contact Us',  href: '/contact' },
-    { label: 'Donate',      href: '/donate' },
   ]},
 ]
 
@@ -143,7 +141,8 @@ export default function Navbar() {
           {/* Desktop nav */}
           <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 2, height: '100%' }}>
             {NAV.map(link => {
-              const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href + '/'))
+              const linkPath = link.href.split('#')[0]
+              const active = pathname === linkPath || (linkPath !== '/' && pathname.startsWith(linkPath + '/'))
               const open   = dropdown === link.label
               return (
                 <div key={link.label}

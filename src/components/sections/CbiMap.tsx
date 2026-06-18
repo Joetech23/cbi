@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react'
 import Image from 'next/image'
+import { MapPin, Mail, Phone, Clock } from 'lucide-react'
 
 /* ─────────────────────────────────────────────────────────────
    Office data  (all 7 field offices from the DOCX)
@@ -23,50 +24,50 @@ interface Office {
 const OFFICES: Office[] = [
   {
     id: 'abuja', label: 'Abuja', type: 'HQ', state: 'Federal Capital Territory',
-    address: 'No. 139, Aero Gardens Estate, Kyami, Airport Road, Abuja',
-    email: 'info@cbi.ngo', phone: '+234 7060563718',
+    address: 'Abuja, FCT',
+    email: 'info@cbi.ngo', phone: '+234 (0) 915 349 3317',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 38, y: 60,
   },
   {
     id: 'borno', label: 'Maiduguri', type: 'Field', state: 'Borno State',
-    address: 'Behind UN House, Pompomari By-pass, Maiduguri',
-    email: 'borno@cbi.ngo',
+    address: 'Maiduguri, Borno State',
+    email: 'borno@cbi.ngo', phone: '+234 (0) 915 469 2357',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 81, y: 21,
   },
   {
     id: 'adamawa', label: 'Yola', type: 'Field', state: 'Adamawa State',
-    address: 'No. 6, Opp. Dunamis Church, Bature, Yola North',
-    email: 'adamawa@cbi.ngo',
+    address: 'Yola, Adamawa State',
+    email: 'adamawa@cbi.ngo', phone: '+234 (0) 915 469 2360',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 71, y: 58,
   },
   {
     id: 'yobe', label: 'Damaturu', type: 'Field', state: 'Yobe State',
-    address: 'Muhammad Buhari Way, DonEtiebet Ext., Behind Mai Riga\'s House, Damaturu',
-    email: 'yobe@cbi.ngo',
+    address: 'Damaturu, Yobe State',
+    email: 'yobe@cbi.ngo', phone: '+234 (0) 915 469 2355',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 67, y: 25,
   },
   {
     id: 'bauchi', label: 'Bauchi', type: 'Field', state: 'Bauchi State',
-    address: 'No. 12 Dass Park, Behind Larema Hotel, Opp. Christ Embassy Church, New GRA, Bauchi',
-    email: 'bauchi@cbi.ngo',
+    address: 'Bauchi, Bauchi State',
+    email: 'bauchi@cbi.ngo', phone: '+234 (0) 915 469 2348',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 54, y: 39,
   },
   {
     id: 'zamfara', label: 'Gusau', type: 'Field', state: 'Zamfara State',
-    address: 'White House, Behind Governor\'s House, GRA, Gusau, Zamfara',
-    email: 'zamfara@cbi.ngo',
+    address: 'Gusau, Zamfara State',
+    email: 'zamfara@cbi.ngo', phone: '+234 (0) 915 349 3300',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 30, y: 22,
   },
   {
     id: 'sokoto', label: 'Sokoto', type: 'Field', state: 'Sokoto State',
-    address: 'No. 31, Alero Road, Opp. Magistrate Court, Runji Sambo, Sokoto',
-    email: 'sokoto@cbi.ngo',
+    address: 'Sokoto, Sokoto State',
+    email: 'sokoto@cbi.ngo', phone: '+234 (0) 915 349 3344',
     hours: 'Mon – Fri · 8 AM – 5 PM WAT',
     x: 14, y: 14,
   },
@@ -121,7 +122,7 @@ function OfficeCard({ office, flip }: { office: Office; flip?: boolean }) {
       <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {/* Address */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-          <span style={{ fontSize: 13, marginTop: 1, flexShrink: 0 }}>📍</span>
+          <MapPin size={14} style={{ marginTop: 1, flexShrink: 0, color: '#64748b' }} />
           <span style={{
             fontFamily: 'var(--font-jakarta, sans-serif)',
             fontSize: 12.5, color: '#374151', lineHeight: 1.5,
@@ -132,7 +133,7 @@ function OfficeCard({ office, flip }: { office: Office; flip?: boolean }) {
 
         {/* Email */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ fontSize: 12, flexShrink: 0 }}>✉️</span>
+          <Mail size={14} style={{ flexShrink: 0, color: '#0102F1' }} />
           <a
             href={`mailto:${office.email}`}
             style={{
@@ -149,7 +150,7 @@ function OfficeCard({ office, flip }: { office: Office; flip?: boolean }) {
         {/* Phone */}
         {office.phone && (
           <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-            <span style={{ fontSize: 12, flexShrink: 0 }}>📞</span>
+            <Phone size={14} style={{ flexShrink: 0, color: '#64748b' }} />
             <a
               href={`tel:${office.phone.replace(/[^\d+]/g, '')}`}
               style={{
@@ -166,7 +167,7 @@ function OfficeCard({ office, flip }: { office: Office; flip?: boolean }) {
 
         {/* Hours */}
         <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-          <span style={{ fontSize: 12, flexShrink: 0 }}>🕐</span>
+          <Clock size={14} style={{ flexShrink: 0, color: '#64748b' }} />
           <span style={{
             fontFamily: 'var(--font-jakarta, sans-serif)',
             fontSize: 11.5, color: '#64748b',

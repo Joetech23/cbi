@@ -309,7 +309,7 @@ export const TEAM: TeamMember[] = [
   },
   {
     slug:       'gideon-okpuna',
-    name:       'Gideon Ogbonna Okpuna',
+    name:       'Ogbonna Gideon Okpuna',
     role:       'MEAL Coordinator',
     email:      'meal@cbi.ngo',
     photo:      '/images/team/gideon.jpg',
