@@ -1,6 +1,7 @@
 'use client'
 
-import { Briefcase, Send } from 'lucide-react'
+import Link from 'next/link'
+import { Briefcase, Send, HeartHandshake, ArrowRight, CalendarClock } from 'lucide-react'
 import PageHero from '@/components/layout/PageHero'
 
 const BENEFITS = [
@@ -36,6 +37,55 @@ export default function CareersPage() {
         emph="purpose."
         sub="Join a team of passionate professionals working at the intersection of humanitarian response, community development, and lasting change in Nigeria."
       />
+
+      {/* ── Call for Volunteers banner ── */}
+      <section className="vol-banner-section" style={{ background: 'white' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <div className="vol-banner" style={{
+            position: 'relative', overflow: 'hidden',
+            background: 'linear-gradient(120deg, #010278 0%, #0102F1 100%)',
+            borderRadius: 24, padding: '48px 52px',
+            display: 'grid', gridTemplateColumns: '1fr auto', gap: 40, alignItems: 'center',
+          }}>
+            {/* Glow */}
+            <div aria-hidden style={{ position: 'absolute', top: -80, right: -60, width: 320, height: 320, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,132,0,0.28), transparent 70%)' }} />
+
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,132,0,0.16)', border: '1px solid rgba(255,132,0,0.45)', borderRadius: 100, padding: '5px 14px', marginBottom: 18 }}>
+                <CalendarClock size={13} color="#ff8400" />
+                <span style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 10.5, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#ff8400' }}>Now Recruiting · Deadline 7th July, 2026</span>
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 'clamp(24px,3vw,38px)', fontWeight: 700, color: 'white', lineHeight: 1.1, letterSpacing: '-0.02em', margin: '0 0 14px' }}>
+                Call for <em style={{ fontStyle: 'italic', color: '#ff8400' }}>Volunteers</em>
+              </h2>
+              <p style={{ fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 15, color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, maxWidth: 620, margin: '0 0 28px' }}>
+                Care Best Initiative is a women-led and youth-driven non-profit saving lives and restoring dignity across the North-East, North-Central and North-West of Nigeria. We&apos;re inviting passionate volunteers to serve their communities across health, nutrition, WASH, education, protection and more.
+              </p>
+              <Link href="/careers/volunteer" className="vol-banner-btn" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 10, padding: '15px 32px',
+                background: '#ff8400', color: '#010278', borderRadius: 12,
+                fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 15, fontWeight: 800,
+                textDecoration: 'none', boxShadow: '0 10px 30px rgba(255,132,0,0.35)', transition: 'all 200ms',
+              }}>
+                Apply to Volunteer <ArrowRight size={17} />
+              </Link>
+            </div>
+
+            <div className="vol-banner-icon" style={{ position: 'relative', zIndex: 1, width: 150, height: 150, borderRadius: 28, background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <HeartHandshake size={68} color="#ff8400" strokeWidth={1.4} />
+            </div>
+          </div>
+        </div>
+        <style>{`
+          .vol-banner-section { padding: 56px 80px 8px; }
+          .vol-banner-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(255,132,0,0.45) !important; }
+          @media (max-width: 860px) {
+            .vol-banner-section { padding: 40px 24px 0 !important; }
+            .vol-banner      { grid-template-columns: 1fr !important; padding: 36px 28px !important; gap: 24px !important; }
+            .vol-banner-icon { display: none !important; }
+          }
+        `}</style>
+      </section>
 
       {/* Open positions — empty state */}
       <section className="careers-open" style={{ background: 'white' }}>
