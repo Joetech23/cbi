@@ -116,7 +116,7 @@ export default async function TeamProfilePage({ params }: Props) {
                 fontSize: 10, fontWeight: 700, letterSpacing: '0.22em',
                 textTransform: 'uppercase', color: '#ffa340',
               }}>
-                {member.level === 'executive' ? 'Executive Team' : member.level === 'thematic' ? 'Thematic Leader' : 'Departmental Leader'} · {member.role}
+                {member.level === 'executive' ? 'Executive Team' : member.level === 'thematic' ? 'Thematic Leader' : member.level === 'focal' ? 'Focal Person' : 'Departmental Leader'} · {member.role}
               </span>
             </div>
 

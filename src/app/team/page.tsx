@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Mail, ArrowRight, MapPin } from 'lucide-react'
+import { Mail, ArrowRight, MapPin, Handshake } from 'lucide-react'
 import PageHero from '@/components/layout/PageHero'
-import { EXECUTIVE, THEMATIC, DEPARTMENTAL } from '@/lib/team'
+import { EXECUTIVE, THEMATIC, DEPARTMENTAL, FOCAL } from '@/lib/team'
 import type { TeamMember } from '@/lib/team'
 import TeamAvatar from '@/components/ui/TeamAvatar'
 
@@ -173,6 +173,57 @@ function StaffCard({ p, i }: { p: TeamMember; i: number }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
+   Placeholder card — role advertised, person to be announced
+───────────────────────────────────────────────────────────── */
+function GrantsPlaceholderCard() {
+  return (
+    <div style={{
+      background: 'white', borderRadius: 14, overflow: 'hidden',
+      border: '1px dashed rgba(1,2,241,0.22)',
+      display: 'block',
+    }}>
+      <div style={{
+        height: 210, position: 'relative', overflow: 'hidden',
+        background: 'linear-gradient(145deg, #eef1ff 0%, #f8fafc 100%)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      }}>
+        <div style={{
+          width: 66, height: 66, borderRadius: '50%',
+          background: 'rgba(1,2,241,0.08)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <Handshake size={30} color="#0102F1" strokeWidth={1.6} />
+        </div>
+        <span style={{
+          position: 'absolute', top: 14, right: 14,
+          background: 'rgba(1,2,241,0.08)', color: '#0102F1',
+          padding: '4px 12px', borderRadius: 100,
+          fontFamily: 'var(--font-jakarta, sans-serif)',
+          fontSize: 9.5, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+        }}>Vacant</span>
+      </div>
+      <div style={{ padding: 20 }}>
+        <h3 style={{
+          fontFamily: 'var(--font-jakarta, sans-serif)',
+          fontSize: 15, fontWeight: 700, color: '#010278', marginBottom: 4,
+        }}>Grants &amp; Partnerships Officer</h3>
+        <p style={{
+          fontFamily: 'var(--font-jakarta, sans-serif)',
+          fontSize: 11, fontWeight: 700, color: '#0102F1',
+          letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: 0,
+        }}>Focal Person</p>
+        <div style={{
+          marginTop: 14, paddingTop: 14,
+          borderTop: '1px solid rgba(1,2,241,0.07)',
+          fontFamily: 'var(--font-jakarta, sans-serif)',
+          fontSize: 12, color: '#94a3b8',
+        }}>To be announced</div>
+      </div>
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────
    Section header
 ───────────────────────────────────────────────────────────── */
 function SectionHeader({ label, title, emph }: { label: string; title: string; emph: string }) {
@@ -204,7 +255,7 @@ function SectionHeader({ label, title, emph }: { label: string; title: string; e
    Page
 ───────────────────────────────────────────────────────────── */
 export default function TeamPage() {
-  const total = EXECUTIVE.length + THEMATIC.length + DEPARTMENTAL.length
+  const total = EXECUTIVE.length + THEMATIC.length + DEPARTMENTAL.length + FOCAL.length
   return (
     <>
       <PageHero
@@ -240,6 +291,17 @@ export default function TeamPage() {
           <SectionHeader label="Programmes" title="Thematic" emph="Leaders." />
           <div className="staff-grid">
             {THEMATIC.map((p, i) => <StaffCard key={p.slug} p={p} i={i} />)}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. Other Focal Persons ── */}
+      <section className="team-section team-focal" style={{ background: 'white', borderTop: '1px solid rgba(1,2,241,0.05)' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto' }}>
+          <SectionHeader label="Cross-Cutting Support" title="Other Focal" emph="Persons." />
+          <div className="staff-grid">
+            <GrantsPlaceholderCard />
+            {FOCAL.map((p, i) => <StaffCard key={p.slug} p={p} i={i + 1} />)}
           </div>
 
           <div style={{ marginTop: 56, textAlign: 'center' }}>

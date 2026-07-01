@@ -1,6 +1,6 @@
 // CBI team member data — drives both the team list and individual profile pages
 
-export type TeamLevel = 'executive' | 'thematic' | 'departmental'
+export type TeamLevel = 'executive' | 'thematic' | 'departmental' | 'focal'
 
 export interface TeamMember {
   slug:        string
@@ -174,7 +174,7 @@ export const TEAM: TeamMember[] = [
     name:       'Hyelafiya Sani Hassan',
     role:       'WASH Coordinator',
     email:      'wash@cbi.ngo',
-    photo:      '',
+    photo:      '/images/team/wash-coordinator.jpg',
     accent:     '#0891b2',
     level:      'thematic',
     location:   'Maiduguri, Borno',
@@ -419,27 +419,49 @@ export const TEAM: TeamMember[] = [
     linkedin:   'https://www.linkedin.com/in/deborah-oye-8882822ba/',
   },
   {
-    slug:       'muhammad-alhaji',
-    name:       'Muhammad Alhaji Muhammad',
-    role:       'Information Management Officer',
+    slug:       'philip-obagu',
+    name:       'Philip Obagu',
+    role:       'Information Management',
     email:      'imo@cbi.ngo',
-    photo:      '/images/team/muhammad.jpg',
+    photo:      '/images/team/philip.jpg',
     accent:     '#7c3aed',
-    level:      'thematic',
+    level:      'focal',
     location:   'Maiduguri, Borno',
-    yearsAtCBI: 2,
-    bio:        "Muhammad Alhaji Muhammad is an Information Management Officer at Care Best Initiative with experience supporting humanitarian and development programs through data management, reporting, visualisation, and information systems strengthening. His work focuses on improving data quality, reporting accountability, and decision-making across multi-sectoral interventions including Health, Nutrition, Protection, WASH, and Food Security. At CBI, he leads external sector reporting processes, develops data and information management protocols, supports dashboard development, and facilitates training on data collection, confidentiality, and reporting best practices for frontline teams.",
-    shortBio:   "Information Management Officer improving data quality and reporting accountability across all CBI programme sectors.",
-    quote:      'Success comes from knowing what matters to you, and showing up over and over again.',
-    expertise:  ['Information Management', 'Data Analysis', 'Geospatial Analysis', 'Data Visualization', 'Capacity Building'],
-    languages:  ['English', 'Hausa'],
-    education:  ['BSc Software Engineering, Nigerian Army University Biu', 'MSc Information Management (in progress), Ahmadu Bello University Zaria'],
+    yearsAtCBI: 1,
+    bio:        "Philip Obagu is a Software Engineering graduate with a Second Class Upper degree and hands-on experience in Information Management gained through a six-month internship at Care Best Initiative. He is experienced in data collection, cleaning, validation, analysis, and reporting, with proficiency in Microsoft Excel, Power BI, Python, and database management systems. He is skilled in transforming raw data into meaningful insights through dashboards, reports, and data visualizations that support informed decision-making. Through academic and practical projects he has developed websites, web-based dashboards, and IoT-based home security systems, gaining experience in data management, real-time monitoring, and information flow design. He has completed UNICEF-certified courses in Information Management, Humanitarian Data, the Cluster Approach, and Prevention of Sexual Exploitation and Abuse (PSEA), as well as a USAID/IDEAL-certified course in Qualitative Data Management and Analysis for Monitoring and Evaluation (M&E) under the Humanitarian Leadership Academy. Passionate about using technology and data to improve organizational efficiency, he brings analytical, technical, and problem-solving skills to information management and humanitarian-focused roles.",
+    shortBio:   "Software Engineering graduate and Information Management professional turning humanitarian data into dashboards, reports and insights that drive decisions.",
+    quote:      "Just because you've come far doesn't mean you've arrived. Just because you've learned a lot doesn't mean you've learned enough. The greatest obstacle to growth is believing you've already arrived.",
+    expertise:  ['Information Management', 'Data Analysis & Power BI', 'Database Management', 'Data Visualisation', 'Humanitarian Data', 'Python & Automation'],
+    languages:  ['English'],
+    education:  ['BSc Software Engineering, Nigerian Army University Biu (2025) — Second Class Upper', 'Professional Certification in Robotics Engineering, Bizmarrow Technologies, Abuja', 'UNICEF Certifications in Humanitarian Information Management & PSEA (2025)', 'USAID/IDEAL Certification in Qualitative Data Management & Analysis for M&E (2026)'],
     achievements: [
-      'Led development of multisectoral 5Ws reporting systems across Health, Nutrition, Protection, WASH and SRH sectors',
-      'Designed data management strategies and dashboards strengthening reporting workflows',
-      'Facilitated capacity-building sessions for frontline staff on data collection and reporting standards',
+      'Built Power BI dashboards and Excel reporting tools consolidating programme data across seven active programme areas',
+      'Produced data visualizations, analytical reports and information products for evidence-based decision-making',
+      'Contributed to data quality assurance ensuring accuracy, integrity and accessibility of organizational information',
     ],
-    linkedin:   'https://www.linkedin.com/in/muhammad-alhaji-muhammad/',
+    linkedin:   '#',
+  },
+  {
+    slug:       'blessing-ogar',
+    name:       'Blessing A. Ogar',
+    role:       'Communications',
+    email:      'comms@cbi.ngo',
+    photo:      '/images/team/blessing.jpg',
+    accent:     '#e11d48',
+    level:      'focal',
+    location:   'Maiduguri, Borno',
+    yearsAtCBI: 1,
+    bio:        "Blessing A. Ogar is a strategic and creative communication professional dedicated to shaping compelling narratives that inform, inspire, and drive impact. With a strong passion for storytelling, she specializes in translating ideas, projects, and organizational goals into clear, engaging, and audience-focused messages. As a voice-over artist with over five years of experience, she has used her voice to bring messages to life, translating complex events into interesting stories. She believes that communication is more than just words — it is a tool for influence, growth, and transformation — and her goal is to consistently use this tool to elevate brands, strengthen visibility, and drive purposeful engagement.",
+    shortBio:   "Strategic communication professional and voice-over artist shaping compelling narratives that inform, inspire and drive impact.",
+    quote:      'Hard work pays with the right proportions of smartness and consistency.',
+    expertise:  ['Strategic Communication', 'Voice-Over', 'Public Speaking', 'Storytelling', 'Brand Visibility'],
+    languages:  ['English'],
+    education:  ['B.Ed. Educational Administration and Planning', 'Public Speaking Certificate', 'Communication for Development (C4D)'],
+    achievements: [
+      'Played a key role in documenting and amplifying impact stories',
+      'Streamlined internal communication processes, enhancing clarity, consistency and team alignment',
+    ],
+    linkedin:   '#',
   },
   {
     slug:       'musa-amos',
@@ -448,7 +470,7 @@ export const TEAM: TeamMember[] = [
     email:      'm.amos@cbi.ngo',
     photo:      '/images/team/musa.jpg',
     accent:     '#d97706',
-    level:      'thematic',
+    level:      'focal',
     location:   'Maiduguri, Borno',
     yearsAtCBI: 1,
     bio:        "A result-oriented and goal-driven professional, Musa holds a BSc in Accounting from the University of Maiduguri. With strong expertise in audit, compliance, and finance, he serves as Internal Audit and Compliance Officer at CBI, committed to ensuring accountability, strengthening internal controls, and promoting financial integrity within the organisation.",
@@ -469,7 +491,7 @@ export const TEAM: TeamMember[] = [
     email:      'maiibrahim481@gmail.com',
     photo:      '/images/team/mai.jpg',
     accent:     '#0102F1',
-    level:      'thematic',
+    level:      'focal',
     location:   'Maiduguri, Borno',
     yearsAtCBI: 1,
     bio:        "Mai Ibrahim is a legal practitioner based in Maiduguri, Borno State, with a solid academic and professional background in law. He obtained his Bachelor of Laws (LLB) degree from the University of Maiduguri in 2017 and attended the Nigerian Law School, Victoria Island Campus, Lagos, in 2018. He was called to the Nigerian Bar by the Body of Benchers of the Federal Republic of Nigeria in 2019 and is currently practising as a private legal practitioner. He is an active member of the Nigerian Bar Association, Maiduguri Branch.",
@@ -489,10 +511,11 @@ export const TEAM: TeamMember[] = [
 export const EXECUTIVE     = TEAM.filter(m => m.level === 'executive')
 export const THEMATIC      = TEAM.filter(m => m.level === 'thematic')
 export const DEPARTMENTAL  = TEAM.filter(m => m.level === 'departmental')
+export const FOCAL         = TEAM.filter(m => m.level === 'focal')
 
 // Backward-compat aliases used by [slug] profile page
 export const LEADERSHIP    = EXECUTIVE
-export const STAFF         = [...THEMATIC, ...DEPARTMENTAL]
+export const STAFF         = [...THEMATIC, ...DEPARTMENTAL, ...FOCAL]
 
 export function getMember(slug: string): TeamMember | undefined {
   return TEAM.find(m => m.slug === slug)
