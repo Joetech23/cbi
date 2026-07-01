@@ -77,7 +77,8 @@ const NAV = [
   ]},
 
   { label: 'Reach Us', href: '/contact#map', children: [
-    { label: 'Contact Us',  href: '/contact' },
+    { label: 'Contact Us',           href: '/contact' },
+    { label: 'Our Office Locations', href: '/contact#map' },
   ]},
 
   { label: 'Join Us', href: '/careers', children: [
