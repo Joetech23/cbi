@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Briefcase, Send, HeartHandshake, ArrowRight, CalendarClock } from 'lucide-react'
+import { Briefcase, Send, HeartHandshake, ArrowRight, CalendarClock, MapPin, Clock } from 'lucide-react'
 import PageHero from '@/components/layout/PageHero'
 
 const BENEFITS = [
@@ -114,12 +114,12 @@ export default function CareersPage() {
               background: '#f8fafc', border: '1px solid rgba(1,2,241,0.08)',
               borderRadius: 12, padding: '14px 22px',
             }}>
-              <Briefcase size={18} color="#94a3b8" />
+              <Briefcase size={18} color="#0102F1" />
               <div>
                 <p style={{
                   fontFamily: 'var(--font-space, monospace)',
                   fontSize: 18, fontWeight: 700, color: '#010278', lineHeight: 1,
-                }}>0</p>
+                }}>1</p>
                 <p style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',
                   fontSize: 11, color: '#94a3b8', fontWeight: 700, marginTop: 4,
@@ -129,43 +129,112 @@ export default function CareersPage() {
             </div>
           </div>
 
-          <div style={{
-            background: '#f8fafc', borderRadius: 16, padding: 56,
-            textAlign: 'center', border: '1px solid rgba(1,2,241,0.07)',
+          {/* Open role — Project Officer */}
+          <Link href="/careers/project-officer" className="job-card" style={{
+            display: 'block', textDecoration: 'none', color: 'inherit',
+            background: 'white', borderRadius: 16, padding: '28px 32px',
+            border: '1px solid rgba(1,2,241,0.10)',
+            borderLeft: '4px solid #0102F1',
+            boxShadow: '0 4px 20px rgba(1,2,241,0.05)',
           }}>
-            <div style={{
-              width: 64, height: 64, borderRadius: 16,
-              background: 'rgba(1,2,241,0.07)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 20px',
-            }}>
-              <Briefcase size={24} color="#0102F1" />
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+              <div style={{ minWidth: 0, flex: '1 1 420px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+                  <span style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                    background: 'rgba(255,132,0,0.12)', border: '1px solid rgba(255,132,0,0.4)',
+                    color: '#b35c00', borderRadius: 100, padding: '4px 12px',
+                    fontFamily: 'var(--font-jakarta, sans-serif)',
+                    fontSize: 9.5, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
+                  }}>
+                    <span className="anim-pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#ff8400' }} />
+                    Now Hiring
+                  </span>
+                  <span style={{
+                    background: 'rgba(1,2,241,0.07)', color: '#0102F1', borderRadius: 100,
+                    padding: '4px 12px', fontFamily: 'var(--font-jakarta, sans-serif)',
+                    fontSize: 9.5, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase',
+                  }}>Contract Role</span>
+                </div>
+
+                <h3 style={{
+                  fontFamily: 'var(--font-playfair, Georgia, serif)',
+                  fontSize: 'clamp(20px,2.2vw,26px)', fontWeight: 700,
+                  color: '#010278', margin: '0 0 6px', letterSpacing: '-0.02em', lineHeight: 1.15,
+                }}>Project Officer</h3>
+
+                <p style={{
+                  fontFamily: 'var(--font-jakarta, sans-serif)',
+                  fontSize: 13.5, color: '#64748b', lineHeight: 1.6, margin: '0 0 16px', maxWidth: 560,
+                }}>
+                  WPHF Climate-Resilient Peacebuilding (Yobe) — day-to-day field leadership combining project management with practical agricultural knowledge.
+                </p>
+
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 18px' }}>
+                  {[
+                    { Icon: MapPin,        text: 'Yobe State (Bade/Jakusko)' },
+                    { Icon: Clock,         text: '11 months' },
+                    { Icon: CalendarClock, text: 'Closes 4th November 2026' },
+                  ].map(m => (
+                    <span key={m.text} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 6,
+                      fontFamily: 'var(--font-jakarta, sans-serif)',
+                      fontSize: 12.5, fontWeight: 600, color: '#475569',
+                    }}>
+                      <m.Icon size={13} color="#0102F1" /> {m.text}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <span className="job-cta" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
+                padding: '13px 26px', background: '#0102F1', color: 'white',
+                borderRadius: 8, fontFamily: 'var(--font-jakarta, sans-serif)',
+                fontSize: 14, fontWeight: 700,
+                boxShadow: '0 4px 12px rgba(1,2,241,0.20)',
+              }}>
+                View Details <ArrowRight size={15} />
+              </span>
             </div>
-            <h3 style={{
-              fontFamily: 'var(--font-playfair, Georgia, serif)',
-              fontSize: 18, fontWeight: 700, color: '#010278', marginBottom: 10,
-            }}>No open positions right now.</h3>
+          </Link>
+
+          {/* Unsolicited applications */}
+          <div style={{
+            marginTop: 20, padding: '22px 28px', background: '#f8fafc',
+            borderRadius: 14, border: '1px solid rgba(1,2,241,0.07)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            gap: 20, flexWrap: 'wrap',
+          }}>
             <p style={{
               fontFamily: 'var(--font-jakarta, sans-serif)',
-              fontSize: 14, color: '#64748b', lineHeight: 1.65,
-              maxWidth: 460, margin: '0 auto 24px',
+              fontSize: 13.5, color: '#64748b', lineHeight: 1.6, margin: 0, maxWidth: 520,
             }}>
-              We don&apos;t have active postings at the moment, but we always welcome exceptional talent. Send us your CV and we&apos;ll reach out when a matching role opens.
+              Don&apos;t see a role that fits? We always welcome exceptional talent — send us your CV and we&apos;ll reach out when a matching role opens.
             </p>
-            <a href="mailto:careers@cbi.ngo" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '13px 26px', background: '#0102F1', color: 'white',
-              borderRadius: 8, fontSize: 14, fontWeight: 700,
-              textDecoration: 'none',
-              fontFamily: 'var(--font-jakarta, sans-serif)',
-              transition: 'all 150ms',
-            }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#3335f3'; el.style.transform = 'translateY(-2px)' }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = '#0102F1'; el.style.transform = 'none' }}
-            >Send Unsolicited Application <Send size={14} /></a>
+            <a href="mailto:careers@cbi.ngo" className="job-unsolicited" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
+              padding: '12px 24px', background: 'white', color: '#0102F1',
+              border: '1.5px solid rgba(1,2,241,0.25)',
+              borderRadius: 8, fontSize: 13.5, fontWeight: 700,
+              textDecoration: 'none', fontFamily: 'var(--font-jakarta, sans-serif)',
+            }}>Send Unsolicited Application <Send size={14} /></a>
           </div>
         </div>
-        <style>{`.careers-open{padding:64px 80px;}@media(max-width:768px){.careers-open{padding:48px 24px!important;}}`}</style>
+        <style>{`
+          .careers-open { padding: 64px 80px; }
+          .job-card { transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms, border-color 220ms; }
+          .job-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(1,2,241,0.14); border-color: rgba(1,2,241,0.25); }
+          .job-card:hover .job-cta { background: #3335f3; }
+          .job-cta { transition: background 180ms; }
+          .job-unsolicited { transition: background 160ms, border-color 160ms; }
+          .job-unsolicited:hover { background: rgba(1,2,241,0.05); border-color: rgba(1,2,241,0.45); }
+          @media (max-width: 768px) {
+            .careers-open { padding: 48px 24px !important; }
+            .job-card    { padding: 24px 22px !important; }
+            .job-cta     { width: 100%; justify-content: center; }
+          }
+        `}</style>
       </section>
 
       {/* Benefits */}

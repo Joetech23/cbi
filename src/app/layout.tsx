@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import StickyContact from "@/components/layout/StickyContact";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 // ── Fonts ────────────────────────────────────────────────────────────────────
 
@@ -264,6 +265,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen flex flex-col bg-white text-[#000000] antialiased">
+        <ScrollProgress />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

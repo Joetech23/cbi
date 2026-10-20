@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
+import HeroParticles from '@/components/ui/HeroParticles'
 
 const EASE    = 'cubic-bezier(0.16,1,0.3,1)'
 const DURATION = 6500
@@ -115,6 +116,9 @@ export default function Hero() {
         position: 'absolute', inset: 0, zIndex: 1,
         background: 'linear-gradient(to top, rgba(1,2,120,0.80) 0%, transparent 35%)',
       }} />
+
+      {/* ── Particle constellation overlay ── */}
+      <HeroParticles />
 
       {/* ── Main content ── */}
       <div className="hero-wrap" style={{

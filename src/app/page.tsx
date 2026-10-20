@@ -1,4 +1,5 @@
 import Hero           from '@/components/sections/Hero'
+import AnnouncementBanner from '@/components/sections/AnnouncementBanner'
 import Programs       from '@/components/sections/Programs'
 import ImpactStatement from '@/components/sections/ImpactStatement'
 import PhotoCollage   from '@/components/sections/PhotoCollage'
@@ -13,6 +14,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <AnnouncementBanner />
       <Programs />
       <ImpactStatement />
       <PhotoCollage />
