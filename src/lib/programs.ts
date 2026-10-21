@@ -309,10 +309,10 @@ export const PROGRAMS: Program[] = [
     relatedSlugs: ['education', 'health', 'food-security-livelihoods'],
   },
 
-  /* ── 5. Food Security & Livelihoods ──────────────────────── */
+  /* ── 5. Food Security & Livelihood ──────────────────────── */
   {
     slug:       'food-security-livelihoods',
-    name:       'Food Security & Livelihoods',
+    name:       'Food Security & Livelihood',
     shortName:  'FSL',
     tagline:    'Resilience, self-reliance, and lasting food security.',
     icon:       '🌾',

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { ChevronDown, X, Menu } from 'lucide-react'
+import { ChevronDown, X, Menu, ArrowRight } from 'lucide-react'
 
 /* ── Social links ── */
 const SOCIALS = [
@@ -64,7 +64,7 @@ const NAV = [
     { label: 'Nutrition',                   href: '/programs/nutrition' },
     { label: 'WASH',                        href: '/programs/wash' },
     { label: 'Protection',                  href: '/programs/protection' },
-    { label: 'Food Security & Livelihoods', href: '/programs/food-security-livelihoods' },
+    { label: 'Food Security & Livelihood', href: '/programs/food-security-livelihoods' },
     { label: 'Education',                   href: '/programs/education' },
   ]},
 
@@ -86,12 +86,38 @@ const NAV = [
   ]},
 ]
 
+/* ── Open-role announcement bar ─────────────────────────── */
+const HIRING = {
+  role:     'Project Officer',
+  detail:   'Yobe State · Closes 4 Nov 2026',
+  href:     '/careers/project-officer',
+  storeKey: 'cbi-hiring-dismissed-project-officer',
+}
+const BAR_H = 38
+
 export default function Navbar() {
   const pathname  = usePathname()
   const [scrolled,       setScrolled]       = useState(false)
   const [menuOpen,       setMenuOpen]       = useState(false)
   const [dropdown,       setDropdown]       = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
+  const [hiringOpen,     setHiringOpen]     = useState(true)
+
+  // Hide the hiring bar if previously dismissed, and on careers pages
+  // (where the role is already the main content).
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(HIRING.storeKey) === '1') setHiringOpen(false)
+    } catch { /* storage unavailable */ }
+  }, [])
+
+  const showHiring = hiringOpen && !pathname.startsWith('/careers')
+  const topOffset  = showHiring ? BAR_H : 0
+
+  function dismissHiring() {
+    setHiringOpen(false)
+    try { localStorage.setItem(HIRING.storeKey, '1') } catch { /* ignore */ }
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -119,9 +145,64 @@ export default function Navbar() {
 
   return (
     <>
+      {/* ── Open-role announcement bar ────────────────────── */}
+      {showHiring && (
+        <div className="hiring-bar" style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1001,
+          height: BAR_H,
+          background: 'linear-gradient(90deg, #010278 0%, #0102F1 55%, #2a2cff 100%)',
+          display: 'flex', alignItems: 'center',
+        }}>
+          <div className="hiring-inner" style={{
+            maxWidth: 1280, margin: '0 auto', width: '100%',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12,
+          }}>
+            <Link href={HIRING.href} className="hiring-link" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 10,
+              textDecoration: 'none', minWidth: 0,
+            }}>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                background: 'rgba(255,132,0,0.18)', border: '1px solid rgba(255,132,0,0.5)',
+                borderRadius: 100, padding: '2px 9px', flexShrink: 0,
+              }}>
+                <span className="anim-pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#ff8400' }} />
+                <span style={{
+                  fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 9,
+                  fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#ff8400',
+                }}>We&apos;re Hiring</span>
+              </span>
+              <span className="hiring-text" style={{
+                fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12.5,
+                fontWeight: 600, color: 'white', whiteSpace: 'nowrap',
+                overflow: 'hidden', textOverflow: 'ellipsis',
+              }}>
+                {HIRING.role}
+                <span className="hiring-detail" style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
+                  {' '}— {HIRING.detail}
+                </span>
+              </span>
+              <span className="hiring-cta" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0,
+                fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12,
+                fontWeight: 800, color: '#ff8400',
+              }}>View role <ArrowRight size={12} /></span>
+            </Link>
+          </div>
+
+          <button onClick={dismissHiring} aria-label="Dismiss hiring notice" className="hiring-x" style={{
+            position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)',
+            background: 'none', border: 'none', cursor: 'pointer', padding: 4,
+            color: 'rgba(255,255,255,0.55)', display: 'flex', lineHeight: 0,
+          }}>
+            <X size={14} />
+          </button>
+        </div>
+      )}
+
       {/* ── Main navbar ───────────────────────────────────── */}
       <header style={{
-        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
+        position: 'fixed', top: topOffset, left: 0, right: 0, zIndex: 1000,
         height: 68, background: 'white',
         borderBottom: scrolled ? 'none' : '1px solid rgba(1,2,241,0.07)',
         boxShadow: scrolled ? '0 4px 32px rgba(1,2,120,0.10)' : 'none',
@@ -367,10 +448,21 @@ export default function Navbar() {
       </div>
 
       {/* ── Spacer ─────────────────────────────────────────── */}
-      <div style={{ height: 68 }} aria-hidden="true" />
+      <div style={{ height: 68 + topOffset }} aria-hidden="true" />
 
       <style>{`
         .nav-inner  { padding: 0 80px; }
+        .hiring-inner { padding: 0 56px; }
+        .hiring-link  { transition: opacity 160ms; }
+        .hiring-link:hover { opacity: 0.85; }
+        .hiring-x:hover { color: white !important; }
+        @media (max-width: 860px) {
+          .hiring-detail { display: none; }
+          .hiring-inner  { padding: 0 44px 0 14px; justify-content: flex-start !important; }
+        }
+        @media (max-width: 520px) {
+          .hiring-cta { display: none !important; }
+        }
         .hamburger  { display: none !important; }
 
         @keyframes mobileNavIn {

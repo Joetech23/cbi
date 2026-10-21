@@ -230,21 +230,37 @@ export default function ProjectOfficerPage() {
                 The application deadline is {DEADLINE}. Due to the urgency of this role, applications will be reviewed on a rolling basis, and the position may be filled before the closing date. Early applications are therefore encouraged.
               </p>
 
-              <a
-                href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent('Application — Project Officer (WPHF Climate-Resilient Peacebuilding, Yobe)')}`}
-                className="po-apply"
-                style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 10,
-                  padding: '15px 32px', background: C.orange, color: C.navy,
-                  borderRadius: 10, textDecoration: 'none',
-                  fontFamily: F, fontSize: 15, fontWeight: 800,
-                  boxShadow: '0 10px 28px rgba(255,132,0,0.35)',
-                }}
-              >
-                <Mail size={17} /> Apply for this Role
-              </a>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+                <Link
+                  href="/careers/project-officer/apply"
+                  className="po-apply"
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 10,
+                    padding: '15px 32px', background: C.orange, color: C.navy,
+                    borderRadius: 10, textDecoration: 'none',
+                    fontFamily: F, fontSize: 15, fontWeight: 800,
+                    boxShadow: '0 10px 28px rgba(255,132,0,0.35)',
+                  }}
+                >
+                  Apply for this Role <ArrowRight size={17} />
+                </Link>
+
+                <a
+                  href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent('Application — Project Officer (WPHF Climate-Resilient Peacebuilding, Yobe)')}`}
+                  className="po-email"
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                    padding: '14px 24px', background: '#fff', color: C.blue,
+                    border: `1.5px solid ${C.line}`, borderRadius: 10, textDecoration: 'none',
+                    fontFamily: F, fontSize: 14, fontWeight: 700,
+                  }}
+                >
+                  <Mail size={15} /> Or apply by email
+                </a>
+              </div>
               <p style={{ fontFamily: F, fontSize: 12.5, color: C.sub, marginTop: 12 }}>
-                Applications go to <strong style={{ color: C.blue }}>{APPLY_EMAIL}</strong> — attach your merged PDF.
+                The online form uploads your merged PDF directly. Email applications go to{' '}
+                <strong style={{ color: C.blue }}>{APPLY_EMAIL}</strong>.
               </p>
             </div>
 
@@ -285,6 +301,8 @@ export default function ProjectOfficerPage() {
         .po-fact:nth-child(n+4) { border-bottom: none; }
         .po-apply { transition: transform 200ms, box-shadow 200ms; }
         .po-apply:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(255,132,0,0.45); }
+        .po-email { transition: background 160ms, border-color 160ms; }
+        .po-email:hover { background: rgba(1,2,241,0.05); border-color: rgba(1,2,241,0.4); }
         @media (max-width: 760px) {
           .po-facts { grid-template-columns: repeat(2, 1fr); }
           .po-fact:nth-child(3n) { border-right: 1px solid ${C.line}; }

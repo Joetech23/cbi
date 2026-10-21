@@ -247,7 +247,7 @@ export const TEAM: TeamMember[] = [
     location:   'Borno State, Nigeria',
     yearsAtCBI: 4,
     bio:        "El-raham Mbursa Zoaka is a proficient, resourceful, and result-driven Nigerian Animal Scientist and Food Security & Livelihood (FSL) and nutrition professional with a Master's degree in Animal Science (Animal Physiology) from the University of Maiduguri. He currently serves as FSL Coordinator at Care Best Initiative, providing leadership in the design and implementation of food security, livelihood, and nutrition interventions aimed at improving household resilience and well-being. He has built a progressive career spanning academia, agricultural practice, and humanitarian development, with practical expertise in crop and livestock production, farm management, community engagement, capacity building, project implementation, and research.",
-    shortBio:   "Food Security & Livelihoods specialist with a Master's in Animal Science, leading FSL programming at CBI.",
+    shortBio:   "Food Security & Livelihood specialist with a Master's in Animal Science, leading FSL programming at CBI.",
     quote:      'Lasting food security begins with empowering communities to feed themselves.',
     expertise:  ['Food Security, Livelihood and Nutrition Programming', 'Humanitarian Coordination', 'Emergency Response', 'Project Management', 'Agriculture, Livestock and Poultry Production', 'Research and Data Analysis', 'Capacity Building'],
     languages:  ['English', 'Hausa', 'Kanuri'],

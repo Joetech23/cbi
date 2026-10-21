@@ -21,7 +21,7 @@ const COLS = [
       { label: 'Nutrition',                   href: '/programs/nutrition' },
       { label: 'WASH',                        href: '/programs/wash' },
       { label: 'Protection',                  href: '/programs/protection' },
-      { label: 'Food Security & Livelihoods', href: '/programs/food-security-livelihoods' },
+      { label: 'Food Security & Livelihood', href: '/programs/food-security-livelihoods' },
       { label: 'Education',                   href: '/programs/education' },
     ],
   },

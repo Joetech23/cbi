@@ -41,8 +41,8 @@ const PROGRAMS = [
   },
   {
     slug:   'food-security-livelihoods',
-    title:  'Food Security & Livelihoods',
-    tag:    'Livelihoods',
+    title:  'Food Security & Livelihood',
+    tag:    'Livelihood',
     img:    '/images/programs/food-security.jpg',
     desc:   'Enhancing household resilience through sustainable livelihood support and improved access to food, empowering vulnerable families to achieve stability and self-reliance.',
     stat:   '1,638+ households reached',

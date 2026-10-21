@@ -110,7 +110,7 @@ export const PROGRAMS = [
   },
   {
     id: 'food',
-    title: 'Food Security & Livelihoods',
+    title: 'Food Security & Livelihood',
     description: 'Livelihood support programs building economic resilience and sustainable food access.',
     icon: 'Wheat',
     color: 'from-amber-50 to-amber-100',
