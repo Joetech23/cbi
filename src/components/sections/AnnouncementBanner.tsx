@@ -1,10 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import { OPEN_ROLE_COUNT } from '@/lib/jobs'
 import { Megaphone, ArrowRight, CalendarClock } from 'lucide-react'
 
 /**
- * Home-page announcement strip — Call for Volunteers.
+ * Home-page announcement strip — current open roles.
  * Bold, attention-grabbing band placed right beneath the hero.
  */
 export default function AnnouncementBanner() {
@@ -38,34 +39,34 @@ export default function AnnouncementBanner() {
                 fontFamily: 'var(--font-jakarta, sans-serif)',
                 fontSize: 10.5, fontWeight: 800, letterSpacing: '0.2em',
                 textTransform: 'uppercase', color: '#ff8400',
-              }}>Announcement · Now Recruiting</span>
+              }}>Announcement · Now Hiring</span>
             </div>
             <h2 style={{
               fontFamily: 'var(--font-playfair, Georgia, serif)',
               fontSize: 'clamp(18px, 2.1vw, 26px)', fontWeight: 700,
               color: 'white', lineHeight: 1.15, letterSpacing: '-0.015em', margin: 0,
             }}>
-              Call for Volunteers — <em style={{ fontStyle: 'italic', color: '#ff8400' }}>join the mission.</em>
+              {OPEN_ROLE_COUNT} open roles — <em style={{ fontStyle: 'italic', color: '#ff8400' }}>join the mission.</em>
             </h2>
             <div className="annc-deadline" style={{ display: 'flex', alignItems: 'center', gap: 7, marginTop: 7 }}>
               <CalendarClock size={13} color="rgba(255,255,255,0.65)" />
               <span style={{
                 fontFamily: 'var(--font-jakarta, sans-serif)',
                 fontSize: 12.5, fontWeight: 600, color: 'rgba(255,255,255,0.7)',
-              }}>Applications close 7th July, 2026</span>
+              }}>Applications close 4th November 2026 · reviewed on a rolling basis</span>
             </div>
           </div>
         </div>
 
         {/* Right: CTA */}
-        <Link href="/careers/volunteer" className="annc-btn" style={{
+        <Link href="/careers" className="annc-btn" style={{
           display: 'inline-flex', alignItems: 'center', gap: 10, flexShrink: 0,
           padding: '14px 30px', background: '#ff8400', color: '#010278',
           borderRadius: 10, textDecoration: 'none',
           fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 14.5, fontWeight: 800,
           boxShadow: '0 8px 24px rgba(255,132,0,0.35)', transition: 'all 200ms',
         }}>
-          Apply to Volunteer <ArrowRight size={17} />
+          View Open Roles <ArrowRight size={17} />
         </Link>
       </div>
 

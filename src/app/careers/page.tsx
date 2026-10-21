@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Briefcase, Send, HeartHandshake, ArrowRight, CalendarClock, MapPin, Clock } from 'lucide-react'
 import PageHero from '@/components/layout/PageHero'
-import { JOBS } from '@/lib/jobs'
+import { JOBS, VOLUNTEER_OPEN } from '@/lib/jobs'
 
 const BENEFITS = [
   { title: 'Purposeful Work',       desc: "Every role directly contributes to humanitarian programs for Nigeria's most vulnerable." },
@@ -40,6 +40,7 @@ export default function CareersPage() {
       />
 
       {/* ── Call for Volunteers banner ── */}
+      {VOLUNTEER_OPEN && (
       <section className="vol-banner-section" style={{ background: 'white' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div className="vol-banner" style={{
@@ -87,6 +88,7 @@ export default function CareersPage() {
           }
         `}</style>
       </section>
+      )}
 
       {/* Open positions — empty state */}
       <section className="careers-open" style={{ background: 'white' }}>

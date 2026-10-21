@@ -268,6 +268,89 @@ export const JOBS: Job[] = [
       },
     ],
   },
+
+  /* ─── 4. CFRM Officer ─────────────────────────────────────── */
+  {
+    slug:     'cfrm-officer',
+    title:    'CFRM Officer',
+    summary:  'Run the Complaints and Feedback Response Mechanism so communities can safely raise concerns and get a timely response.',
+    location: 'Yobe State',
+    duration: '11 months',
+    deadline: DEADLINE,
+    facts: [
+      { icon: 'briefcase',  label: 'Job Title',    value: 'CFRM Officer' },
+      { icon: 'department', label: 'Department',   value: 'MEAL' },
+      { icon: 'reports',    label: 'Reporting To', value: 'MEAL Coordinator' },
+      { icon: 'location',   label: 'Duty Station', value: 'Yobe State' },
+      { icon: 'clock',      label: 'Duration',     value: '11 months' },
+      { icon: 'deadline',   label: 'Deadline',     value: `${DEADLINE} (rolling basis)` },
+    ],
+    purpose: 'The CFRM Officer establishes, operates and strengthens the Complaints and Feedback Response Mechanism (CFRM), ensuring that community members can safely and confidentially share feedback, complaints and suggestions, and that these are recorded, referred and responded to in a timely and accountable manner.',
+    responsibilities: [
+      'Set up, operate and maintain Complaints and Feedback Response Mechanism (CFRM) channels, including help desks, suggestion and complaint boxes, hotlines and community meetings, in project communities',
+      'Sensitise communities, including women, girls, persons with disabilities and other vulnerable groups, on the available channels and how to use them safely',
+      'Receive, register, categorise and track all feedback and complaints in the CFRM database within agreed timelines',
+      'Refer sensitive cases, such as safeguarding, sexual exploitation and abuse, fraud and protection concerns, promptly through the proper channels while maintaining strict confidentiality',
+      'Follow up with programme teams to ensure timely resolution, and close the feedback loop with complainants and communities',
+      'Analyse CFRM data, identify trends and prepare regular reports with recommendations for the MEAL Coordinator and programme management',
+      'Orient and train project staff, volunteers and community focal points on CFRM procedures and the safe handling of complaints',
+      'Coordinate with MEAL, programme and safeguarding focal points, and support the use of community feedback to adapt and improve programme delivery',
+      'Maintain secure, well-organised and confidential CFRM records in line with data protection principles',
+      'Perform other duties assigned by the direct line manager',
+    ],
+    qualifications: [
+      {
+        heading: 'Education',
+        items: ['Bachelor’s degree in Social Sciences, Development Studies, Statistics, Public Health, Mass Communication or a related field'],
+      },
+      {
+        heading: 'Experience',
+        items: [
+          'Minimum of 2 years’ experience in community feedback mechanisms, accountability to affected populations, MEAL or community engagement in a humanitarian or development setting',
+          'Experience using digital data collection tools (e.g. KoboToolbox) is an advantage',
+          'Experience working with communities in Yobe or the North-East is an advantage',
+        ],
+      },
+      {
+        heading: 'Skills & Competencies',
+        items: [
+          'Strong communication, listening and community engagement skills',
+          'Ability to handle sensitive information with integrity and confidentiality',
+          'Knowledge of safeguarding, PSEA and humanitarian accountability standards',
+          'Data entry and basic data analysis skills (Excel)',
+          'Gender and inclusion awareness',
+          'Willingness to travel frequently to project communities',
+        ],
+      },
+      {
+        heading: 'Language',
+        items: [
+          'Fluency in English and Hausa (spoken and written)',
+          'Kanuri is an added advantage',
+        ],
+      },
+      {
+        heading: 'Other',
+        items: ['Must be based in / willing to be fully resident in Yobe State for the duration of the engagement'],
+      },
+    ],
+    singlePdf: true,
+    screening: [
+      {
+        key: 'residentYobe', label: 'Are you resident in — or willing to fully relocate to — Yobe State?',
+        hint: 'Full residency in Yobe State is required for the duration of the engagement.',
+        options: YES_NO, required: true, warnOn: 'No',
+        warning: 'This role requires full residency in Yobe State for the engagement. You may still apply, but please explain your situation in your cover letter.',
+      },
+      { key: 'cfrmExperience',   label: 'Experience with community feedback mechanisms or accountability to affected populations (AAP)?', options: YES_NO, required: true },
+      { key: 'safeguardingKnowledge', label: 'Knowledge of safeguarding, PSEA and humanitarian accountability standards?', options: YES_NO, required: true },
+      { key: 'englishFluency',   label: 'English fluency (spoken and written)', options: FLUENCY, required: true },
+      { key: 'hausaFluency',     label: 'Hausa fluency (spoken and written)',   options: FLUENCY, required: true },
+      { key: 'kanuri',           label: 'Do you speak Kanuri?', hint: 'An added advantage, not required.', options: YES_NO, required: false },
+      { key: 'koboExperience',   label: 'Experience with digital data collection tools (e.g. KoboToolbox)?', options: YES_NO, required: false },
+      { key: 'northEastExperience', label: 'Worked with communities in Yobe or the North-East?', options: YES_NO, required: false },
+    ],
+  },
 ]
 
 export function getJob(slug: string): Job | undefined {
@@ -275,3 +358,6 @@ export function getJob(slug: string): Job | undefined {
 }
 
 export const OPEN_ROLE_COUNT = JOBS.length
+
+/** The 2026 call for volunteers has closed; set back to true to reopen it. */
+export const VOLUNTEER_OPEN = false

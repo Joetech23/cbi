@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
+import { VOLUNTEER_OPEN, OPEN_ROLE_COUNT } from '@/lib/jobs'
 import {
   Check, ChevronLeft, ChevronRight, Upload, FileText, X,
   Loader2, PartyPopper, AlertCircle, User, Phone, Briefcase, GraduationCap,
+  Clock,
   ClipboardCheck,
 } from 'lucide-react'
 
@@ -216,6 +218,33 @@ export default function VolunteerPage() {
       setErrMsg(e instanceof Error ? e.message : 'Something went wrong. Please try again.')
       setStatus('error')
     }
+  }
+
+  /* ── Applications closed ── */
+  if (!VOLUNTEER_OPEN) {
+    return (
+      <div style={{ background: '#f8fafc', minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 20px' }}>
+        <div style={{ maxWidth: 560, textAlign: 'center', background: '#fff', borderRadius: 20, padding: '56px 40px', border: `1px solid ${C.line}`, boxShadow: '0 20px 60px rgba(1,2,241,0.10)' }}>
+          <div style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(100,116,139,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+            <Clock size={34} color={C.sub} />
+          </div>
+          <h1 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 28, fontWeight: 700, color: C.navy, marginBottom: 12 }}>
+            Volunteer applications are closed
+          </h1>
+          <p style={{ fontFamily: F, fontSize: 15, color: C.sub, lineHeight: 1.7, marginBottom: 28 }}>
+            Thank you for your interest in volunteering with Care Best Initiative. This call for volunteers has now closed and we are no longer accepting applications. Keep an eye on this page — we open new volunteer rounds periodically.
+          </p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/careers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: C.blue, color: '#fff', borderRadius: 10, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+              See {OPEN_ROLE_COUNT} open roles
+            </Link>
+            <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: '#fff', color: C.blue, border: `1.5px solid ${C.line}`, borderRadius: 10, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+              Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   /* ── Success screen ── */
