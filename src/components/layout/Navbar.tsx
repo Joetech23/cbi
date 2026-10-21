@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, X, Menu, ArrowRight } from 'lucide-react'
+import { OPEN_ROLE_COUNT } from '@/lib/jobs'
 
 /* ── Social links ── */
 const SOCIALS = [
@@ -88,10 +89,9 @@ const NAV = [
 
 /* ── Open-role announcement bar ─────────────────────────── */
 const HIRING = {
-  role:     'Project Officer',
   detail:   'Yobe State · Closes 4 Nov 2026',
-  href:     '/careers/project-officer',
-  storeKey: 'cbi-hiring-dismissed-project-officer',
+  href:     '/careers',
+  storeKey: 'cbi-hiring-dismissed-2026-11',
 }
 const BAR_H = 38
 
@@ -177,7 +177,7 @@ export default function Navbar() {
                 fontWeight: 600, color: 'white', whiteSpace: 'nowrap',
                 overflow: 'hidden', textOverflow: 'ellipsis',
               }}>
-                {HIRING.role}
+                {OPEN_ROLE_COUNT} open {OPEN_ROLE_COUNT === 1 ? 'role' : 'roles'}
                 <span className="hiring-detail" style={{ color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
                   {' '}— {HIRING.detail}
                 </span>
@@ -186,7 +186,7 @@ export default function Navbar() {
                 display: 'inline-flex', alignItems: 'center', gap: 4, flexShrink: 0,
                 fontFamily: 'var(--font-jakarta, sans-serif)', fontSize: 12,
                 fontWeight: 800, color: '#ff8400',
-              }}>View role <ArrowRight size={12} /></span>
+              }}>View roles <ArrowRight size={12} /></span>
             </Link>
           </div>
 

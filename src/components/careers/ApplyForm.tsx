@@ -7,29 +7,18 @@ import {
   Loader2, PartyPopper, AlertCircle, User, ShieldCheck, Briefcase,
   GraduationCap, ClipboardCheck,
 } from 'lucide-react'
+import type { Job } from '@/lib/jobs'
 
-/* ─────────────────────────────────────────────────────────────
-   Config — reuses the volunteer endpoint unless a careers-specific
-   one is set. Submissions are tagged with formType so the Apps
-   Script can route them to their own sheet tab.
-───────────────────────────────────────────────────────────── */
+/* Reuses the volunteer endpoint unless a careers-specific one is set.
+   Submissions carry formType so the Apps Script routes them to their own tab. */
 const ENDPOINT =
   process.env.NEXT_PUBLIC_CAREERS_ENDPOINT ||
   process.env.NEXT_PUBLIC_VOLUNTEER_ENDPOINT ||
   ''
 
-const ROLE     = 'Project Officer'
-const PROJECT  = 'WPHF Climate-Resilient Peacebuilding (Yobe)'
-const DEADLINE = '4th November 2026'
-
-/* ─────────────────────────────────────────────────────────────
-   Options
-───────────────────────────────────────────────────────────── */
-const YES_NO      = ['Yes', 'No']
-const GENDER      = ['Male', 'Female', 'Prefer not to say']
-const EXPERIENCE  = ['Less than 3 years', '3 – 5 years', '6 – 9 years', '10+ years']
-const QUALS       = ['HND', 'Bachelor’s', 'Master’s', 'PhD', 'Other']
-const FLUENCY     = ['Fluent', 'Conversational', 'None']
+const GENDER     = ['Male', 'Female', 'Prefer not to say']
+const EXPERIENCE = ['Less than 2 years', '2 – 3 years', '3 – 5 years', '6 – 9 years', '10+ years']
+const QUALS      = ['HND', 'Bachelor’s', 'Master’s', 'PhD', 'Other']
 const NG_STATES = [
   'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
   'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT - Abuja', 'Gombe',
@@ -48,24 +37,21 @@ const STEPS = [
 
 const BLANK = {
   name: '', surname: '', middleName: '', email: '', phone: '', gender: '',
-  residentYobe: '', stateOfResidence: '', relocate: '', englishFluency: '', hausaFluency: '',
-  qualification: '', qualificationField: '', yearsExperience: '',
-  agricKnowledge: '', supervisedStaff: '', currentRole: '',
+  stateOfResidence: '',
+  qualification: '', qualificationField: '', yearsExperience: '', currentRole: '',
   linkedin: '', startDate: '',
 }
 type FormState = typeof BLANK
 
 const MAX_MB = 10
 
-/* ─────────────────────────────────────────────────────────────
-   Tokens + primitives (matched to /careers/volunteer)
-───────────────────────────────────────────────────────────── */
 const C = {
   blue: '#0102F1', navy: '#010278', orange: '#ff8400',
   ink: '#0f172a', sub: '#64748b', line: 'rgba(1,2,241,0.12)',
 }
 const F = 'var(--font-jakarta, sans-serif)'
 
+/* ── Primitives ── */
 function Label({ children, required, hint }: { children: React.ReactNode; required?: boolean; hint?: string }) {
   return (
     <label style={{ display: 'block', marginBottom: 8 }}>
@@ -142,11 +128,14 @@ function StepHead({ title, sub }: { title: string; sub: string }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Page
+   Form
 ───────────────────────────────────────────────────────────── */
-export default function ApplyProjectOfficer() {
+export default function ApplyForm({ job }: { job: Job }) {
+  const draftKey = `cbi-apply-draft-${job.slug}`
+
   const [step,    setStep]    = useState(0)
   const [form,    setForm]    = useState<FormState>(BLANK)
+  const [answers, setAnswers] = useState<Record<string, string>>({})
   const [file,    setFile]    = useState<File | null>(null)
   const [fileErr, setFileErr] = useState('')
   const [status,  setStatus]  = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -156,41 +145,55 @@ export default function ApplyProjectOfficer() {
   const fileInput = useRef<HTMLInputElement>(null)
 
   const set = (k: keyof FormState, v: string) => setForm(f => ({ ...f, [k]: v }))
+  const setAnswer = (k: string, v: string) => setAnswers(a => ({ ...a, [k]: v }))
 
   /* Draft autosave */
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('cbi-po-apply-draft')
-      if (saved) setForm({ ...BLANK, ...JSON.parse(saved) })
+      const saved = localStorage.getItem(draftKey)
+      if (saved) {
+        const p = JSON.parse(saved)
+        setForm({ ...BLANK, ...(p.form || {}) })
+        setAnswers(p.answers || {})
+      }
     } catch { /* ignore */ }
-  }, [])
+  }, [draftKey])
+
   useEffect(() => {
     const t = setTimeout(() => {
       try {
-        localStorage.setItem('cbi-po-apply-draft', JSON.stringify(form))
+        localStorage.setItem(draftKey, JSON.stringify({ form, answers }))
         if (Object.values(form).some(Boolean)) { setDraftNote(true); setTimeout(() => setDraftNote(false), 1600) }
       } catch { /* ignore */ }
     }, 600)
     return () => clearTimeout(t)
-  }, [form])
+  }, [form, answers, draftKey])
 
-  /* File handling — advert requires a single merged PDF */
+  /* File handling */
+  const accept = job.singlePdf ? '.pdf,application/pdf' : '.pdf,.doc,.docx'
   const handleFile = useCallback((f: File | undefined | null) => {
     setFileErr('')
     if (!f) return
     const isPdf = /\.pdf$/i.test(f.name) || f.type === 'application/pdf'
-    if (!isPdf) { setFileErr('Please upload a PDF. Merge your CV and cover letter into one PDF first.'); return }
+    const isDoc = /\.docx?$/i.test(f.name)
+    if (job.singlePdf && !isPdf) {
+      setFileErr('Please upload a PDF. Merge your CV and cover letter into one PDF first.'); return
+    }
+    if (!job.singlePdf && !isPdf && !isDoc) {
+      setFileErr('Please upload a PDF or Word document.'); return
+    }
     if (f.size > MAX_MB * 1024 * 1024) { setFileErr(`File is too large. Max ${MAX_MB} MB.`); return }
     setFile(f)
-  }, [])
+  }, [job.singlePdf])
 
   /* Validation */
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())
+  const screeningComplete = job.screening.every(q => !q.required || !!answers[q.key])
   const stepValid = (s: number): boolean => {
     switch (s) {
       case 0: return !!form.name.trim() && !!form.surname.trim() && emailOk && !!form.phone.trim()
-      case 1: return !!form.residentYobe && !!form.stateOfResidence.trim() && !!form.englishFluency && !!form.hausaFluency
-      case 2: return !!form.qualification && !!form.qualificationField.trim() && !!form.yearsExperience && !!form.agricKnowledge && !!form.supervisedStaff
+      case 1: return !!form.stateOfResidence.trim() && screeningComplete
+      case 2: return !!form.qualification && !!form.qualificationField.trim() && !!form.yearsExperience
       case 3: return !!file
       case 4: return true
       default: return false
@@ -216,11 +219,15 @@ export default function ApplyProjectOfficer() {
     try {
       if (!ENDPOINT) throw new Error('Submission endpoint is not configured yet. Set NEXT_PUBLIC_CAREERS_ENDPOINT (or NEXT_PUBLIC_VOLUNTEER_ENDPOINT).')
       const fileData = file ? await fileToBase64(file) : ''
+      const screeningText = job.screening
+        .map(q => `${q.label} ${answers[q.key] || '—'}`)
+        .join('\n')
       const payload = {
         formType: 'job-application',
-        role: ROLE,
-        project: PROJECT,
+        role: job.title,
+        roleSlug: job.slug,
         ...form,
+        screeningAnswers: screeningText,
         fileName: file?.name || '',
         fileMime: file?.type || 'application/pdf',
         fileData,
@@ -231,7 +238,7 @@ export default function ApplyProjectOfficer() {
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
       })
-      localStorage.removeItem('cbi-po-apply-draft')
+      localStorage.removeItem(draftKey)
       setStatus('success')
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (e) {
@@ -250,7 +257,7 @@ export default function ApplyProjectOfficer() {
           </div>
           <h1 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 28, fontWeight: 700, color: C.navy, marginBottom: 12 }}>Application received</h1>
           <p style={{ fontFamily: F, fontSize: 15, color: C.sub, lineHeight: 1.7, marginBottom: 28 }}>
-            Thank you for applying for the {ROLE} role. Your application and merged PDF have been submitted. Applications are reviewed on a rolling basis — only shortlisted candidates will be contacted.
+            Thank you for applying for the {job.title} role. Your application and document have been submitted. Applications are reviewed on a rolling basis — only shortlisted candidates will be contacted.
           </p>
           <Link href="/careers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: C.blue, color: '#fff', borderRadius: 10, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
             Back to Careers
@@ -267,20 +274,23 @@ export default function ApplyProjectOfficer() {
       {/* Header band */}
       <section style={{ background: `linear-gradient(120deg, ${C.navy} 0%, ${C.blue} 100%)`, padding: '54px 24px 90px', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 820, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <Link href="/careers/project-officer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: F, fontSize: 12.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textDecoration: 'none', marginBottom: 20 }}>
+          <Link href={`/careers/${job.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: F, fontSize: 12.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)', textDecoration: 'none', marginBottom: 20 }}>
             <ChevronLeft size={15} /> Back to Job Advert
           </Link>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(255,132,0,0.16)', border: '1px solid rgba(255,132,0,0.45)', borderRadius: 100, padding: '5px 14px', marginBottom: 18 }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: C.orange }} />
             <span style={{ fontFamily: F, fontSize: 10.5, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.orange }}>
-              Application · Closes {DEADLINE}
+              Application · Closes {job.deadline}
             </span>
           </div>
-          <h1 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 'clamp(28px,4vw,44px)', fontWeight: 700, color: '#fff', lineHeight: 1.08, letterSpacing: '-0.02em', margin: 0 }}>
-            Apply — <em style={{ fontStyle: 'italic', color: C.orange }}>{ROLE}</em>
+          <h1 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 'clamp(26px,3.6vw,42px)', fontWeight: 700, color: '#fff', lineHeight: 1.08, letterSpacing: '-0.02em', margin: 0 }}>
+            Apply — <em style={{ fontStyle: 'italic', color: C.orange }}>{job.title}</em>
           </h1>
           <p style={{ fontFamily: F, fontSize: 14.5, color: 'rgba(255,255,255,0.8)', lineHeight: 1.75, marginTop: 14, maxWidth: 620 }}>
-            {PROJECT} · Yobe State (Bade/Jakusko). The form takes about 4 minutes and your progress saves automatically. You will need your <strong style={{ color: '#fff' }}>CV and cover letter merged into a single PDF</strong>.
+            {job.location} · {job.duration}. The form takes about 4 minutes and your progress saves automatically. You will need your{' '}
+            <strong style={{ color: '#fff' }}>
+              {job.singlePdf ? 'CV and cover letter merged into a single PDF' : 'CV and cover letter'}
+            </strong>.
           </p>
         </div>
       </section>
@@ -342,61 +352,50 @@ export default function ApplyProjectOfficer() {
               </div>
             )}
 
-            {/* STEP 1 — Eligibility */}
+            {/* STEP 1 — Eligibility (role-specific) */}
             {step === 1 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <StepHead title="Eligibility" sub="This role has location and language requirements." />
-                <div>
-                  <Label required hint="Residency in Yobe State is a requirement for this role.">Are you currently resident in Yobe State?</Label>
-                  <ChipGroup options={YES_NO} value={form.residentYobe} onChange={v => set('residentYobe', v)} columns={2} />
-                  {form.residentYobe === 'No' && (
-                    <div style={{ marginTop: 10, display: 'flex', gap: 9, padding: '12px 14px', borderRadius: 10, background: 'rgba(255,132,0,0.07)', border: '1px solid rgba(255,132,0,0.35)' }}>
-                      <AlertCircle size={16} color="#b35c00" style={{ flexShrink: 0, marginTop: 1 }} />
-                      <p style={{ fontFamily: F, fontSize: 12.5, color: '#7a3d00', lineHeight: 1.55, margin: 0 }}>
-                        The advert requires residency in Yobe State. You may still apply, but please explain your situation in your cover letter.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                <StepHead title="Eligibility" sub="A few questions specific to this role." />
                 <div>
                   <Label required>State of residence</Label>
                   <TextField value={form.stateOfResidence} onChange={v => set('stateOfResidence', v)} placeholder="Start typing your state…" list="apply-ng-states" />
                   <datalist id="apply-ng-states">{NG_STATES.map(s => <option key={s} value={s} />)}</datalist>
                 </div>
-                <div>
-                  <Label required>Willing to be based in Bade / Jakusko?</Label>
-                  <ChipGroup options={YES_NO} value={form.relocate} onChange={v => set('relocate', v)} columns={2} />
-                </div>
-                <div className="apply-row">
-                  <div><Label required>English fluency</Label><ChipGroup options={FLUENCY} value={form.englishFluency} onChange={v => set('englishFluency', v)} columns={3} /></div>
-                  <div><Label required>Hausa fluency</Label><ChipGroup options={FLUENCY} value={form.hausaFluency} onChange={v => set('hausaFluency', v)} columns={3} /></div>
-                </div>
+                {job.screening.map(q => (
+                  <div key={q.key}>
+                    <Label required={q.required} hint={q.hint}>{q.label}</Label>
+                    <ChipGroup
+                      options={q.options}
+                      value={answers[q.key] || ''}
+                      onChange={v => setAnswer(q.key, v)}
+                      columns={q.options.length > 2 ? 3 : 2}
+                    />
+                    {q.warnOn && answers[q.key] === q.warnOn && q.warning && (
+                      <div style={{ marginTop: 10, display: 'flex', gap: 9, padding: '12px 14px', borderRadius: 10, background: 'rgba(255,132,0,0.07)', border: '1px solid rgba(255,132,0,0.35)' }}>
+                        <AlertCircle size={16} color="#b35c00" style={{ flexShrink: 0, marginTop: 1 }} />
+                        <p style={{ fontFamily: F, fontSize: 12.5, color: '#7a3d00', lineHeight: 1.55, margin: 0 }}>{q.warning}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
             {/* STEP 2 — Experience */}
             {step === 2 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <StepHead title="Qualifications & experience" sub="The core requirement is management skills plus agricultural skills." />
+                <StepHead title="Qualifications & experience" sub="Your education and relevant background." />
                 <div>
                   <Label required>Highest academic qualification</Label>
                   <ChipGroup options={QUALS} value={form.qualification} onChange={v => set('qualification', v)} columns={3} />
                 </div>
                 <div>
-                  <Label required hint="e.g. Agriculture, Agricultural Extension, Agronomy">Field of study</Label>
+                  <Label required hint="e.g. Agronomy, Agricultural Extension, Mass Communication">Field of study</Label>
                   <TextField value={form.qualificationField} onChange={v => set('qualificationField', v)} placeholder="e.g. Agronomy" />
                 </div>
                 <div>
-                  <Label required>Years of project management / field coordination experience</Label>
+                  <Label required>Years of relevant experience</Label>
                   <ChipGroup options={EXPERIENCE} value={form.yearsExperience} onChange={v => set('yearsExperience', v)} columns={2} />
-                </div>
-                <div>
-                  <Label required hint="Especially climate-smart or vegetable production.">Do you have practical agricultural knowledge?</Label>
-                  <ChipGroup options={YES_NO} value={form.agricKnowledge} onChange={v => set('agricKnowledge', v)} columns={2} />
-                </div>
-                <div>
-                  <Label required>Have you supervised field staff before?</Label>
-                  <ChipGroup options={YES_NO} value={form.supervisedStaff} onChange={v => set('supervisedStaff', v)} columns={2} />
                 </div>
                 <div>
                   <Label>Current or most recent role and employer</Label>
@@ -408,9 +407,14 @@ export default function ApplyProjectOfficer() {
             {/* STEP 3 — Documents */}
             {step === 3 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-                <StepHead title="Your documents" sub="CV and cover letter must be merged into one PDF." />
+                <StepHead
+                  title="Your documents"
+                  sub={job.singlePdf ? 'CV and cover letter must be merged into one PDF.' : 'Upload your CV and cover letter.'}
+                />
                 <div>
-                  <Label required hint={`One PDF containing your CV and cover letter. Max ${MAX_MB} MB.`}>CV + cover letter (single PDF)</Label>
+                  <Label required hint={job.singlePdf ? `One PDF containing your CV and cover letter. Max ${MAX_MB} MB.` : `PDF or Word document. Max ${MAX_MB} MB.`}>
+                    {job.singlePdf ? 'CV + cover letter (single PDF)' : 'CV + cover letter'}
+                  </Label>
                   {!file ? (
                     <div
                       onClick={() => fileInput.current?.click()}
@@ -426,8 +430,10 @@ export default function ApplyProjectOfficer() {
                         <Upload size={20} color={C.blue} />
                       </div>
                       <p style={{ fontFamily: F, fontSize: 14, fontWeight: 700, color: C.ink, marginBottom: 4 }}>Click to upload or drag &amp; drop</p>
-                      <p style={{ fontFamily: F, fontSize: 12, color: C.sub }}>PDF only · Max {MAX_MB} MB</p>
-                      <input ref={fileInput} type="file" accept=".pdf,application/pdf" hidden onChange={e => handleFile(e.target.files?.[0])} />
+                      <p style={{ fontFamily: F, fontSize: 12, color: C.sub }}>
+                        {job.singlePdf ? 'PDF only' : 'PDF or Word'} · Max {MAX_MB} MB
+                      </p>
+                      <input ref={fileInput} type="file" accept={accept} hidden onChange={e => handleFile(e.target.files?.[0])} />
                     </div>
                   ) : (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px', borderRadius: 12, border: `1.5px solid ${C.blue}`, background: 'rgba(1,2,241,0.04)' }}>
@@ -456,26 +462,22 @@ export default function ApplyProjectOfficer() {
                 <StepHead title="Review & submit" sub="Check your details before sending." />
                 <div style={{ borderRadius: 14, border: `1px solid ${C.line}`, overflow: 'hidden' }}>
                   {([
-                    ['Applying for', `${ROLE} — ${PROJECT}`],
+                    ['Applying for', job.title],
                     ['Full name', [form.name, form.middleName, form.surname].filter(Boolean).join(' ')],
                     ['Email', form.email],
                     ['Phone', form.phone],
                     ['Gender', form.gender || '—'],
-                    ['Resident in Yobe', form.residentYobe],
                     ['State of residence', form.stateOfResidence],
-                    ['Based in Bade/Jakusko', form.relocate || '—'],
-                    ['English / Hausa', `${form.englishFluency} / ${form.hausaFluency}`],
+                    ...job.screening.map(q => [q.label, answers[q.key] || '—'] as [string, string]),
                     ['Qualification', `${form.qualification} — ${form.qualificationField}`],
                     ['Experience', form.yearsExperience],
-                    ['Agricultural knowledge', form.agricKnowledge],
-                    ['Supervised field staff', form.supervisedStaff],
                     ['Current role', form.currentRole || '—'],
                     ['LinkedIn / portfolio', form.linkedin || '—'],
                     ['Earliest start', form.startDate || '—'],
                     ['Document', file?.name || '—'],
                   ] as [string, string][]).map(([k, v], i, arr) => (
-                    <div key={k} style={{ display: 'flex', gap: 16, padding: '12px 18px', background: i % 2 ? '#fafbff' : '#fff', borderBottom: i < arr.length - 1 ? `1px solid ${C.line}` : 'none' }}>
-                      <span style={{ fontFamily: F, fontSize: 12.5, fontWeight: 700, color: C.sub, width: 170, flexShrink: 0 }}>{k}</span>
+                    <div key={k + i} style={{ display: 'flex', gap: 16, padding: '12px 18px', background: i % 2 ? '#fafbff' : '#fff', borderBottom: i < arr.length - 1 ? `1px solid ${C.line}` : 'none' }}>
+                      <span style={{ fontFamily: F, fontSize: 12.5, fontWeight: 700, color: C.sub, width: 200, flexShrink: 0 }}>{k}</span>
                       <span style={{ fontFamily: F, fontSize: 13.5, color: C.ink, lineHeight: 1.55, wordBreak: 'break-word' }}>{v || '—'}</span>
                     </div>
                   ))}

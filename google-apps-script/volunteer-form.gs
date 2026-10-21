@@ -46,12 +46,11 @@ var VOLUNTEER_HEADERS = [
 ];
 
 var JOB_HEADERS = [
-  'Timestamp', 'Role', 'Project', 'First Name', 'Middle Name', 'Surname',
-  'Email', 'Phone', 'Gender', 'Resident in Yobe', 'State of Residence',
-  'Willing to be based in Bade/Jakusko', 'English Fluency', 'Hausa Fluency',
-  'Qualification', 'Field of Study', 'Years Experience',
-  'Agricultural Knowledge', 'Supervised Field Staff', 'Current Role',
-  'LinkedIn/Portfolio', 'Earliest Start Date', 'CV + Cover Letter (PDF)',
+  'Timestamp', 'Role', 'First Name', 'Middle Name', 'Surname',
+  'Email', 'Phone', 'Gender', 'State of Residence',
+  'Qualification', 'Field of Study', 'Years Experience', 'Current Role',
+  'LinkedIn/Portfolio', 'Earliest Start Date',
+  'Screening Answers', 'CV + Cover Letter',
 ];
 
 /** Creates both tabs and their header rows. Safe to re-run — never clears data. */
@@ -82,15 +81,14 @@ function doPost(e) {
     if (isJob) {
       ensureSheet(JOBS_SHEET, JOB_HEADERS).appendRow([
         new Date(),
-        data.role || '', data.project || '',
+        data.role || '',
         data.name || '', data.middleName || '', data.surname || '',
         data.email || '', data.phone || '', data.gender || '',
-        data.residentYobe || '', data.stateOfResidence || '',
-        data.relocate || '', data.englishFluency || '', data.hausaFluency || '',
+        data.stateOfResidence || '',
         data.qualification || '', data.qualificationField || '',
-        data.yearsExperience || '', data.agricKnowledge || '',
-        data.supervisedStaff || '', data.currentRole || '',
+        data.yearsExperience || '', data.currentRole || '',
         data.linkedin || '', data.startDate || '',
+        data.screeningAnswers || '',
         fileLink,
       ]);
     } else {
