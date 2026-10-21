@@ -62,7 +62,7 @@ export const JOBS: Job[] = [
     facts: [
       { icon: 'briefcase',  label: 'Job Title',    value: 'Project Officer (Contract Role)' },
       { icon: 'project',    label: 'Project',      value: 'WPHF Climate-Resilient Peacebuilding (Yobe)' },
-      { icon: 'reports',    label: 'Reporting To', value: 'Program Manager; coordinates with the Grants & Compliance Officer' },
+      { icon: 'reports',    label: 'Reporting To', value: 'Program Manager' },
       { icon: 'location',   label: 'Duty Station', value: 'Yobe State (Bade/Jakusko)' },
       { icon: 'clock',      label: 'Duration',     value: '11 months' },
       { icon: 'deadline',   label: 'Deadline',     value: `${DEADLINE} (rolling basis)` },
@@ -82,7 +82,7 @@ export const JOBS: Job[] = [
         heading: 'Required Qualifications',
         items: [
           'Bachelor’s degree in Agriculture, Agricultural Extension, Agronomy or related field',
-          'Minimum 3 years’ experience in project management or field coordination of agricultural/livelihoods projects',
+          'Minimum 3 years’ experience in project management or field coordination of agricultural/livelihood projects',
           'Strong project management skills (compulsory)',
           'Practical agricultural knowledge, especially climate-smart / vegetable production (compulsory)',
           'Experience supervising field staff',
