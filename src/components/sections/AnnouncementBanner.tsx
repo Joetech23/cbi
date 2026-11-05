@@ -9,6 +9,8 @@ import { Megaphone, ArrowRight, CalendarClock } from 'lucide-react'
  * Bold, attention-grabbing band placed right beneath the hero.
  */
 export default function AnnouncementBanner() {
+  if (OPEN_ROLE_COUNT === 0) return null
+
   return (
     <section className="annc" style={{
       position: 'relative', overflow: 'hidden',

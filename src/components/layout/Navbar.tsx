@@ -111,7 +111,7 @@ export default function Navbar() {
     } catch { /* storage unavailable */ }
   }, [])
 
-  const showHiring = hiringOpen && !pathname.startsWith('/careers')
+  const showHiring = hiringOpen && OPEN_ROLE_COUNT > 0 && !pathname.startsWith('/careers')
   const topOffset  = showHiring ? BAR_H : 0
 
   function dismissHiring() {

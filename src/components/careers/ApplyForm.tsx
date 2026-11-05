@@ -7,6 +7,7 @@ import {
   Loader2, PartyPopper, AlertCircle, User, ShieldCheck, Briefcase,
   GraduationCap, ClipboardCheck,
 } from 'lucide-react'
+import { ROLES_OPEN } from '@/lib/jobs'
 import type { Job } from '@/lib/jobs'
 
 /* Reuses the volunteer endpoint unless a careers-specific one is set.
@@ -245,6 +246,35 @@ export default function ApplyForm({ job }: { job: Job }) {
       setErrMsg(e instanceof Error ? e.message : 'Something went wrong. Please try again.')
       setStatus('error')
     }
+  }
+
+  /* Applications closed */
+  if (!ROLES_OPEN) {
+    return (
+      <div style={{ background: '#f8fafc', minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '80px 20px' }}>
+        <div style={{ maxWidth: 560, textAlign: 'center', background: '#fff', borderRadius: 20, padding: '56px 40px', border: `1px solid ${C.line}`, boxShadow: '0 20px 60px rgba(1,2,241,0.10)' }}>
+          <div style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(100,116,139,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+            <ClipboardCheck size={34} color={C.sub} />
+          </div>
+          <h1 style={{ fontFamily: 'var(--font-playfair, Georgia, serif)', fontSize: 28, fontWeight: 700, color: C.navy, marginBottom: 12 }}>
+            Applications are closed
+          </h1>
+          <p style={{ fontFamily: F, fontSize: 15, color: C.sub, lineHeight: 1.7, marginBottom: 28 }}>
+            The {job.title} role closed to applications on {job.deadline}. Thank you to everyone who
+            applied — shortlisted candidates are contacted directly. New openings are posted on our
+            careers page as they arise.
+          </p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href={`/careers/${job.slug}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: C.blue, color: '#fff', borderRadius: 10, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+              Read the advert
+            </Link>
+            <Link href="/careers" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: '#fff', color: C.blue, border: `1.5px solid ${C.line}`, borderRadius: 10, fontFamily: F, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
+              Back to Careers
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   /* Success */

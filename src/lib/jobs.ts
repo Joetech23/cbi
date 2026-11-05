@@ -357,7 +357,11 @@ export function getJob(slug: string): Job | undefined {
   return JOBS.find(j => j.slug === slug)
 }
 
-export const OPEN_ROLE_COUNT = JOBS.length
+/** Recruitment for the 2026 roles has closed; set back to true to reopen them. */
+export const ROLES_OPEN = false
+
+/** 0 while recruitment is closed, so banners and counters hide themselves. */
+export const OPEN_ROLE_COUNT = ROLES_OPEN ? JOBS.length : 0
 
 /** The 2026 call for volunteers has closed; set back to true to reopen it. */
 export const VOLUNTEER_OPEN = false

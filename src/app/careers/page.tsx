@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Briefcase, Send, HeartHandshake, ArrowRight, CalendarClock, MapPin, Clock } from 'lucide-react'
 import PageHero from '@/components/layout/PageHero'
-import { JOBS, VOLUNTEER_OPEN } from '@/lib/jobs'
+import { JOBS, VOLUNTEER_OPEN, ROLES_OPEN } from '@/lib/jobs'
 
 const BENEFITS = [
   { title: 'Purposeful Work',       desc: "Every role directly contributes to humanitarian programs for Nigeria's most vulnerable." },
@@ -122,89 +122,118 @@ export default function CareersPage() {
                 <p style={{
                   fontFamily: 'var(--font-space, monospace)',
                   fontSize: 18, fontWeight: 700, color: '#010278', lineHeight: 1,
-                }}>{JOBS.length}</p>
+                }}>{ROLES_OPEN ? JOBS.length : 0}</p>
                 <p style={{
                   fontFamily: 'var(--font-jakarta, sans-serif)',
                   fontSize: 11, color: '#94a3b8', fontWeight: 700, marginTop: 4,
                   letterSpacing: '0.08em', textTransform: 'uppercase',
-                }}>{JOBS.length === 1 ? 'Open position' : 'Open positions'}</p>
+                }}>{ROLES_OPEN && JOBS.length === 1 ? 'Open position' : 'Open positions'}</p>
               </div>
             </div>
           </div>
 
           {/* Open roles */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {JOBS.map(job => (
-              <Link key={job.slug} href={`/careers/${job.slug}`} className="job-card" style={{
-                display: 'block', textDecoration: 'none', color: 'inherit',
-                background: 'white', borderRadius: 16, padding: '28px 32px',
-                border: '1px solid rgba(1,2,241,0.10)',
-                borderLeft: '4px solid #0102F1',
-                boxShadow: '0 4px 20px rgba(1,2,241,0.05)',
-              }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
-                  <div style={{ minWidth: 0, flex: '1 1 420px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
-                      <span style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 6,
-                        background: 'rgba(255,132,0,0.12)', border: '1px solid rgba(255,132,0,0.4)',
-                        color: '#b35c00', borderRadius: 100, padding: '4px 12px',
-                        fontFamily: 'var(--font-jakarta, sans-serif)',
-                        fontSize: 9.5, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
-                      }}>
-                        <span className="anim-pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#ff8400' }} />
-                        Now Hiring
-                      </span>
-                      {job.titleTail && (
+          {ROLES_OPEN ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {JOBS.map(job => (
+                <Link key={job.slug} href={`/careers/${job.slug}`} className="job-card" style={{
+                  display: 'block', textDecoration: 'none', color: 'inherit',
+                  background: 'white', borderRadius: 16, padding: '28px 32px',
+                  border: '1px solid rgba(1,2,241,0.10)',
+                  borderLeft: '4px solid #0102F1',
+                  boxShadow: '0 4px 20px rgba(1,2,241,0.05)',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+                    <div style={{ minWidth: 0, flex: '1 1 420px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
                         <span style={{
-                          background: 'rgba(1,2,241,0.07)', color: '#0102F1', borderRadius: 100,
-                          padding: '4px 12px', fontFamily: 'var(--font-jakarta, sans-serif)',
-                          fontSize: 9.5, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase',
-                        }}>{job.titleTail.replace(/[()]/g, '')}</span>
-                      )}
-                    </div>
-
-                    <h3 style={{
-                      fontFamily: 'var(--font-playfair, Georgia, serif)',
-                      fontSize: 'clamp(20px,2.2vw,26px)', fontWeight: 700,
-                      color: '#010278', margin: '0 0 6px', letterSpacing: '-0.02em', lineHeight: 1.15,
-                    }}>{job.title}</h3>
-
-                    <p style={{
-                      fontFamily: 'var(--font-jakarta, sans-serif)',
-                      fontSize: 13.5, color: '#64748b', lineHeight: 1.6, margin: '0 0 16px', maxWidth: 560,
-                    }}>{job.summary}</p>
-
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 18px' }}>
-                      {[
-                        { Icon: MapPin,        text: job.location },
-                        { Icon: Clock,         text: job.duration },
-                        { Icon: CalendarClock, text: `Closes ${job.deadline}` },
-                      ].map(m => (
-                        <span key={m.text} style={{
                           display: 'inline-flex', alignItems: 'center', gap: 6,
+                          background: 'rgba(255,132,0,0.12)', border: '1px solid rgba(255,132,0,0.4)',
+                          color: '#b35c00', borderRadius: 100, padding: '4px 12px',
                           fontFamily: 'var(--font-jakarta, sans-serif)',
-                          fontSize: 12.5, fontWeight: 600, color: '#475569',
+                          fontSize: 9.5, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
                         }}>
-                          <m.Icon size={13} color="#0102F1" /> {m.text}
+                          <span className="anim-pulse-dot" style={{ width: 5, height: 5, borderRadius: '50%', background: '#ff8400' }} />
+                          Now Hiring
                         </span>
-                      ))}
-                    </div>
-                  </div>
+                        {job.titleTail && (
+                          <span style={{
+                            background: 'rgba(1,2,241,0.07)', color: '#0102F1', borderRadius: 100,
+                            padding: '4px 12px', fontFamily: 'var(--font-jakarta, sans-serif)',
+                            fontSize: 9.5, fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase',
+                          }}>{job.titleTail.replace(/[()]/g, '')}</span>
+                        )}
+                      </div>
 
-                  <span className="job-cta" style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
-                    padding: '13px 26px', background: '#0102F1', color: 'white',
-                    borderRadius: 8, fontFamily: 'var(--font-jakarta, sans-serif)',
-                    fontSize: 14, fontWeight: 700,
-                    boxShadow: '0 4px 12px rgba(1,2,241,0.20)',
-                  }}>
-                    View Details <ArrowRight size={15} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
+                      <h3 style={{
+                        fontFamily: 'var(--font-playfair, Georgia, serif)',
+                        fontSize: 'clamp(20px,2.2vw,26px)', fontWeight: 700,
+                        color: '#010278', margin: '0 0 6px', letterSpacing: '-0.02em', lineHeight: 1.15,
+                      }}>{job.title}</h3>
+
+                      <p style={{
+                        fontFamily: 'var(--font-jakarta, sans-serif)',
+                        fontSize: 13.5, color: '#64748b', lineHeight: 1.6, margin: '0 0 16px', maxWidth: 560,
+                      }}>{job.summary}</p>
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 18px' }}>
+                        {[
+                          { Icon: MapPin,        text: job.location },
+                          { Icon: Clock,         text: job.duration },
+                          { Icon: CalendarClock, text: `Closes ${job.deadline}` },
+                        ].map(m => (
+                          <span key={m.text} style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 6,
+                            fontFamily: 'var(--font-jakarta, sans-serif)',
+                            fontSize: 12.5, fontWeight: 600, color: '#475569',
+                          }}>
+                            <m.Icon size={13} color="#0102F1" /> {m.text}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <span className="job-cta" style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 8, flexShrink: 0,
+                      padding: '13px 26px', background: '#0102F1', color: 'white',
+                      borderRadius: 8, fontFamily: 'var(--font-jakarta, sans-serif)',
+                      fontSize: 14, fontWeight: 700,
+                      boxShadow: '0 4px 12px rgba(1,2,241,0.20)',
+                    }}>
+                      View Details <ArrowRight size={15} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div style={{
+              background: '#f8fafc', borderRadius: 16, padding: '56px 40px',
+              textAlign: 'center', border: '1px solid rgba(1,2,241,0.07)',
+            }}>
+              <div style={{
+                width: 64, height: 64, borderRadius: 16,
+                background: 'rgba(1,2,241,0.07)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 20px',
+              }}>
+                <Briefcase size={24} color="#0102F1" />
+              </div>
+              <h3 style={{
+                fontFamily: 'var(--font-playfair, Georgia, serif)',
+                fontSize: 20, fontWeight: 700, color: '#010278', marginBottom: 10,
+              }}>Applications are closed.</h3>
+              <p style={{
+                fontFamily: 'var(--font-jakarta, sans-serif)',
+                fontSize: 14.5, color: '#64748b', lineHeight: 1.7,
+                maxWidth: 520, margin: '0 auto',
+              }}>
+                Our recent recruitment round has now closed and we are no longer accepting
+                applications. Thank you to everyone who applied — shortlisted candidates are
+                contacted directly. New openings are posted here as they arise.
+              </p>
+            </div>
+          )}
 
           {/* Unsolicited applications */}
           <div style={{

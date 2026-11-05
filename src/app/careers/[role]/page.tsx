@@ -5,7 +5,7 @@ import {
   ChevronLeft, CalendarClock, MapPin, Clock, Briefcase,
   Users, Check, ShieldCheck, Mail, ArrowRight, Sprout, Megaphone,
 } from 'lucide-react'
-import { JOBS, getJob, type JobFact } from '@/lib/jobs'
+import { JOBS, getJob, ROLES_OPEN, type JobFact } from '@/lib/jobs'
 
 /* ─────────────────────────────────────────────────────────────
    Tokens — matched to /careers/volunteer
@@ -211,6 +211,8 @@ export default async function JobAdvertPage({ params }: Props) {
             )}
 
             <div>
+{ROLES_OPEN ? (
+              <>
               <SectionTitle>How to Apply</SectionTitle>
               <p style={{ fontFamily: F, fontSize: 15, color: '#475569', lineHeight: 1.8, margin: '0 0 10px' }}>
                 Interested and qualified candidates should apply with their{' '}
@@ -249,6 +251,26 @@ export default async function JobAdvertPage({ params }: Props) {
                 The online form uploads your document directly. Email applications go to{' '}
                 <strong style={{ color: C.blue }}>{APPLY_EMAIL}</strong>.
               </p>
+              </>
+              ) : (
+              <>
+              <SectionTitle>Applications Closed</SectionTitle>
+              <div style={{
+                padding: '22px 24px', borderRadius: 12,
+                background: 'rgba(100,116,139,0.06)',
+                border: `1px solid ${C.line}`, borderLeft: '4px solid #94a3b8',
+              }}>
+                <p style={{ fontFamily: F, fontSize: 15, color: '#475569', lineHeight: 1.8, margin: '0 0 8px' }}>
+                  This role closed to applications on <strong style={{ color: C.ink }}>{job.deadline}</strong>.
+                </p>
+                <p style={{ fontFamily: F, fontSize: 14, color: C.sub, lineHeight: 1.75, margin: 0 }}>
+                  Thank you to everyone who applied — shortlisted candidates are contacted directly.
+                  The advert is kept here for reference. New openings are posted on our{' '}
+                  <Link href="/careers" style={{ color: C.blue, fontWeight: 700, textDecoration: 'none' }}>careers page</Link>.
+                </p>
+              </div>
+              </>
+              )}
             </div>
 
             <div style={{ padding: '22px 24px', borderRadius: 12, background: '#f8fafc', border: `1px solid ${C.line}` }}>
